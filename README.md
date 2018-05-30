@@ -35,10 +35,9 @@
 ### Think of how much of your days are spent trying to track down accurate information. Now imagine how much more you can do if you had that time back. With the vault, all information is up to date since it’s being controlled from the source of it. 
 
 <br />
-<br />
 
 > This boilerplate is a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you, developed by Dinesh Pandiyan.
-
+<br />
 
 ## Features
 
