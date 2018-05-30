@@ -1,3 +1,5 @@
+<img src="https://i.imgur.com/TiDoj4J.png" />
+
 # Project Ani Prototype
 ## The Efficiency Network for Entertainment 
 
