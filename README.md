@@ -26,8 +26,9 @@
   <sub>Development: <a href="https://www.linkedin.com/in/dilan-swain-7a4b3626/">Dilan Swain</a> <a href="https://github.com/AidanPrehatny">Aidan Prehatny</a></sub>
 </div>
 
+<br />
 
-ANi started with a phone call. Dilan Swain, CEO and Founder, having spent the last 5 years at Creative Artists Agency, wanted to put his producing skills from Chapman University to good use. He was developing a project that focused on showcasing up and coming directors and completely undiscovered actors and actresses, but he needed help finding them.
+Think of how much of your days are spent trying to track down accurate information. Now imagine how much more you can do if you had that time back. With the vault, all information is up to date since it’s being controlled from the source of it. 
 
 > This boilerplate is a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you, developed by Dinesh Pandiyan.
 
