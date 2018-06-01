@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getProjects, parseFolders, parseTitles, matchProject } from '../../actions';
 
-const ProjectInfo = ({titles}) => (
-  titles ?
-  <div>
+import QuickShare from '../quickShare/quickShare';
+import { getProjects, parseFolders, parseTitles } from '../../actions';
 
-  </div> : null
-)
+
+const ProjectInfo = ({titles, index}) => {
+  // console.log(titles[0].id)
+  // console.log(index)
+  return (
+    titles ?
+    titles.filter(title => title.id.toString() === index).map(proj => (
+    <div key={proj.id} className="grid-y grid-frame">
+      <div className="cell large-5">
+        <div className="grid-y grid-frame align-center">
+          <div className="cell large-7">
+            <div className="grid-x align-middle align-center" style={{height:'100%'}}>
+              <div className="grid-x large-9" style={{height:'100%'}}>
+                <h1 style={{maxHeight:'4vh'}} className="myVault cell">{proj.title}</h1>
+                <h3 style={{maxHeight:'2vh'}} className="myVault cell">{proj.studio}</h3>
+                <div className="grid-x cell">
+                  <div className="cell"> </div>
+                  <div className="cell"> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <QuickShare />
+    </div>
+  ))
+     : null
+  )
+}
 
 class ProjectPage extends Component {
 
@@ -17,14 +44,15 @@ class ProjectPage extends Component {
   }
 
   render() {
-    console.log(this.props.projects.titles)
+    console.log(this.props)
     let { titles } = this.props.projects
+    let index = this.props.match.params.id ? this.props.match.params.id : null
     return (
       <div className="grid-x projectPage" >
 
         <div className="cell grid-x large-4">
           <div className="cell large-9 vaultColumn">
-            <ProjectInfo titles={titles} />
+            <ProjectInfo titles={titles} index={index} />
           </div>
         </div>
 
@@ -59,4 +87,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {getProjects, parseFolders, parseTitles, matchProject})(ProjectPage);
+export default connect(mapStateToProps, {getProjects, parseFolders, parseTitles})(ProjectPage);

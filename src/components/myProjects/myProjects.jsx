@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import JSON from '../../db.json';
 import DropDown from '../dropDown/dropDown';
-import { getProjects, parseFolders, parseTitles, matchProject } from '../../actions';
+import { getProjects, parseFolders, parseTitles } from '../../actions';
 
 class MyProject extends Component {
 
@@ -96,4 +96,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {getProjects, parseFolders, parseTitles, matchProject})(MyProject);
+export default connect(mapStateToProps, {getProjects, parseFolders, parseTitles})(MyProject);

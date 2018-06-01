@@ -32,19 +32,19 @@ export function parseTitles(projects, clicked){
   }
 }
 
-export function matchProject(projects, history){
-
-  let projectMatch = (projects,history) =>
-  projects.projects.filter(proj => {
-    console.log(proj.id, history)
-    return (
-      proj.id.toString() === history
-    )
-  }
-)
-
-return {
-  type: 'MATCH_PROJECT',
-  payload: projectMatch(projects, history)
-}
-}
+// export function matchProject(projects, history){
+//
+//   let projectMatch = (projects,history) =>
+//   projects.projects.filter(proj => {
+//     console.log(proj.id, history)
+//     return (
+//       proj.id.toString() === history
+//     )
+//   }
+// )
+//
+// return {
+//   type: 'MATCH_PROJECT',
+//   payload: projectMatch(projects, history)
+// }
+// }
