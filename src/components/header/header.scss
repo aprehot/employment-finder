@@ -1,5 +1,6 @@
 .navANi {
   height: 8vh;
+  justify-content: flex-end;
   background: linear-gradient(222deg, #000000, #272727 85%);
 }
 .profileAvatar {
@@ -7,7 +8,7 @@
   margin: 0 0 0 0;
 }
 #profileAvatar {
-  margin: 0 5px 0 5px !important;
+  margin: 0 15px 0 0 !important;
 }
 .profileCompany {
   color: #666;
@@ -17,6 +18,9 @@
   height: 100%;
   display: flex;
   align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  // margin: 0 15px;
 }
 .searchANi {
   // padding:  $form-spacing / 2 !important;
@@ -42,4 +46,14 @@
   max-height: 58px;
   max-width: 58px;
   padding: 2.5px;
+}
+.notifications {
+  max-height: 30px;
+  max-width: 30px;
+  float: right;
+  cursor: pointer;
+}
+.notifications:hover {
+  transition: all .2s;
+  opacity: .5;
 }

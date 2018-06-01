@@ -3,23 +3,23 @@ import ReactDOM from 'react-dom';
 import App from './app'
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom'
+import { createStore, applyMiddleware } from 'redux';
+import './components/bundle.scss';
+import { Provider } from 'react-redux';
+
 
 // import thunk from 'redux-thunk'
-// import { createStore, applyMiddleware } from 'redux';
-// import { Provider } from 'react-redux';
-// import reducers from './redux/reducers';
-
-import './components/bundle.scss';
-
 // const createStoreWithMiddleware = applyMiddleware()(createStore);
-// const store = createStoreWithMiddleware(reducers,applyMiddleware(thunk));
+
+import reducers from './reducers';
+const store = createStore(reducers);
 
 
 ReactDOM.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-
+  </Provider>
     ,document.getElementById('root'));
 registerServiceWorker();

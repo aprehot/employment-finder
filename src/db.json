@@ -1,0 +1,383 @@
+[
+  {
+    "id": 1,
+    "folder": "Active",
+    "title": "Avengers 4",
+    "type": "Film",
+    "studio": "Marvel",
+    "startDate": "Q1",
+    "wrapDate": "Q2",
+    "budget": "$100m",
+    "location": "Los Angeles",
+    "premise": "The fourth installment of the Avengers Franchise",
+    "hasCD": true,
+    "roles": [
+      {
+        "id": "irmn",
+        "name": "Iron Man",
+        "minAge": 35,
+        "maxAge": 50,
+        "gender": "Male",
+        "type": "Lead",
+        "description": "Comic Book Hero",
+        "specifics": [
+          ""
+        ],
+        "isOpen": false,
+        "actor": "Robert Downey Jr."
+      },
+      {
+        "id": "cpta",
+        "name": "Captain America",
+        "minAge": 30,
+        "maxAge": 40,
+        "gender": "Male",
+        "type": "Lead",
+        "description": "",
+        "specifics": [
+          ""
+        ],
+        "isOpen": false,
+        "actor": "Chris Evans"
+      }
+    ],
+    "producer": [
+      {
+        "name": "Kevin Feige",
+        "picture": ""
+      }
+    ],
+    "director": [
+      {
+        "name": "Anthony Russo",
+        "picture": ""
+      },
+      {
+        "name": "Joe Russo",
+        "picture": ""
+      }
+    ],
+    "writer": [
+      {
+        "name": "Christopher Markus",
+        "picture": ""
+      }
+    ],
+    "castingDirector": [
+      {
+        "name": "Sarah Finn",
+        "picture": ""
+      }
+    ],
+    "access": [
+      "dilanSwain",
+      "raylinSabo"
+    ]
+  },
+  {
+    "id": 2,
+    "folder": "Development",
+    "title": "Captain America 4",
+    "type": "Film",
+    "studio": "Marvel",
+    "startDate": "Q1",
+    "wrapDate": "Q2",
+    "budget": "$100m",
+    "location": "New York",
+    "premise": "The fourth installment of the Captain America Franchise",
+    "hasCD": false,
+    "roles": [
+      {
+        "id": "cpta",
+        "name": "Captain America",
+        "minAge": 30,
+        "maxAge": 40,
+        "gender": "Male",
+        "type": "Lead",
+        "description": "",
+        "specifics": [
+          ""
+        ],
+        "isOpen": false,
+        "actor": "Chris Evans"
+      },
+      {
+        "id": "josh",
+        "name": "Josh",
+        "minAge": 20,
+        "maxAge": 30,
+        "gender": "Male",
+        "type": "Supporting",
+        "description": "High School Hero",
+        "specifics": [
+          ""
+        ],
+        "isOpen": true,
+        "actor": null
+      }
+    ],
+    "producer": [
+      {
+        "name": "Kevin Feige",
+        "picture": null
+      }
+    ],
+    "director": [
+      {
+        "name": "Anthony Russo",
+        "picture": ""
+      },
+      {
+        "name": "Joe Russo",
+        "picture": null
+      }
+    ],
+    "writer": [
+      {
+        "name": "Christopher Markus",
+        "picture": null
+      }
+    ],
+    "castingDirector": [
+      {
+        "name": null,
+        "picture": null
+      }
+    ],
+    "access": [
+      "dilanSwain"
+    ]
+  },
+  {
+    "id": 3,
+    "folder": "Casting",
+    "title": "In Ani Time",
+    "type": "Film",
+    "studio": "Independent",
+    "startDate": "Q2 2018",
+    "wrapDate": "Q3 2018",
+    "budget": "$5M",
+    "location": "Los Angeles",
+    "premise": "Best App Ever",
+    "hasCD": true,
+    "roles": [
+      {
+        "id": "ceo",
+        "name": "Dilan Swain",
+        "minAge": 25,
+        "maxAge": 30,
+        "gender": "Male",
+        "type": "Lead",
+        "description": "CEO & Founder",
+        "specifics": [
+          ""
+        ],
+        "isOpen": true,
+        "actor": null
+      },
+      {
+        "id": "jaim",
+        "name": "Jaime",
+        "minAge": 20,
+        "maxAge": 30,
+        "gender": "Female",
+        "type": "Supporting",
+        "description": "High School Hero",
+        "specifics": [
+          ""
+        ],
+        "isOpen": false,
+        "actor": null
+      }
+    ],
+    "producer": [
+      {
+        "name": "Dilan Swain",
+        "picture": null
+      }
+    ],
+    "director": [
+      {
+        "name": "Matt Wilson",
+        "picture": null
+      }
+    ],
+    "writer": [
+      {
+        "name": "Sam Shelley",
+        "picture": null
+      }
+    ],
+    "castingDirector": [
+      {
+        "name": "Raylin Sabo",
+        "picture": null
+      },
+      {
+        "name": "Mary Vernieu",
+        "picture": null
+      }
+    ],
+    "access": [
+      "dilanSwain, raylinSabo"
+    ]
+  },
+  {
+    "id": 4,
+    "folder": "Casting",
+    "title": "Widow",
+    "type": "Film",
+    "studio": "Marvel",
+    "startDate": "Q3 2019",
+    "wrapDate": "Q4 2018",
+    "budget": "$150M",
+    "location": "United Kingdom",
+    "premise": "The first standalone film for Black Widow",
+    "hasCD": false,
+    "roles": [
+      {
+        "id": "widw",
+        "name": "Widow",
+        "minAge": 25,
+        "maxAge": 35,
+        "gender": "Female",
+        "type": "Lead",
+        "description": "Member of the Avengers",
+        "specifics": [
+          ""
+        ],
+        "isOpen": false,
+        "actor": "Scarlett Johansson"
+      },
+      {
+        "id": "klly",
+        "name": "Kelly",
+        "minAge": 20,
+        "maxAge": 30,
+        "gender": "Female",
+        "type": "Supporting",
+        "description": "Black Widow's Evil Twin",
+        "specifics": [
+          ""
+        ],
+        "isOpen": true,
+        "actor": null
+      }
+    ],
+    "producer": [
+      {
+        "name": "Kevin Feige",
+        "picture": ""
+      }
+    ],
+    "director": [
+      {
+        "name": null,
+        "picture": null
+      }
+    ],
+    "writer": [
+      {
+        "name": null,
+        "picture": null
+      }
+    ],
+    "castingDirector": [
+      {
+        "name": null,
+        "picture": null
+      }
+    ],
+    "access": [
+      "dilanSwain, raylinSabo"
+    ]
+  },
+  {
+    "id": 5,
+    "folder": "Talent Meeting",
+    "title": "Wonder Woman 2",
+    "type": "Film",
+    "studio": "Warner Bros.",
+    "startDate": "Q3 2019",
+    "wrapDate": "Q4 2018",
+    "budget": "$150M",
+    "location": "Los Angeles",
+    "premise": "The sequel to Wonder Woman",
+    "hasCD": false,
+    "roles": [
+      {
+        "id": "wond",
+        "name": "Wonder Woman",
+        "minAge": 25,
+        "maxAge": 35,
+        "gender": "Female",
+        "type": "Lead",
+        "description": "Based on the DC Character",
+        "specifics": [
+          ""
+        ],
+        "isOpen": false,
+        "actor": "Gal Gadot"
+      },
+      {
+        "id": "cheet",
+        "name": "Cheetah",
+        "minAge": 30,
+        "maxAge": 35,
+        "gender": "Female",
+        "type": "Supporting",
+        "description": "Wonder Woman's Enemy",
+        "specifics": [
+          ""
+        ],
+        "isOpen": true,
+        "actor": null
+      },
+      {
+        "id": "rhin",
+        "name": "Rhino",
+        "minAge": 40,
+        "maxAge": 50,
+        "gender": "Male",
+        "type": "Cameo",
+        "description": "Cheetah's Sidekick",
+        "specifics": [
+          ""
+        ],
+        "isOpen": true,
+        "actor": null
+      }
+    ],
+    "producer": [
+      {
+        "name": "Geoff Johns",
+        "picture": null
+      }
+    ],
+    "director": [
+      {
+        "name": "Patty Jenkins",
+        "picture": null
+      }
+    ],
+    "writer": [
+      {
+        "name": "Dave Callaham",
+        "picture": null
+      }
+    ],
+    "castingDirector": [
+      {
+        "name": "Kristy Carlson",
+        "picture": null
+      },
+      {
+        "name": "Lucinda Syson",
+        "picture": null
+      }
+    ],
+    "access": [
+      "dilanSwain, raylinSabo"
+    ]
+  }
+]
