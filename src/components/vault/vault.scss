@@ -1,12 +1,34 @@
+
 .quickShare {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  background: red;
 }
-#myVault {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+
+.vaultColumn {
+  background: linear-gradient(115deg, #5E50FF, #191919 120%);
+  max-width: 748px !important;
+}
+.myVault {
+  color: white;
+}
+
+.vaultSearch:focus {
+  box-shadow: inset 0 0 15px #180035 !important;
+  border: none !important;
+}
+
+
+.quickShare {
+  background: $primary-color;
+  padding: 1.3em 2em;
+  margin-bottom: 2em;
+  border-radius: 25px;
+}
+.quickShareHeader {
+  color: #8484FF;
+}
+.quickShareBtn {
+  box-shadow: 0 0 10px 1px #8484ff;
 }
