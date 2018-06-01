@@ -22,7 +22,6 @@ class MyVault extends Component {
         </div>
 
 
-
         <div id="myUpdates" className="grid-y large-4 cell align-center">
           <div className="grid-x large-10">
 

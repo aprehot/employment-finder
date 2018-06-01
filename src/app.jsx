@@ -8,7 +8,7 @@ import MyVault from './containers/vault/vault';
 class App extends Component {
   render() {
     return (
-			<div>
+			<div style={{background: 'white'}}>
 				<Route key="header" component={Header}/>
         <Switch>
           <Route exact path="/" component={MyVault} />
