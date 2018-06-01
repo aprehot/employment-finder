@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import {Route,Switch} from 'react-router-dom'
 
 import Header from './header/header'
-import Footer from './footer/footer'
+import Footer from './footer/footer';
 
-import Home from './home/home'
-import AuthContainer from './auth/authContainer'
-import ServeContainer from './auth/serveContainer'
+import MyVault from './vault/vault';
+import AuthContainer from './auth/authContainer';
+import ServeContainer from './auth/serveContainer';
 
-import ArticlesContainer from './articles/articlesContainer'
-import ArticleDetails from './articles/details/articleDetails'
+import ArticlesContainer from './articles/articlesContainer';
+import ArticleDetails from './articles/details/articleDetails';
 
-import Login from './auth/login'
-import Register from './auth/register'
+import Login from './auth/login';
+import Register from './auth/register';
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
 			<div>
 				<Route key="header" component={Header}/>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={MyVault} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route render={()=>
@@ -37,7 +37,7 @@ class App extends Component {
           }>
           </Route>
         </Switch>
-        <Route component={Footer} />
+        {/* <Route component={Footer} /> */}
 
       </div>
     );
