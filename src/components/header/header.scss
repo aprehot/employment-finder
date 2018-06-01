@@ -1,10 +1,13 @@
 .navANi {
   height: 8vh;
-  background: black;
+  background: linear-gradient(222deg, #000000, #272727 85%);
 }
 .profileAvatar {
   color: white;
-  margin: 0;
+  margin: 0 0 0 0;
+}
+#profileAvatar {
+  margin: 0 5px 0 5px !important;
 }
 .profileCompany {
   color: #666;
@@ -12,6 +15,8 @@
 }
 .profileNav {
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 .searchANi {
   // padding:  $form-spacing / 2 !important;
@@ -27,12 +32,14 @@
 .navANiLink {
   color: white;
   cursor: pointer;
+  margin: 0;
+  font-size: 125%;
 }
 .navANiLink:hover {
   opacity: 0.7;
 }
 .ANiLogo {
-  max-height: 63px;
-  max-width: 63px;
-  padding: 5px;
+  max-height: 58px;
+  max-width: 58px;
+  padding: 2.5px;
 }

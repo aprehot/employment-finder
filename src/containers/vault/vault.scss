@@ -23,26 +23,6 @@
   box-shadow: inset 0 0 15px #180035 !important;
   border: none !important;
 }
-// .vaultSearch:after {
-//   background-image:  url(/assets/MagnifierIcon.svg)
-// }
-
-.quickShareOption {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between;
-  width: 100%;
-}
-.cloudBtns {
-  display: flex;
-  flex-direction: row;
-  flex: 0 0 20%;
-  font-size: calc(4px + .7vw);
-}
-.cloudImgs {
-  max-height: 30px;
-  max-width: 30px;
-}
 
 .quickShare {
   background: $primary-color;
@@ -50,10 +30,12 @@
   margin-bottom: 2em;
   border-radius: 15%;
   text-align: center;
+  transform: scale(0.8);
 }
 .quickShareHeader {
   color: #8484FF;
-  padding: 10px 0 ;
+  padding: 10px 0 0;
+  font-weight: lighter;
 }
 .quickShareBtn {
   box-shadow: 0 0 10px 1px #8484ff;
@@ -66,7 +48,25 @@
   flex-direction: row;
   flex-wrap: row;
   justify-content: space-between;
+  padding: 0 0 10px 0!important;
 }
 .quickShareInput {
   padding: $form-spacing / 1.5 !important;
+}
+.quickShareOption {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  width: 100%;
+}
+.cloudBtns {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 20%;
+  font-size: calc(4px + .7vw);
+  margin: 5px 0;
+}
+.cloudImgs {
+  max-height: 30px;
+  max-width: 30px;
 }

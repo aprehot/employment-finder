@@ -9,7 +9,7 @@ const Navigation = (username, companyName, profileName) => {
   return (
     <nav className="grid-x navANi align-center align-middle">
       <div className="profileNav grid-x cell large-3">
-        <img className="cell shrink ANiLogo" src={user} alt="ANiLogo" />
+        <img id="profileAvatar" className="cell shrink ANiLogo" src={user} alt="ANiLogo" />
         <div className="cell grid-x large-6 align-middle">
           <h4 className="cell profileAvatar">Dilan Swain</h4>
           <h5 className="cell profileCompany">ANi</h5>
@@ -20,10 +20,10 @@ const Navigation = (username, companyName, profileName) => {
       </div>
       <div className="cell large-5 grid-x align-right">
         <div className="grid-x cell large-11 navANiLinks">
-          <h4 className="navANiLink">Home</h4>
-          <h4 className="navANiLink">My Vault</h4>
-          <h4 className="navANiLink">ANi</h4>
-          <h4 className="navANiLink">Settings</h4>
+          <h3 className="navANiLink">Home</h3>
+          <h3 className="navANiLink">My Vault</h3>
+          <h3 className="navANiLink">ANi</h3>
+          <h3 className="navANiLink">Settings</h3>
           <img className="ANiLogo" src="https://s3-us-west-1.amazonaws.com/anidemo/aniwings%402x.png" />
         </div>
       </div>
