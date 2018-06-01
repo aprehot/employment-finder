@@ -9,14 +9,14 @@ const Navigation = (username, companyName, profileName) => {
   return (
     <nav className="grid-x navANi align-middle">
       <div className="profileNav grid-x cell large-3">
-        <div className="cell grid-x large-10">
+        <div className="cell grid-x large-11">
           <img id="profileAvatar" className="cell shrink ANiLogo" src={user} alt="ANiLogo" />
-          <div className="cell grid-x large-9 align-middle">
+          <div className="cell large-6 profileNavInfo">
             <h4 className="cell profileAvatar">Dilan Swain</h4>
             <h5 className="cell profileCompany">ANi</h5>
           </div>
+          <img className="cell notifications large-3" src="https://s3-us-west-1.amazonaws.com/anidemo/bell.jpeg" alt="Notifications" />
         </div>
-        <img className="cell notifications" src="https://s3-us-west-1.amazonaws.com/anidemo/bell.jpeg" alt="Notifications" />
       </div>
       <div className="grid-x cell large-5">
         <input type="text" placeholder="Search ANi" className="cell large-6 searchANi" />

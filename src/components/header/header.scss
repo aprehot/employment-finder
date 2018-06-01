@@ -3,16 +3,23 @@
   justify-content: flex-end;
   background: linear-gradient(222deg, #000000, #272727 85%);
 }
+.profileNavInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .profileAvatar {
   color: white;
   margin: 0 0 0 0;
-}
-#profileAvatar {
-  margin: 0 15px 0 0 !important;
+  flex: 1 1 100%;
 }
 .profileCompany {
   color: #666;
   margin: 0;
+  flex: 1 1 100%
+}
+#profileAvatar {
+  margin: 15px;
 }
 .profileNav {
   height: 100%;
@@ -20,10 +27,8 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-around;
-  // margin: 0 15px;
 }
 .searchANi {
-  // padding:  $form-spacing / 2 !important;
   height: 2.5rem !important;
   margin:0;
 }
@@ -50,8 +55,8 @@
 .notifications {
   max-height: 30px;
   max-width: 30px;
-  float: right;
   cursor: pointer;
+  align-self: center;
 }
 .notifications:hover {
   transition: all .2s;
