@@ -1,0 +1,72 @@
+.myVault {
+  height: 92vh;
+}
+
+.quickShare {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vaultColumn {
+  background: linear-gradient(115deg, #5E50FF, #191919 120%);
+  max-width: 748px !important;
+}
+.myVault {
+  color: white;
+}
+.vaultSearch{
+  margin: 0;
+}
+.vaultSearch:focus {
+  box-shadow: inset 0 0 15px #180035 !important;
+  border: none !important;
+}
+// .vaultSearch:after {
+//   background-image:  url(/assets/MagnifierIcon.svg)
+// }
+
+.quickShareOption {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  width: 100%;
+}
+.cloudBtns {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 20%;
+  font-size: calc(4px + .7vw);
+}
+.cloudImgs {
+  max-height: 30px;
+  max-width: 30px;
+}
+
+.quickShare {
+  background: $primary-color;
+  padding: .2em 2em;
+  margin-bottom: 2em;
+  border-radius: 15%;
+  text-align: center;
+}
+.quickShareHeader {
+  color: #8484FF;
+  padding: 10px 0 ;
+}
+.quickShareBtn {
+  box-shadow: 0 0 10px 1px #8484ff;
+  align-self: center;
+  padding: 1.2em 1.5em;
+  font-size: 80%;
+}
+.quickShareBtns{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: row;
+  justify-content: space-between;
+}
+.quickShareInput {
+  padding: $form-spacing / 1.5 !important;
+}

@@ -18,7 +18,7 @@
 @import '../styling/global-variables';
 @import './header/header';
 @import './common/common';
-@import './vault/vault';
+@import '../containers/vault/vault';
 body {
   background-color:rgba(0,0,0,0.05);
 }

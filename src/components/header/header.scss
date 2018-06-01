@@ -1,4 +1,38 @@
-nav {
-  height: 5vh;
+.navANi {
+  height: 8vh;
   background: black;
+}
+.profileAvatar {
+  color: white;
+  margin: 0;
+}
+.profileCompany {
+  color: #666;
+  margin: 0;
+}
+.profileNav {
+  height: 100%;
+}
+.searchANi {
+  // padding:  $form-spacing / 2 !important;
+  height: 2.5rem !important;
+  margin:0;
+}
+.navANiLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.navANiLink {
+  color: white;
+  cursor: pointer;
+}
+.navANiLink:hover {
+  opacity: 0.7;
+}
+.ANiLogo {
+  max-height: 63px;
+  max-width: 63px;
+  padding: 5px;
 }
