@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
 
 
 const Navigation = (username, companyName, profileName) => {
@@ -23,7 +22,7 @@ const Navigation = (username, companyName, profileName) => {
       </div>
       <div className="cell large-4 grid-x">
         <div className="grid-x cell large-11 navANiLinks">
-          <h3 className="navANiLink">Home</h3>
+          <Link to="/" className="navANiLink">Home</Link>
           <h3 className="navANiLink">My Vault</h3>
           <h3 className="navANiLink">ANi</h3>
           <h3 className="navANiLink">Settings</h3>

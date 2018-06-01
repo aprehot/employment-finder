@@ -1,13 +1,17 @@
 import React from 'react';
-
+import { withRouter, Link } from 'react-router-dom'
 
 const DropDown = (project) => (
-  <div className="grid-x cell ">
-    {project.titles.map(project=>
-      <h3 className="cell projectTitle" key={project.id}>
-        {project.title}
-      </h3>)}
+  project.titles.map(proj=>
+  <div key={proj.id} className="grid-x cell dropDown">
+    <Link
+      to={`/project/${proj.id}`}
+      className="cell projectTitle"
+    >
+      {proj.title}
+    </Link>
   </div>
+  )
 );
 
 export default DropDown;

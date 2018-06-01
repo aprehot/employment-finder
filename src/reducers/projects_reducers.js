@@ -6,8 +6,8 @@ export default function(state={}, action){
       return {...state, folders:action.payload}
     case 'PARSE_TITLES':
       return {...state, titles:action.payload}
-    // case 'CLEAR_ARTISTS_DETAIL':
-    //   return {...state, artistData:action.payload}
+    case 'MATCH_PROJECT':
+      return {...state, correctPage:action.payload}
     default:
       return state;
   }

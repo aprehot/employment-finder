@@ -31,3 +31,20 @@ export function parseTitles(projects, clicked){
     payload: titles(projects)
   }
 }
+
+export function matchProject(projects, history){
+
+  let projectMatch = (projects,history) =>
+  projects.projects.filter(proj => {
+    console.log(proj.id, history)
+    return (
+      proj.id.toString() === history
+    )
+  }
+)
+
+return {
+  type: 'MATCH_PROJECT',
+  payload: projectMatch(projects, history)
+}
+}

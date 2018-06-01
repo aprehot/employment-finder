@@ -30,11 +30,38 @@
   height: fit-content;
   margin: 0;
 }
+.projectFolderTitle:hover {
+  opacity: 0.75;
+  transition: all .2s;
+}
 .projectCategories {
   cursor: pointer;
   align-items: center;
 }
 .projectTitle {
-  font-size: 100%;
+  font-size: 120%;
   color: $ANi;
+}
+.projectTitle:hover {
+  transition: all .2s;
+}
+.dropDown {
+margin: 18px 0 0 15px;
+animation-name: stretch;
+animation-duration: .7s;
+align-items: center;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    // border-radius: 100%;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.projectPage {
+  height: 92vh;
 }

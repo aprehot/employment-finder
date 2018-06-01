@@ -3,11 +3,7 @@ import React, { Component } from 'react';
 import VaultColumn from '../../components/vaultColumn/vaultColumn';
 import MyProjects from '../../components/myProjects/myProjects';
 
-
-
 class MyVault extends Component {
-
-
 
   render() {
     return (
