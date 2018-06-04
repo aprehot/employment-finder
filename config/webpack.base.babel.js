@@ -14,6 +14,9 @@ module.exports = (options) => ({
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
+  externals: [
+    'foundation-sites'
+  ],
   module: {
     rules: [
       {

@@ -14,7 +14,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+// import Footer from 'components/Footer';
 import './style.scss';
 
 const App = () => (
@@ -31,7 +31,7 @@ const App = () => (
       <Route path="/features" component={FeaturePage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 
