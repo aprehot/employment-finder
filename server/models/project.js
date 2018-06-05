@@ -125,6 +125,10 @@ const projectSchema = new Schema({
      required: true,
      enum:['Open', 'first', 'second']
    },
+   ownerId:{
+    type: String,
+    required: true
+  }
 
 })
 //

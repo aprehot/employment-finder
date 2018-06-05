@@ -39,6 +39,26 @@ app.get('/api/projects',(req,res)=>{
   })
 })
 
+
+// TAKES ALL USERS ON DATABASE //
+
+app.get('/api/users',(req,res)=>{
+  User.find({},(err,users)=>{
+    if(err) return res.status(400).send(err);
+    res.status(200).send(users)
+  })
+})
+
+
+// REQUIRES OWNER ID //
+
+app.get('/api/user_posts',(req,res)=>{
+    Project.find({ownerId:req.query.user}).exec((err,docs)=>{
+        if(err) return res.status(400).send(err);
+        res.send(docs)
+    })
+})
+
 // POST //
 app.post('/api/project',(req,res)=>{
   const project = new Project(req.body)
@@ -52,6 +72,44 @@ app.post('/api/project',(req,res)=>{
   })
 })
 
+// REGISTER //
+
+app.post('/api/register',(req,res)=>{
+  const user = new User(req.body);
+
+  user.save((err,doc)=>{
+    if(err) return res.json({success:false});
+    res.status(200).json({
+      success:true,
+      user:doc
+    })
+  })
+})
+
+// LOGIN //
+
+app.post('/api/login',(req,res)=>{
+    User.findOne({'email':req.body.email},(err,user)=>{
+        if(!user) return res.json({isAuth:false,message:'Auth failed, email not found'})
+
+        user.comparePassword(req.body.password,(err,isMatch)=>{
+            if(!isMatch) return res.json({
+                isAuth:false,
+                message:'Wrong password'
+            });
+
+            user.generateToken((err,user)=>{
+                if(err) return res.status(400).send(err);
+                res.cookie('auth',user.token).json({
+                    isAuth:true,
+                    id:user._id,
+                    email:user.email
+                })
+            })
+        })
+    })
+})
+
 // UPDATE //
 
 app.post('/api/project_update',(req,res)=>{
@@ -60,6 +118,20 @@ app.post('/api/project_update',(req,res)=>{
     res.json({
       success:true,
       doc
+    })
+  })
+})
+
+// GET DATA OF REVIEWER //
+
+app.get('/api/getReviewer',(req,res)=>{
+  let id = req.query.id;
+
+  User.findById(id,(err,doc)=>{
+    if(err) return res.status(400).send(err);
+    res.json({
+      name: doc.name,
+      lastname: doc.lastname
     })
   })
 })
