@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
     required: true,
     minlength: 6
   },
-  name:{
+  firstname:{
     type:String,
     maxlength:100
   },
@@ -24,9 +24,23 @@ const userSchema = mongoose.Schema({
     type:String,
     maxlength:100
   },
-  role: {
+  accountType: {
+    type:String,
+		enum:["Representative", "Casting Director", "Producer", "Executive", "Actor", "Writer", "Director"]
+	},
+  busPhone: {
     type: Number,
-    default: 0
+    required: true,
+    maxLength:11,
+    minLength:10
+  },
+  cellPhone: {
+    type: Number,
+    maxLength:11,
+    minLength:10
+  },
+  icon: {
+    type: String
   },
   token:{
     type:String

@@ -2,30 +2,43 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 
 const rolesSchema = new Schema({
+  roleType: {
+    type: String,
+    required: true
+  },
   name: {
-    type: String
-  },
-  minAge: {
-    type: Number
-  },
-  maxAge: {
-    type: Number
+    type: String,
+    required: true
   },
   gender: {
-    type: String
+    type: String,
+    required: true
   },
-  type: {
-    type: String
+  minAge: {
+    type: Number,
+    required: true
   },
-  description: {
-    type: String
+  maxAge: {
+    type: Number,
+    required: true
   },
   specifics: [String],
-  isOpen: {
+  description: {
+    type: String,
+    required: true
+  },
+  isSAG: {
     type: Boolean
   },
-  actor: {
-    type: String
+  isOpen: {
+    type: Boolean,
+    required: true
+  },
+  isLocal: {
+    type: Boolean
+  },
+  isOnOffer: {
+    type: Boolean
   }
 })
 
