@@ -56,13 +56,12 @@ const projectSchema = new Schema({
 
 })
 
-const populateRoles = function(next) {
-	this.populate('Roles')
-	next()
+const populateRoles = async function() {
+	await this.populate('Roles')
 }
 
-DishSchema.pre('find',populateRoles)
-DishSchema.pre('findOneAndUpdate',populateRoles)
+projectSchema.pre('find',populateRoles)
+projectSchema.pre('findOneAndUpdate',populateRoles)
 
 const Project = mongoose.model('Project', projectSchema)
 
