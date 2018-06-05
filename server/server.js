@@ -12,8 +12,6 @@ const { User } = require('./models/user');
 const { Categories } = require('./models/user-categories');
 const { Folders } = require('./models/user-folders');
 const { Project } = require('./models/project');
-const { Roles } = require('./models/roles');
-const { Teams } = require('./models/teams');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -35,7 +33,7 @@ app.get('/api/projects',(req,res)=>{
   let order = req.query.order;
 
   // ORDER = asc || desc
-  Book.find().skip(skip).sort({_id:order}).limit(limit).exec((err,doc)=>{
+  Project.find().skip(skip).sort({_id:order}).limit(limit).exec((err,doc)=>{
     if(err) return res.status(400).send(err);
     res.send(doc)
   })
@@ -56,8 +54,8 @@ app.post('/api/project',(req,res)=>{
 
 // UPDATE //
 
-app.post('/api/book_update',(req,res)=>{
-  Book.findByIdAndUpdate(req.body._id, req.body, {new:true}, (err,doc)=>{
+app.post('/api/project_update',(req,res)=>{
+  Project.findByIdAndUpdate(req.body._id, req.body, {new:true}, (err,doc)=>{
     if(err) return res.status(400).send(err);
     res.json({
       success:true,
@@ -68,10 +66,10 @@ app.post('/api/book_update',(req,res)=>{
 
 // DELETE //
 
-app.delete('/api/delete_book', (req,res)=>{
+app.delete('/api/delete_project', (req,res)=>{
   let id = req.query.id;
 
-  Book.findByIdAndRemove(id,(err,doc)=>{
+  Project.findByIdAndRemove(id,(err,doc)=>{
     if(err) return res.status(400).send(err);
     res.json(true)
   })
