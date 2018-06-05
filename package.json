@@ -1,0 +1,25 @@
+{
+  "name": "ani-server",
+  "version": "0.0.1",
+  "description": "ani backend prototype",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js"
+  },
+  "engines": {
+    "node": "10.2.0"
+  },
+  "author": "Aidan Prehatny",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.5.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.2",
+    "moment-js": "^1.1.15",
+    "mongoose": "^5.1.4"
+  }
+}
