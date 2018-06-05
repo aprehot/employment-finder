@@ -4,7 +4,8 @@ const {Schema} = mongoose
 const rolesSchema = new Schema({
   roleType: {
     type: String,
-    required: true
+    required: true,
+		enum:["Lead", "Strong", "Supporting",  "Small", "Cameo"]
   },
   name: {
     type: String,
@@ -12,7 +13,8 @@ const rolesSchema = new Schema({
   },
   gender: {
     type: String,
-    required: true
+    required: true,
+    enum:["Male", "Female", "Either"]
   },
   minAge: {
     type: Number,

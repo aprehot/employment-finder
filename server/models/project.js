@@ -2,15 +2,12 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 
 const projectSchema = new Schema({
-   folder: {
-     type: String,
-     required:true
-   },
+    projectType: {
+    type: String,
+    required:true,
+    enum:['Film', 'TV', 'Mini-Series', 'Web']
+  },
    title: {
-     type: String,
-     required:true
-   },
-   type: {
      type: String,
      required:true
    },
@@ -24,11 +21,14 @@ const projectSchema = new Schema({
    wrapDate: {
      type: String
    },
+   location: {
+     type: String
+   },
    budget: {
      type: String
    },
-   location: {
-     type: String
+   genres: {
+     type: [String]
    },
    premise: {
      type: String
@@ -37,20 +37,32 @@ const projectSchema = new Schema({
      type: Boolean
    },
    roles: [{type:Schema.ObjectId, ref: 'Roles'}],
-   producer: {
-     type: String
+   teams: [{type:Schema.ObjectId, ref: 'Teams'}]
+   activeCasting: {
+     type: Boolean
    },
-   director: {
-     type: String
+   activeDirector: {
+     type: Boolean
    },
-   writer: {
-     type: String
+   activeProducer: {
+     type: Boolean
    },
-   castingDirector: {
-     type: String
+   activeFinancing: {
+     type: Boolean
    },
-   access: {
-     type: [String]
+   inDev: {
+     type: Boolean
+   },
+   hasAvailRoles: {
+     type: Boolean
+   },
+   inProduction: {
+     type: Boolean
+   },
+   security: {
+     type: String,
+     required: true,
+     enum:['Open', 'first', 'second']
    },
 
 })
