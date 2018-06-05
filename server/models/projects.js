@@ -4,7 +4,7 @@ const {Schema} = mongoose
 
 const projectsSchema = new Schema({
   folder: {
-    type: String
+    type: String,
     required:true
   },
 	projects: [{type:Schema.ObjectId, ref: 'Project'}],

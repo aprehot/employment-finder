@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose
 
-
 const rolesSchema = new Schema({
   name: {
     type: String
@@ -28,10 +27,8 @@ const rolesSchema = new Schema({
   actor: {
     type: String
   }
-
-
-
-
+})
 
 const Roles = mongoose.model('Roles', rolesSchema)
+
 module.exports = { Roles }

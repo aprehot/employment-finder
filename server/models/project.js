@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 
 const projectSchema = new Schema({
-  id: 1,
    folder: {
      type: String,
      required:true
