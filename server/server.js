@@ -13,15 +13,16 @@ const { Categories } = require('./models/user-categories');
 const { Folders } = require('./models/user-folders');
 const { Project } = require('./models/project');
 const { Roles } = require('./models/roles');
+const { Teams } = require('./models/teams');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 // GET //
 app.get('/api/getProject', (req,res)=>{
-  let id = req .query.id;
+  let id = req.query.id;
 
-  Book.findById(id,(err,doc)=>{
+  Project.findById(id,(err,doc)=>{
     if(err) return res.status(400).send(err);
     res.send(doc)
   })
@@ -42,13 +43,13 @@ app.get('/api/projects',(req,res)=>{
 
 // POST //
 app.post('/api/project',(req,res)=>{
-  const book = new Book(req.body)
+  const project = new Project(req.body)
 
-  book.save((err,doc)=>{
+  project.save((err,doc)=>{
     if(err) return res.status(400).send(err);
     res.status(200).json({
-      book:true,
-      bookId:doc._id
+      project:true,
+      projectId:doc._id
     })
   })
 })
