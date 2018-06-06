@@ -84,8 +84,7 @@ const projectSchema = new Schema({
      enum:['Open', 'first', 'second']
    },
    ownerId:{
-    type: String,
-    required: true
+    type: Schema.ObjectId
   }
 
 })

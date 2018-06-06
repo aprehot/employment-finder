@@ -12,6 +12,7 @@ const { User } = require('./models/user');
 const { Categories } = require('./models/user-categories');
 const { Folders } = require('./models/user-folders');
 const { Project } = require('./models/project');
+const { auth } = require('./middleware/auth');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -25,6 +26,19 @@ app.get('/api/getProject', (req,res)=>{
     res.send(doc)
   })
 })
+
+
+// LOGOUT //
+
+app.get('/api/logout',auth,(req,res)=>{
+  req.user.deleteToken(req.token, (err,user)=>{
+    if(err) return res.status(400).send(err);
+    res.sendStatus(200)
+  })
+})
+
+
+// RETRIEVES ALL PROJECTS //
 
 app.get('/api/projects',(req,res)=>{
   // localhost:3001/api/projects?skip=3&limit=2&order=asc
