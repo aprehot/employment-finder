@@ -1,0 +1,70 @@
+.myProjectsHeader {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0 0 0 !important;
+}
+.myProjectsHeader > h2 {
+  color: #8484FF;
+}
+.myProjectsHeader > img {
+  max-height: 60px;
+  margin-right: 10px;
+}
+.projectTypes > div{
+  outline: none;
+}
+.projectType {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 65px;
+  min-height: 55px;
+  z-index: 100 !important;
+  cursor: pointer;
+  transition: all .25s;
+}
+.projectFolder {
+  max-height: 40px;
+  max-width: 40px;
+}
+.projectFolderTitle {
+  height: 100%;
+  color: #8484FF;
+  height: fit-content;
+  margin: 0;
+}
+.projectFolderTitle:hover {
+  opacity: 0.75;
+  transition: all .2s;
+}
+.projectCategories {
+  cursor: pointer;
+  align-items: center;
+}
+.projectTitle {
+  font-size: 120%;
+  color: #8484FF;
+}
+.projectTitle:hover {
+  transition: all .2s;
+}
+.dropDown {
+margin: 18px 0 0 15px;
+animation-name: stretch;
+animation-duration: .7s;
+align-items: center;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    // border-radius: 100%;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.projectPage {
+  height: 92vh;
+}
