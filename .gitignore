@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+gucci/node_modules
 node_modules
 
 # testing
@@ -22,3 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /yarn.lock
+gucci/yarn.lock
