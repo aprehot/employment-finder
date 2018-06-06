@@ -10,18 +10,30 @@ mongoose.connect(config.DATABASE);
 
 const { User } = require('./models/user');
 const { Categories } = require('./models/user-categories');
-const { Folders } = require('./models/user-folders');
-const { Project } = require('./models/project');
 const { auth } = require('./middleware/auth');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
+// VERIFIES USER AUTH ON PAGE ROUTE //
+app.get('/api/auth', auth,(req,res)=>{
+  res.json({
+    isAuth:true,
+    id:req.user._id,
+    email:req.user.email,
+    firstname:req.user.firstname,
+    lastname:req.user.lastname,
+    accountType: req.user.accountType
+  })
+})
+
+
 // GET //
-app.get('/api/getProject', (req,res)=>{
+app.get('/api/getFolder', (req,res)=>{
   let id = req.query.id;
 
-  Project.findById(id,(err,doc)=>{
+  Categories.folders.findById(id,(err,doc)=>{
     if(err) return res.status(400).send(err);
     res.send(doc)
   })
@@ -40,14 +52,14 @@ app.get('/api/logout',auth,(req,res)=>{
 
 // RETRIEVES ALL PROJECTS //
 
-app.get('/api/projects',(req,res)=>{
+app.get('/api/folders',(req,res)=>{
   // localhost:3001/api/projects?skip=3&limit=2&order=asc
   let skip = parseInt(req.query.skip);
   let limit = parseInt(req.query.limit);
   let order = req.query.order;
 
   // ORDER = asc || desc
-  Project.find().skip(skip).sort({_id:order}).limit(limit).exec((err,doc)=>{
+  Categories.find().skip(skip).sort({_id:order}).limit(limit).exec((err,doc)=>{
     if(err) return res.status(400).send(err);
     res.send(doc)
   })
@@ -67,21 +79,21 @@ app.get('/api/users',(req,res)=>{
 // REQUIRES OWNER ID //
 
 app.get('/api/user_posts',(req,res)=>{
-    Project.find({ownerId:req.query.user}).exec((err,docs)=>{
+    Categories.find({ownerId:req.query.user}).exec((err,docs)=>{
         if(err) return res.status(400).send(err);
         res.send(docs)
     })
 })
 
 // POST //
-app.post('/api/project',(req,res)=>{
-  const project = new Project(req.body)
+app.post('/api/categories',(req,res)=>{
+  const categories = new Categories(req.body)
 
-  project.save((err,doc)=>{
+  categories.save((err,doc)=>{
     if(err) return res.status(400).send(err);
     res.status(200).json({
-      project:true,
-      projectId:doc._id
+      categories:true,
+      categoryId:doc._id
     })
   })
 })
@@ -126,8 +138,8 @@ app.post('/api/login',(req,res)=>{
 
 // UPDATE //
 
-app.post('/api/project_update',(req,res)=>{
-  Project.findByIdAndUpdate(req.body._id, req.body, {new:true}, (err,doc)=>{
+app.post('/api/category_update',(req,res)=>{
+  Categories.findByIdAndUpdate(req.body._id, req.body, {new:true}, (err,doc)=>{
     if(err) return res.status(400).send(err);
     res.json({
       success:true,
@@ -144,7 +156,7 @@ app.get('/api/getReviewer',(req,res)=>{
   User.findById(id,(err,doc)=>{
     if(err) return res.status(400).send(err);
     res.json({
-      name: doc.name,
+      firstname: doc.name,
       lastname: doc.lastname
     })
   })
@@ -152,10 +164,10 @@ app.get('/api/getReviewer',(req,res)=>{
 
 // DELETE //
 
-app.delete('/api/delete_project', (req,res)=>{
+app.delete('/api/delete_folder', (req,res)=>{
   let id = req.query.id;
 
-  Project.findByIdAndRemove(id,(err,doc)=>{
+  Categories.folders.findByIdAndRemove(id,(err,doc)=>{
     if(err) return res.status(400).send(err);
     res.json(true)
   })
