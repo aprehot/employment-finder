@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import Gucci from 'containers/Gucci/Loadable';
 import Login from 'containers/Login/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -20,13 +21,14 @@ const App = () => (
   <div className="app-wrapper">
     <Helmet
       titleTemplate="Discover ANi"
-      defaultTitle="React.js Boilerplate"
+      defaultTitle="Discover ANi"
     >
       <meta name="Discover ANi" content="The Efficiency Network For Entertainment" />
     </Helmet>
     <Header />
     <Switch>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/gucci" component={Gucci} />
       <Route exact path="/login" component={Login} />
       <Route path="" component={NotFoundPage} />
     </Switch>

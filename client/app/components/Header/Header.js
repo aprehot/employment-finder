@@ -23,7 +23,7 @@ const Header = (username, companyName, profileName) => {
       <div className="cell large-4 grid-x">
         <div className="grid-x cell large-11 navANiLinks">
           <Link to="/" className="navANiLink">Home</Link>
-          <h3 className="navANiLink">My Vault</h3>
+          <Link to="/gucci" className="navANiLink">My Vault</Link>
           <h3 className="navANiLink">ANi</h3>
           <h3 className="navANiLink">Settings</h3>
           <img alt="ANi Logo" className="ANiLogo" src="https://s3-us-west-1.amazonaws.com/anidemo/aniwings%402x.png" />

@@ -1,46 +1,53 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
 
+// import request from 'utils/request';
+// import { makeSelectLogin } from './selectors';
+// import { loginFailed, loginSuccess } from './actions';
 
-import { USER_LOGIN } from './constants';
-import { makeSelectLogin } from './selectors';
-
-
-export function* createUserSaga() {
-
-// Select username from store
-const username = yield select(makeSelectLogin());
-const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
-// const requestURL = '/api/login';
-
-try {
-  // Call our request helper (see 'utils/request')
-  const repos = yield call(request, requestURL);
-  yield put(reposLoaded(repos, username));
-} catch (err) {
-  yield put(repoLoadingError(err));
-}
-}
-
-export function* LoginSaga() {
-  yield takeLatest(USER_LOGIN, createUserSaga);
-}
-
-
-// export function loginUser({email, password}){
-//   const request = axios.post('/api/login', {email,password})
-//     .then(response => response.data)
+import { REQUEST_API_DATA, recieveApiData } from './actions';
+import { fetchData } from './api';
+// export function* createUserSaga() {
+//   const username = yield select(makeSelectLogin());
+//   const requestURL = '/api/login';
 //
-//   return {
-//     type: 'USER_LOGIN',
-//     payload: request
+//   try {
+//     const login = yield call(request, requestURL);
+//     yield put(loginRequest(login, username));
+//   } catch (err) {
+//     console.log(err);
 //   }
 // }
-// export function auth(){
-//   const request = axios.get('/api/auth')
-//     .then(response =>response.data);
+
+// function* getApiData(action) {
+//   try {
+//     const data = yield call(fetchData)
+//     yield put(recieveApiData(data))
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
 //
-//     return {
-//       type:'USER_AUTH',
-//       payload: request
+// export default function* mySaga() {
+//   yield takeLatest(REQUEST_API_DATA, getApiData)
+// }
+
+// export default function* onPostRecords() {
+//   yield takeLatest('USER_LOGIN', async function* postRecords() {
+//     try {
+//       const response = await
+//       fetch('/api/login');
+//       const responseBody = response.json();
+//       // axios.post('/api/login', {email,password})
+//       // .then(response => response.data)
+//     } catch (e) {
+//       yield put(loginFailed(e))
+//       return;
 //     }
+//     yield put(loginSuccess(responseBody));
+//   });
+// }
+
+
+// export function* LoginSaga() {
+//   yield takeLatest(USER_LOGIN, createUserSaga);
 // }

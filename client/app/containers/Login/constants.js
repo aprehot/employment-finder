@@ -1,1 +1,2 @@
-export const USER_LOGIN = 'boilerplate/Home/USER_LOGIN';
+// export const REQUEST_API_DATA = 'boilerplate/Home/REQUEST_API_DATA';
+// export const RECIEVE_API_DATA = 'boilerplate/Home/RECIEVE_API_DATA';

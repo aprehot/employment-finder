@@ -21,7 +21,6 @@ module.exports = require('./webpack.base.babel')({
     filename: '[name].js',
     chunkFilename: '[name].chunk.js'
   },
-
   // Add development plugins
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
@@ -35,6 +34,9 @@ module.exports = require('./webpack.base.babel')({
     })
   ],
 
+  // proxy: {
+  //   '/api': 'http://localhost:3001'
+  // },
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
   devtool: 'eval-source-map',

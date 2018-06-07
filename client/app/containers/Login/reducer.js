@@ -1,17 +1,35 @@
-import { fromJS } from 'immutable';
+// import { fromJS } from 'immutable';
 
-import { USER_LOGIN } from './constants';
+// import { LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
 
-const initialState = fromJS({
-  login: ''
-});
+// const initialState = fromJS({
+//   user: ''
+// });
 
-export default function (state = initialState, action) {
-  switch (action.type) {
-    case USER_LOGIN:
-      return state
-        .set('login', action.email action.password);
-    default:
-      return state;
-  }
-}
+// export default function (state = {}, action) {
+//   switch (action.type) {
+//     case LOGIN_SUCCESS:
+//       return {
+//         ...state,
+//         login: action
+//       };
+//     case LOGIN_FAILED:
+//       return {
+//         ...state
+//       };
+//     default:
+//       return state;
+//   }
+// }
+// import { RECIEVE_API_DATA } from './actions';
+//
+// function loginReducer(state = {}, action) {
+//   switch (action.type) {
+//     case RECIEVE_API_DATA:
+//       return action.data;
+//     default:
+//       return state;
+//   }
+// }
+//
+// export default loginReducer;
