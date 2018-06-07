@@ -5,8 +5,10 @@
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import mySaga from 'containers/Gucci/saga';
-import data from 'containers/Gucci/reducers/data';
+import rootSaga from 'containers/App/rootSaga';
+// import rootReducer from 'containers/App/rootReducer';
+import data from './containers/Gucci/reducers/data';
+import loginReducer from './containers/hoc/auth/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -37,12 +39,14 @@ export default function configureStore(state, history) {
   const store = createStore(
     combineReducers({
       route: routerReducer,
-      data,
+      loginReducer,
+      data
+      // rootReducer
     }),
     composeEnhancers(...enhancers)
   );
 
-  sagaMiddleware.run(mySaga);
+  sagaMiddleware.run(rootSaga);
 
   return store;
 }

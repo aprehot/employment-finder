@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { loginRequest } from './../hoc/auth/actions';
 
 class LoginForm extends Component {
   state = {
@@ -22,6 +23,7 @@ class LoginForm extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
+    this.props.dispatch(loginRequest(this.state));
   }
 
   render() {
@@ -42,7 +44,6 @@ class LoginForm extends Component {
               value={this.state.password}
               onChange={this.handleInputPassword}
             />
-            <h1>{console.log(this.props)}</h1>
             <p className="large-12 cell">
               <input
                 type="submit"
@@ -60,4 +61,12 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps)(LoginForm);

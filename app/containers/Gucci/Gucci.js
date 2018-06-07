@@ -1,10 +1,10 @@
-import React from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import { requestApiData } from "./actions";
+import { requestApiData } from './actions';
 
-class Home extends React.Component {
+class Gucci extends React.Component {
   componentDidMount() {
     this.props.requestApiData();
   }
@@ -26,20 +26,20 @@ class Home extends React.Component {
     );
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     const { results = [] } = this.props.data;
     return results.length
       ?
-        <h1>
+      <h1>
           {results.map(this.person)}
         </h1>
       : <h1>loading...</h1>;
   }
 }
 
-const mapStateToProps = state => ({ data: state.data });
+const mapStateToProps = (state) => ({ data: state.data });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ requestApiData }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Gucci);

@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { fetch } from './api';
+import { fetch } from '../../utils/get';
 import { REQUEST_API_DATA, receiveApiData } from './actions';
 
 
