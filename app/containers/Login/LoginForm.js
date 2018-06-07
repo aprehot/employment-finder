@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginRequest } from './../hoc/auth/actions';
+import { browserHistory } from 'react-router-dom'
+import PropTypes from "prop-types";
+import { createBrowserHistory as createHistory } from 'history';
+
+import { loginRequest } from './actions';
+import './style.scss'
+import { auth } from '../hoc/auth/actions';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component {
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   state = {
     email: '',
     password: '',
@@ -10,13 +22,17 @@ class LoginForm extends Component {
     success: false
   }
 
-  componentDidMount() {
-    // this.props.requestApiData()
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.auth.data.isAuth) {
+      // this.context.history.push('/dashboard')
+    }
   }
 
   handleInputEmail = (event) => {
     this.setState({ email: event.target.value });
   }
+
   handleInputPassword = (event) => {
     this.setState({ password: event.target.value });
   }
@@ -26,7 +42,9 @@ class LoginForm extends Component {
     this.props.dispatch(loginRequest(this.state));
   }
 
+
   render() {
+    const { user } = this.props
     return (
       <div className="grid-container grid-padding-y grid-y grid-frame" >
         <div className="large-4 grid-x cell align-center">
@@ -51,9 +69,16 @@ class LoginForm extends Component {
                 value="Log in"
               />
             </p>
-            <p className="text-center">
+            <div className="text-center">
               <a href="#">Forgot your password?</a>
-            </p>
+              <div className="error">
+                {
+                  user.login ?
+                    <div> {user.login.message} </div>
+                    : null
+                }
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -63,10 +88,12 @@ class LoginForm extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     user: state.user
   };
 }
+
+
+// LoginForm = connect(mapStateToProps)(LoginForm)
 
 export default connect(mapStateToProps)(LoginForm);

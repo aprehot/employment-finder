@@ -1,5 +1,5 @@
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const RECIEVE_LOGIN = 'RECIEVE_LOGIN';
+export const USER_AUTH = 'USER_AUTH';
+export const HANDLE_AUTH = 'HANDLE_AUTH';
 
-export const loginRequest = (credentials) => ({ type: LOGIN_REQUEST, credentials });
-export const recieveLoginRequest = (data) => ({ type: RECIEVE_LOGIN, user: data });
+export const auth = () => ({ type: USER_AUTH });
+export const handleAuth = (data) => ({ type: HANDLE_AUTH, payload: data });

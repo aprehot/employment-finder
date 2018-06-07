@@ -37,7 +37,8 @@ app.get('/api/auth', auth, (req, res) => {
     email: req.user.email,
     firstname: req.user.firstname,
     lastname: req.user.lastname,
-    accountType: req.user.accountType
+    accountType: req.user.accountType,
+    busPhone: req.user.busPhone
   });
 });
 

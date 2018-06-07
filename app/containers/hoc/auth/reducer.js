@@ -1,18 +1,25 @@
-import { RECIEVE_LOGIN, LOGIN_REQUEST } from './actions';
+import { HANDLE_AUTH } from './actions';
+import { RECIEVE_LOGIN, LOGIN_REQUEST } from '../../Login/actions';
 
-export default (state = {}, { type, user, credentials }) => {
-  switch (type) {
+
+export default function (state = {}, action) {
+  switch (action.type) {
     case LOGIN_REQUEST:
       return {
         ...state,
-        credentials
+        submission: action.payload
       };
     case RECIEVE_LOGIN:
       return {
         ...state,
-        user
+        login: action.payload
+      };
+    case HANDLE_AUTH:
+      return {
+        ...state,
+        auth: action.payload
       };
     default:
       return state;
   }
-};
+}

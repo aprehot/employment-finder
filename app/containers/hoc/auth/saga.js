@@ -1,25 +1,18 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
-import axios from 'axios'
-import { fetch } from '../../../utils/post';
-import { LOGIN_REQUEST, recieveLoginRequest } from './actions';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
-export const credentialsSelector = (state) => state.loginReducer.credentials
+import axios from 'axios';
+import { fetch } from '../../../utils/get';
+import { USER_AUTH, handleAuth } from './actions';
 
-
-function* postLoginRequest() {
-  console.log('hello from login saga');
+function* handleAuthentication() {
   try {
-    const credentials = yield select(credentialsSelector);
-    const { email, password } = credentials
-    const result = yield axios.post('/api/login', { email, password });
-    yield put(recieveLoginRequest(result));
+    const result = yield axios.get('/api/auth');
+    yield put(handleAuth(result));
   } catch (e) {
     console.log(e);
   }
 }
 
-
-export default function* loginSaga() {
-  console.log('before second')
-  yield takeLatest(LOGIN_REQUEST, postLoginRequest);
+export default function* authSaga() {
+  yield takeLatest(USER_AUTH, handleAuthentication);
 }
