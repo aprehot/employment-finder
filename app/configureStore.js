@@ -3,23 +3,26 @@
  */
 
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
+// import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import rootSaga from 'containers/App/rootSaga';
+import promiseMiddleware from 'redux-promise';
 // import rootReducer from 'containers/App/rootReducer';
-import data from './containers/Gucci/reducers/data';
-import user from './containers/hoc/auth/reducer';
+// import data from './containers/Gucci/reducers/data';
+// import user from './containers/hoc/auth/reducer';
+import user from './containers/Login/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default function configureStore(state, history) {
-  const middlewares = [
-    sagaMiddleware,
-    routerMiddleware(history),
-  ];
+export default function configureStore(state) {
+  // const middlewares = [
+  //   // sagaMiddleware,
+  //   promiseMiddleware
+  //   // routerMiddleware(history),
+  // ];
 
   const enhancers = [
-    applyMiddleware(...middlewares),
+    applyMiddleware(promiseMiddleware),
   ];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
@@ -38,15 +41,15 @@ export default function configureStore(state, history) {
 
   const store = createStore(
     combineReducers({
-      route: routerReducer,
-      user,
-      data,
+      // route: routerReducer,
+      user
+      // data,
       // rootReducer
     }),
     composeEnhancers(...enhancers)
   );
 
-  sagaMiddleware.run(rootSaga);
+  // sagaMiddleware.run(rootSaga);
 
   return store;
 }

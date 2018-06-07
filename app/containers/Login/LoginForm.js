@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router-dom'
 import PropTypes from "prop-types";
-import { createBrowserHistory as createHistory } from 'history';
 
-import { loginRequest } from './actions';
+import {loginUser} from './actions';
+// import { loginRequest } from './actions';
 import './style.scss'
 import { auth } from '../hoc/auth/actions';
 import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component {
-
   static contextTypes = {
-    router: PropTypes.object
-  }
+     router: PropTypes.object
+   }
 
   state = {
     email: '',
@@ -23,11 +22,11 @@ class LoginForm extends Component {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.auth.data.isAuth) {
-      // this.context.history.push('/dashboard')
-    }
+  componentWillReceiveProps (nextProps){
+  if(nextProps.user.login.isAuth){
+    this.context.router.history.push("/dashboard");
   }
+}
 
   handleInputEmail = (event) => {
     this.setState({ email: event.target.value });
@@ -39,7 +38,7 @@ class LoginForm extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
-    this.props.dispatch(loginRequest(this.state));
+    this.props.dispatch(loginUser(this.state));
   }
 
 
@@ -95,5 +94,5 @@ function mapStateToProps(state) {
 
 
 // LoginForm = connect(mapStateToProps)(LoginForm)
-
-export default connect(mapStateToProps)(LoginForm);
+// export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps)(LoginForm)
