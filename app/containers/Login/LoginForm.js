@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { loginSuccess } from './actions';
-import { requestApiData } from './actions'
-import { bindActionCreators } from 'redux'
 
 
 class LoginForm extends Component {
@@ -26,7 +22,6 @@ class LoginForm extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
-    // this.props.loginSuccess();
   }
 
   render() {
@@ -66,19 +61,3 @@ class LoginForm extends Component {
 }
 
 export default LoginForm;
-
-// const mapStateToProps = (state) => ({ data: state.data });
-//
-// const mapDispatchToProps = (dispatch) => bindActionCreators({ requestApiData }, dispatch);
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
-// const mapDispatchToProps = {
-//   loginSuccess
-// };
-//
-// const mapStateToProps = (state) => ({
-//   user: state.user
-// });
-
-// export default connect(null, { submit: createUserRequest } )(LoginForm);
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
