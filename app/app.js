@@ -6,10 +6,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import FontFaceObserver from 'fontfaceobserver';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -27,16 +27,16 @@ montserratObserver.load().then(() => {
 });
 
 const initialState = {};
-const history = createHistory();
+// const history = createHistory();
 const MOUNT_NODE = document.getElementById('app');
-const store = configureStore(initialState, history);
+const store = configureStore(initialState);
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
+      <BrowserRouter>
         <App />
-      </ConnectedRouter>
+      </BrowserRouter>
     </Provider>,
     MOUNT_NODE
   );

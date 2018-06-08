@@ -3,7 +3,7 @@
  */
 
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
+// import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import rootSaga from 'containers/App/rootSaga';
 import promiseMiddleware from 'redux-promise';
@@ -20,7 +20,7 @@ export default function configureStore(state) {
   ];
 
   const enhancers = [
-    applyMiddleware(...middlewares),
+    applyMiddleware(promiseMiddleware),
   ];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose

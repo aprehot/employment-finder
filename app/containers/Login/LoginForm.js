@@ -7,8 +7,8 @@ import './style.scss';
 
 class LoginForm extends Component {
   static contextTypes = {
-    router: PropTypes.object
-  }
+     router: PropTypes.object
+   }
 
   state = {
     email: '',
@@ -23,6 +23,7 @@ class LoginForm extends Component {
       this.context.router.history.push('/dashboard');
     }
   }
+}
 
   handleInputEmail = (event) => {
     this.setState({ email: event.target.value });
@@ -89,5 +90,5 @@ function mapStateToProps(state) {
 
 
 // LoginForm = connect(mapStateToProps)(LoginForm)
-
-export default connect(mapStateToProps)(LoginForm);
+// export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps)(LoginForm)
