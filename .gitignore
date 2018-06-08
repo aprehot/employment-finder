@@ -1,8 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-gucci/node_modules
 node_modules
+/server/config/config.js
 
 # testing
 /coverage
@@ -12,6 +12,7 @@ node_modules
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -22,4 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 
 /yarn.lock
-gucci/yarn.lock

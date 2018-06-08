@@ -6,7 +6,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
 import FontFaceObserver from 'fontfaceobserver';
@@ -36,9 +35,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-      {/* <BrowserRouter> */}
         <App />
-      {/* </BrowserRouter> */}
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE
