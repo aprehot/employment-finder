@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router-dom'
-import PropTypes from "prop-types";
-import { createBrowserHistory as createHistory } from 'history';
+import PropTypes from 'prop-types';
 
-import { loginRequest } from './actions';
-import './style.scss'
-import { auth } from '../hoc/auth/actions';
-import { withRouter } from 'react-router-dom';
+import { loginUser } from './actions';
+import './style.scss';
 
 class LoginForm extends Component {
-
   static contextTypes = {
     router: PropTypes.object
   }
@@ -24,27 +19,26 @@ class LoginForm extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user.auth.data.isAuth) {
-      // this.context.history.push('/dashboard')
+    if (nextProps.user.login.isAuth) {
+      this.context.router.history.push('/dashboard');
     }
   }
 
   handleInputEmail = (event) => {
     this.setState({ email: event.target.value });
   }
-
   handleInputPassword = (event) => {
     this.setState({ password: event.target.value });
   }
 
   submitForm = (e) => {
     e.preventDefault();
-    this.props.dispatch(loginRequest(this.state));
+    this.props.dispatch(loginUser(this.state));
   }
 
 
   render() {
-    const { user } = this.props
+    const { user } = this.props;
     return (
       <div className="grid-container grid-padding-y grid-y grid-frame" >
         <div className="large-4 grid-x cell align-center">

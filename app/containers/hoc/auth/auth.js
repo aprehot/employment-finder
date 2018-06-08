@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoadingIndicator from 'components/LoadingIndicator';
-
-import { auth } from './actions';
+import PropTypes from 'prop-types';
+import { auth } from '../../Login/actions';
 
 
 export default function (ComposedClass, reload) {
   class AuthenticationCheck extends Component {
+    static contextTypes = {
+      router: PropTypes.object
+    }
+
     state = {
       loading: true
     }
@@ -17,15 +21,13 @@ export default function (ComposedClass, reload) {
 
     componentWillReceiveProps(nextProps) {
       this.setState({ loading: false });
-      console.log(nextProps)
-      if (!nextProps.user.auth.data.isAuth) {
+
+      if (!nextProps.user.login.isAuth) {
         if (reload) {
-          this.props.history.push('/login');
+          this.context.router.history.push('/login');
         }
-      } else {
-        if (reload === false) {
-        this.props.history.push('/');
-        }
+      } else  if (reload === false) {
+        this.context.router.history.push('/dashboard')
       }
     }
 
