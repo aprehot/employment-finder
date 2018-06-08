@@ -71,7 +71,7 @@ router.post('/', (req, res, next) => {
 router.patch('/:folderId', (req, res, next) => {
   Folders.findByIdAndUpdate(req.params.folderId, req.body).exec().then((result) => {
     if (result) {
-      res.status(200).json({ result, message: 'Updated' });
+      res.status(200).json({ result, message: `Updated folder with id:${req.params.folderId}` });
     } else {
       res.status(404).json({
         message: 'Invalid id'
@@ -81,7 +81,7 @@ router.patch('/:folderId', (req, res, next) => {
   }).catch((err) => {
     res.status(500).json({ err });
   });
-});﻿
+});
 
 
 // FIND SPECIFIC FOLDER //
