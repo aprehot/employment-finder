@@ -67,7 +67,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-
+// UPDATE A FOLDER
 router.patch('/:folderId', (req, res, next) => {
   Folders.findByIdAndUpdate(req.params.folderId, req.body).exec().then((result) => {
     if (result) {
