@@ -1,3 +1,5 @@
+import { PUT_USER_FOLDERS, GET_USER_FOLDERS } from '../UserFolders/actions';
+
 export default function (state = {}, action) {
   switch (action.type) {
     case 'USER_LOGIN':
@@ -9,6 +11,11 @@ export default function (state = {}, action) {
       return {
         ...state,
         login: action.payload
+      };
+    case PUT_USER_FOLDERS:
+      return {
+        ...state,
+        userFolders: action
       };
     default:
       return state;

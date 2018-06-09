@@ -1,11 +1,24 @@
 import React from 'react';
+import './styles.scss';
+
 
 const Home = () => (
-  <div>
-    <img src="https://s3-us-west-1.amazonaws.com/anidemo/ANi+Logo+Full.png"
-      style={{ height:'100%', width: '100%', margin: 'auto' }}
+  <div style={{ height: '92vh', display: 'flex' }}>
+    <div className="container">
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+    </div>
+    <img
+      src="https://s3-us-west-1.amazonaws.com/anidemo/ANi+Logo+Full.png"
+      className="homeLogo"
       alt="ANiLogo"
     />
+
   </div>
 );
 

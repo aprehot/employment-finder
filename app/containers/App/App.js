@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 import Dashboard from 'containers/Dashboard/Loadable';
-import Gucci from 'containers/Gucci/Loadable';
 import Login from 'containers/Login/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -31,7 +30,6 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
-      <Route exact path="/gucci" component={Gucci} />
       <Route exact path="/login" component={Auth(Login, false)} />
       <Route exact path="/" component={Auth(Home, null)} />
       <Route path="" component={NotFoundPage} />

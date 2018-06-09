@@ -17,12 +17,12 @@ describe.only('<RepoListItem />', () => {
   beforeEach(() => {
     item = {
       owner: {
-        login: 'flexdinesh'
+        login: 'AidanPrehatny'
       },
-      html_url: 'https://github.com/flexdinesh/react-redux-boilerplate',
-      name: 'react-redux-boilerplate',
-      open_issues_count: 20,
-      full_name: 'flexdinesh/react-redux-boilerplate'
+      html_url: 'https://github.com/AidanPrehatny/ANi-Prototype',
+      name: 'Discover ANi',
+      open_issues_count: 0,
+      full_name: 'AidanPrehatny/ANi-Prototype'
     };
   });
 

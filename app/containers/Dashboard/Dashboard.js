@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import AniGrid from '../hoc/AniGrid';
-import UserFolders from '../UserFolders/UserFolders';
+import UserFolders from '../UserFolders/Loadable';
 import VaultColumn from '../../components/vaultColumn/vaultColumn';
 import './style.scss';
 

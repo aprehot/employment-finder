@@ -1,29 +1,26 @@
-import axios from 'axios';
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 
 import { GET_USER_FOLDERS, putFolders } from './actions';
 
 
 export const userIdSelector = (state) => state.user.login.id;
-export const categorySelector = (state) => state.user.categoryType;
-export const userSelector = (state) => state.user
 
-const userFolderRequest = ({ login, categoryType }) => {
-  axios.get(`/api/user_folders?user=${login.id}&category=${categoryType}`);
+const fetchData = async (id) => {
+  try {
+    const response = await fetch(`/api/user_folders?user=${id}`);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 };
-
-// TODO: identify whether or not this.state.personal is true or false(depends on if personal is selected in UI)
-// if false default to company, if true, pass in personal
-
 
 function* fetchFolders() {
   try {
-    // const requestParams = yield select(userIdSelector);
-    const requestParams = yield select(userSelector);
-    console.log(requestParams)
-    const result = yield call(userFolderRequest(requestParams));
-    yield put(putFolders(result.data));
-    console.log(result.data);
+    const requestParams = yield select(userIdSelector);
+    const result = yield call(fetchData, requestParams);
+    yield put(putFolders(result));
+    console.log(result);
   } catch (e) {
     console.log(e);
   }

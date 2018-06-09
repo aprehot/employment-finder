@@ -1,7 +1,7 @@
 .myProjectsHeader {
   display: flex;
   flex-direction: row;
-  margin: 15px 0 0 0 !important;
+  // margin: 15px 0 0 0 !important;
 }
 .myProjectsHeader > h2 {
   color: #8484FF;
@@ -55,14 +55,29 @@ animation-duration: .7s;
 align-items: center;
 }
 
-@keyframes stretch {
-  0% {
-    transform: scale(.3);
-    // border-radius: 100%;
-  }
-  100% {
-    transform: scale(1);
-  }
+.folderImg {
+  max-height: 65px;
+  max-width: 65px;
+}
+.folder {
+  cursor: pointer
+}
+.folder:first-child {
+  margin: 25px 0 0 0 !important;
+}
+
+.folderDir > div {
+  align-self: flex-start;
+}
+
+.folderDir {
+  align-items: center;
+  height: 100%;
+}
+.folderNames {
+  color: black;
+  display: flex;
+  margin: auto;
 }
 
 .projectPage {

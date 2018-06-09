@@ -29,6 +29,7 @@ const { auth } = require('./middlewares/auth');
 // app.use('/api', myApi);
 
 // const projectRoutes = require('./middlewares/routes/projects');
+
 const folderRoutes = require('./middlewares/routes/folders');
 const Folders = require('./models/user-folders');
 
@@ -55,7 +56,7 @@ app.use((req, res, next) => {
 app.get('/api/user_folders', (req, res) => {
   Folders.find({
     user: req.query.ownerId,
-    category: req.query.category
+    // category: req.query.category
   }).exec((err, docs) => {
     if (err) return res.status(400).send(err);
     res.send(docs);
