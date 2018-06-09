@@ -21,15 +21,19 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const { User } = require('./models/user');
-const { Categories } = require('./models/user-categories');
+// const { Categories } = require('./models/user-categories');
 const { auth } = require('./middlewares/auth');
 
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-const folderRoutes = require('./middlewares/routes/folders');
 
-app.use('/folders', folderRoutes);
+// const projectRoutes = require('./middlewares/routes/projects');
+const folderRoutes = require('./middlewares/routes/folders');
+const Folders = require('./models/user-folders');
+
+app.use('/api/folders', folderRoutes);
+// app.use('/api/projects', projectRoutes);
 
 
 app.use((req, res, next) => {
@@ -43,6 +47,19 @@ app.use((req, res, next) => {
     return res.status(200).json({});
   }
   next();
+});
+
+
+// REQUIRES OWNER ID //
+
+app.get('/api/user_folders', (req, res) => {
+  Folders.find({
+    user: req.query.ownerId,
+    category: req.query.category
+  }).exec((err, docs) => {
+    if (err) return res.status(400).send(err);
+    res.send(docs);
+  });
 });
 
 
@@ -97,7 +114,8 @@ app.get('/api/logout', auth, (req, res) => {
 //     });
 // });
 //
-//
+
+
 // TAKES ALL USERS ON DATABASE //
 
 app.get('/api/users', (req, res) => {

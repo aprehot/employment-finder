@@ -3,63 +3,65 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Order = require('../models/order');
-const Product = require('../models/product');
+// const Folder = require('../../models/user-folders');
+const Project = require('../../models/project');
 
-// Handle incoming GET requests to /orders
-router.get('/', (req, res, next) => {
-  Order.find()
-    .select('product quantity _id')
-    .exec()
-    .then((docs) => {
-      res.status(200).json({
-        count: docs.length,
-        orders: docs.map((doc) => ({
-          _id: doc._id,
-          product: doc.product,
-          quantity: doc.quantity,
-          request: {
-            type: 'GET',
-            url: `http://localhost:3000/orders/${doc._id}`
-          }
-        }))
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        error: err
-      });
-    });
-});
+// Handle incoming GET requests to /folders
+// router.get('/', (req, res, next) => {
+//   Folder.find()
+//     .select('projects _id category ownerId')
+//     .exec()
+//     .then((docs) => {
+//       res.status(200).json({
+//         projects: docs.map((doc) => ({
+//           _id: doc._id,
+//           category: doc.category,
+//           ownerId: doc.ownerId,
+//           projects: doc.project,
+//           request: {
+//             type: 'GET',
+//             url: `http://localhost:3000/api/folders/${doc._id}`
+//           }
+//         }))
+//       });
+//     })
+//     .catch((err) => {
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// });
 
 // FIND A PROJECT THEN MAP IT TO A FOLDER - GIVE A PRODUCT A FOLDER, THEN FIND ALL PRODUCTS WITH THAT FOLDER?
-router.post('/', (req, res, next) => {
-  Product.findById(req.body.productId)
-    .then((product) => {
-      if (!product) {
+router.post('/project', (req, res, next) => {
+  Project.findById(req.body.projectId)
+    .then((projects) => {
+      if (!projects) {
         return res.status(404).json({
-          message: 'Product not found'
+          message: 'Project not found'
         });
       }
-      const order = new Order({
+      const folder = new Folder({
         _id: mongoose.Types.ObjectId(),
-        quantity: req.body.quantity,
-        product: req.body.productId
+        category: req.body.category,
+        ownerId: req.body.ownerId,
+        projects: req.body.projectId
       });
-      return order.save();
+      return folder.save();
     })
     .then((result) => {
       console.log(result);
       res.status(201).json({
-        message: 'Order stored',
-        createdOrder: {
+        message: 'Project stored',
+        createdFolder: {
           _id: result._id,
-          product: result.product,
-          quantity: result.quantity
+          projects: result.projects,
+          ownerId: result.ownerId,
+          category: result.category
         },
         request: {
           type: 'GET',
-          url: `http://localhost:3000/orders/${result._id}`
+          url: `http://localhost:3000/api/folders/${result._id}`
         }
       });
     })
@@ -71,22 +73,52 @@ router.post('/', (req, res, next) => {
     });
 });
 
+// *** WHEN YOU CLICK FOLDER REVEAL THESE PROJECTS ***//
+// TODO: .find() method should look for matching owner id
+router.get('/', (req, res, next) => {
+  Project.find()
+    // .select('ownerId folderName _id category')
+    .exec()
+    .then((docs) => {
+      const response = {
+        projects: docs.map(() => req.body
+        // ({
+        //   ownerId: doc.ownerId,
+        //   folderName: doc.folderName,
+        //   category: doc.category,
+        //   _id: doc._id,
+        //   request: {
+        //     type: 'GET',
+        //     url: `http://localhost:3000/folders/${doc._id}`
+        //   }
+        // })
+        )
+      };
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 // FIND SPECIFIC FOLDER
-router.get('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId)
+router.get('/:projectId', (req, res, next) => {
+  Project.findById(req.params.projectId)
     .exec()
-    .then((order) => {
-      if (!order) {
+    .then((proj) => {
+      if (!proj) {
         return res.status(404).json({
-          message: 'Order not found'
+          message: 'Project not found'
         });
       }
       res.status(200).json({
-        order,
+        proj,
         request: {
           type: 'GET',
-          url: 'http://localhost:3000/orders'
+          url: 'http://localhost:3000/api/project'
         }
       });
     })
@@ -100,11 +132,11 @@ router.get('/:orderId', (req, res, next) => {
 // DELETE FOLDER
 
 router.delete('/:orderId', (req, res, next) => {
-  Order.remove({ _id: req.params.orderId })
+  Folder.remove({ _id: req.params.orderId })
     .exec()
     .then((result) => {
       res.status(200).json({
-        message: 'Order deleted',
+        message: 'Folder deleted',
         request: {
           type: 'POST',
           url: 'http://localhost:3000/orders',

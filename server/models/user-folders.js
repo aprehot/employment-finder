@@ -4,6 +4,11 @@ const { Schema } = mongoose;
 
 const folderSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  category: {
+    type: String,
+    required: true,
+    enum: ['Company', 'Personal']
+  },
   ownerId: {
     type: String,
     required: true
@@ -11,12 +16,13 @@ const folderSchema = new Schema({
   folderName: {
     type: String,
     required: true
-  }
-  // projects: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Project'
-  // }]
+  },
+  // projects: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' }
 });
+
+
+module.exports = mongoose.model('Folders', folderSchema);
+
 
 // const populateFolders = async function () {
 //   await this.populate('Project');
@@ -24,9 +30,5 @@ const folderSchema = new Schema({
 //
 // folderSchema.pre('find', populateFolders);
 // folderSchema.pre('findOneAndUpdate', populateFolders);
-
-
-module.exports = mongoose.model('Folders', folderSchema);
-
 
 // module.exports = { Folders };

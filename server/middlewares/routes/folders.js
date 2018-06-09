@@ -10,14 +10,14 @@ const Folders = require('../../models/user-folders');
 
 router.get('/', (req, res, next) => {
   Folders.find()
-    .select('ownerId folderName _id')
+    .select('ownerId folderName _id category')
     .exec()
     .then((docs) => {
       const response = {
-        count: docs.length,
         folders: docs.map((doc) => ({
           ownerId: doc.ownerId,
           folderName: doc.folderName,
+          category: doc.category,
           _id: doc._id,
           request: {
             type: 'GET',
@@ -36,11 +36,12 @@ router.get('/', (req, res, next) => {
 });
 
 
-// POST //
+// POST A FOLDER //
 
 router.post('/', (req, res, next) => {
   const folders = new Folders({
     _id: new mongoose.Types.ObjectId(),
+    category: req.body.category,
     ownerId: req.body.ownerId,
     folderName: req.body.folderName
   });
@@ -50,6 +51,7 @@ router.post('/', (req, res, next) => {
       message: 'Handling POST requests to /folders',
       createdFolder: {
         ownerId: result.ownerId,
+        category: result.category,
         folderName: result.folderName,
         _id: result._id,
         request: {
@@ -130,21 +132,23 @@ router.get('/:folderId', (req, res) => {
 //       });
 //     });
 // });
+
+
 // FETCH ALL FOLDERS //
 
-router.get('/api/folders', (req, res) => {
-  // localhost:3001/api/projects?skip=3&limit=2&order=asc
-  const { skip } = parseInt(req.query);
-  const { limit } = parseInt(req.query);
-  const { order } = req.query;
-
-  // ORDER = asc || desc
-  Folders.find().skip(skip).sort({ _id: order }).limit(limit)
-    .exec((err, doc) => {
-      if (err) return res.status(400).send(err);
-      res.send(doc);
-    });
-});
+// router.get('/', (req, res) => {
+//   // localhost:3001/api/projects?skip=3&limit=2&order=asc
+//   const { skip } = parseInt(req.query);
+//   const { limit } = parseInt(req.query);
+//   const { order } = req.query;
+//
+//   // ORDER = asc || desc
+//   Folders.find().skip(skip).sort({ _id: order }).limit(limit)
+//     .exec((err, doc) => {
+//       if (err) return res.status(400).send(err);
+//       res.send(doc);
+//     });
+// });
 
 // DELETE FOLDER //
 

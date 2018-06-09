@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getFolders } from './actions';
 import './style.scss';
 
-class MyProjects extends Component {
+class UserFolders extends Component {
+  // static getDerivedStateFromProps(props, state) {
+  //   this.props.dispatch(getUserFolders())
+  // }
   state = {
-    projectType: false
+    projectType: 'Company'
   }
-
+  componentWillMount() {
+    // this.props.dispatch(getFolders(this.state.projectType))
+  }
 
   render() {
     const { projectType } = this.state;
@@ -20,12 +27,12 @@ class MyProjects extends Component {
             role="button"
             tabIndex="0"
             className="cell large-6 projectType text-center"
-            onClick={() => this.setState({ projectType: true })}
+            onClick={() => this.setState({ projectType: 'Company' })}
             style={{
               background: projectType ? '#8484FF' : '#C9C9FF',
               borderRadius: projectType ? '30px 0 0 0' : '0 0 0 30px',
             }}
-            onKeyDown={() => console.log(null)}
+            // onKeyDown={() => this.setState({ projectType: 'Company' })}
           >
             <h5>
               Company
@@ -35,12 +42,12 @@ class MyProjects extends Component {
             role="button"
             tabIndex="0"
             className="cell large-6 projectType text-center"
-            onClick={() => this.setState({ projectType: false })}
+            onClick={() => this.setState({ projectType: 'Personal' })}
             style={{
               background: projectType ? '#C9C9FF' : '#8484FF',
               borderRadius: projectType ? '0 0 30px 0' : '0 30px 0 0'
             }}
-            onKeyDown={() => console.log(null)}
+            // onKeyDown={() => this.setState({ projectType: 'Personal' })}
           >
             <h5>
               Personal
@@ -51,8 +58,12 @@ class MyProjects extends Component {
     );
   }
 }
-export default MyProjects;
 
-/* <div style={{height: '100%', marginTop: '10px'}} className="grid-x grid-padding-y">
-{this.projectDirectory(projects, folders, titles)}
-</div> */
+function mapStateToProps(state) {
+  console.log(state)
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps)(UserFolders);

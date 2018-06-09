@@ -9,17 +9,22 @@
 //     type: String,
 //     required: true
 //   },
-//   category: [{
-//     categoryName: {
-//       type: String,
-//       required: true,
-//       enum: ['Company', 'Personal']
-//     },
-//     folders: [{
-//       type: Schema.Types.ObjectId,
-//       ref: 'Folder'
-//     }]
-//   }]
+  // category: [{
+  //   categoryName: {
+  //     executive: { type: [String] },
+  //     producer: { type: [String], required: true },
+  //     director: { type: [String] },
+  //     writer: { type: [String] },
+  //     castingDirector: { type: [String] },
+  //     talent: { type: [String] }
+  //   }
+  // }]
+  //   },
+  //   folders: [{
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Folder'
+  //   }]
+  // }]
 // });
 //
 // // const populateCategories = async function() {
