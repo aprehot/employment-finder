@@ -1,7 +1,7 @@
 .myProjectsHeader {
   display: flex;
   flex-direction: row;
-  // margin: 15px 0 0 0 !important;
+  margin: 0 0 10px 0;
 }
 .myProjectsHeader > h2 {
   color: #8484FF;
@@ -54,13 +54,17 @@ animation-name: stretch;
 animation-duration: .7s;
 align-items: center;
 }
-
+.folderContainer {
+  border: linear-gradient(115deg, #5E50FF, lavender 180%) 1px;
+}
 .folderImg {
-  max-height: 65px;
-  max-width: 65px;
+  max-height: 35px;
+  max-width: 35px;
 }
 .folder {
-  cursor: pointer
+  cursor: pointer;
+  padding: 25px 0;
+
 }
 .folder:first-child {
   margin: 25px 0 0 0 !important;
@@ -73,13 +77,60 @@ align-items: center;
 .folderDir {
   align-items: center;
   height: 100%;
+  overflow: overlay;
 }
 .folderNames {
   color: black;
   display: flex;
   margin: auto;
+  font-size: 1.1em;
 }
 
 .projectPage {
   height: 92vh;
+}
+
+.folderDir::-webkit-scrollbar-thumb {
+    background: linear-gradient(115deg, #5E50FF, lavender 180%);
+    border-radius: 105px;
+}
+
+.folderDir::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(115deg, #5E50FF, lavender 180%);
+}
+
+.folderDir::-webkit-scrollbar {
+    width: .7rem;
+    height: 1rem;
+}
+
+.folderDir::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.folderDir::-webkit-scrollbar-thumb:window-inactive {
+    background: linear-gradient(115deg, #5E50FF, lavender 180%);
+}
+
+.folderContainer {
+  position: relative;
+}
+.folderContainer:before, .folderContainer:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: -3px;
+  border-radius: 100px;
+}
+.folderContainer:before {
+  top: 100px;
+  width: 3px;
+  background-image: -webkit-linear-gradient(transparent, #5E50FF);
+  background-image: -webkit-gradient(linear, 0 90%, 0 0, from(#5E50FF), to(transparent));
+}
+.folderContainer:after {
+  right: -3px;
+  height: 3px;
+  background-image: -webkit-linear-gradient(left, #5E50FF, transparent);
+  background-image: -webkit-gradient(linear, 0 0, 90% 0, from(#5E50FF), to(transparent));
 }

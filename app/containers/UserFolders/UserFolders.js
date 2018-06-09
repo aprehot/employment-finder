@@ -52,7 +52,7 @@ class UserFolders extends Component {
     const { userFolders } = this.props.user;
     const { projectType } = this.state;
     return (
-      <div className="grid-y large-10" style={{ border: 'solid red 2px' }}>
+      <div className="grid-y large-10 folderContainer">
         <div className="grid-x" >
           <div className="myProjectsHeader cell">
             <img alt="Project Folders" src="https://s3-us-west-1.amazonaws.com/anidemo/anifolder%402x.png" />
@@ -66,7 +66,7 @@ class UserFolders extends Component {
               onClick={() => this.setState({ projectType: true })}
               style={{
                 background: projectType ? '#8484FF' : '#C9C9FF',
-                borderRadius: projectType ? '30px 0 0 0' : '0 0 0 30px',
+                borderRadius: projectType ? '20px 0 0 0' : '0 0 0 20px',
               }}
               onKeyDown={() => this.setState({ projectType: true })}
             >
@@ -81,7 +81,7 @@ class UserFolders extends Component {
               onClick={() => this.setState({ projectType: false })}
               style={{
                 background: projectType ? '#C9C9FF' : '#8484FF',
-                borderRadius: projectType ? '0 0 30px 0' : '0 30px 0 0'
+                borderRadius: projectType ? '0 0 20px 0' : '0 20px 0 0'
               }}
               onKeyDown={() => this.setState({ projectType: false })}
             >
