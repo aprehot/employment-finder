@@ -14,9 +14,7 @@ const AniGrid = ({ Left, Middle, Right }) => (
     </div>
 
     <div className="grid-y large-4 cell align-center">
-      <div className="grid-x large-10">
         {Right ? <Right {...Right} /> : null}
-      </div>
     </div>
   </article>
 );

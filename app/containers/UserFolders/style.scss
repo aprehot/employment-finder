@@ -2,13 +2,16 @@
   display: flex;
   flex-direction: row;
   margin: 0 0 10px 0;
+  padding: 0 10px 10px 10px;
 }
 .myProjectsHeader > h2 {
   color: #8484FF;
+  display: flex;
+  align-items: center;
 }
 .myProjectsHeader > img {
   max-height: 60px;
-  margin-right: 10px;
+  margin: 0 0 10px 10px;
 }
 .projectTypes > div{
   outline: none;
@@ -20,8 +23,8 @@
   max-height: 65px;
   min-height: 55px;
   z-index: 100 !important;
-  cursor: pointer;
   transition: all .25s;
+  cursor: pointer;
 }
 .projectFolder {
   max-height: 40px;
@@ -38,7 +41,6 @@
   transition: all .2s;
 }
 .projectCategories {
-  cursor: pointer;
   align-items: center;
 }
 .projectTitle {
@@ -62,7 +64,6 @@ align-items: center;
   max-width: 35px;
 }
 .folder {
-  cursor: pointer;
   padding: 25px 0;
 
 }
@@ -80,10 +81,16 @@ align-items: center;
   overflow: overlay;
 }
 .folderNames {
-  color: black;
   display: flex;
   margin: auto;
   font-size: 1.1em;
+}
+.folderNames span {
+  color: black;
+}
+.folderNames span:hover {
+  cursor: pointer;
+  color: black;
 }
 
 .projectPage {
@@ -112,25 +119,34 @@ align-items: center;
     background: linear-gradient(115deg, #5E50FF, lavender 180%);
 }
 
+*::selection {
+  background: lavender
+}
+
 .folderContainer {
-  position: relative;
+  // border: solid 2px lavender;
+  // border-radius: 6px;
+  padding: 5px;
 }
-.folderContainer:before, .folderContainer:after {
-  content: "";
-  position: absolute;
-  bottom: -3px;
-  left: -3px;
-  border-radius: 100px;
-}
-.folderContainer:before {
-  top: 100px;
-  width: 3px;
-  background-image: -webkit-linear-gradient(transparent, #5E50FF);
-  background-image: -webkit-gradient(linear, 0 90%, 0 0, from(#5E50FF), to(transparent));
-}
-.folderContainer:after {
-  right: -3px;
-  height: 3px;
-  background-image: -webkit-linear-gradient(left, #5E50FF, transparent);
-  background-image: -webkit-gradient(linear, 0 0, 90% 0, from(#5E50FF), to(transparent));
-}
+// .folderContainer {
+//   position: relative;
+// }
+// .folderContainer:before, .folderContainer:after {
+//   content: "";
+//   position: absolute;
+//   bottom: -3px;
+//   left: -3px;
+//   border-radius: 100px;
+// }
+// .folderContainer:before {
+//   top: 100px;
+//   width: 3px;
+//   background-image: -webkit-linear-gradient(transparent, #5E50FF);
+//   background-image: -webkit-gradient(linear, 0 90%, 0 0, from(#5E50FF), to(transparent));
+// }
+// .folderContainer:after {
+//   right: -3px;
+//   height: 3px;
+//   background-image: -webkit-linear-gradient(left, #5E50FF, transparent);
+//   background-image: -webkit-gradient(linear, 0 0, 90% 0, from(#5E50FF), to(transparent));
+// }

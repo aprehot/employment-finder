@@ -1,0 +1,15 @@
+
+.myUpdatesHeader {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 0 0;
+  margin: 0;
+}
+.myUpdatesHeader > h2 {
+  color: #8484FF;
+  display: flex;
+  align-items: center;
+}
+.myUpdatesHeader > img {
+  max-height: 60px;
+}

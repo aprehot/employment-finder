@@ -25,7 +25,9 @@ class UserFolders extends Component {
           className="folderImg cell large-3"
           src="https://s3-us-west-1.amazonaws.com/anidemo/anifolder%402x.png"
         />
-        <h4 className="cell large-9 folderNames">{personal.folderName}</h4>
+        <h4 className="cell large-9 folderNames">
+          <span>{personal.folderName}</span>
+        </h4>
       </div>
       : null
   )
@@ -40,7 +42,9 @@ class UserFolders extends Component {
               className="folderImg cell large-3"
               src="https://s3-us-west-1.amazonaws.com/anidemo/anifolder%402x.png"
             />
-            <h4 className="cell large-9 folderNames">{folder.folderName}</h4>
+            <h4 className="cell large-9 folderNames">
+              <span>{folder.folderName}</span>
+            </h4>
           </div>
           :
           this.showPersonal(folder)
