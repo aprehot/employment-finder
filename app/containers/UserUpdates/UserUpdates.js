@@ -11,7 +11,7 @@ class UserUpdates extends React.Component {
 
 
   ShowUpdates = (updates) => (
-    <div className="cell large-3" style={{ margin: '65px 0 0 0' }}>
+    <div className="cell large-3" style={{ margin: '15px 0 0 0' }}>
       {updates ?
         updates.map((listItem) => (
           <div key={listItem._id} className="feedBox">

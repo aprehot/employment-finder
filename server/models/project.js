@@ -28,6 +28,11 @@ const projectSchema = new Schema({
     type: String,
     required: true
   },
+  parentCategory: {
+    type: String,
+    required: true,
+    enum: ['Company', 'Personal']
+  },
   projectType: {
     type: String,
     required: true,

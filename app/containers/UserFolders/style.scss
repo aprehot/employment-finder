@@ -62,6 +62,7 @@ align-items: center;
 .folderImg {
   max-height: 35px;
   max-width: 35px;
+  cursor: pointer;
 }
 .folder {
   padding: 25px 0;
@@ -83,14 +84,16 @@ align-items: center;
 .folderNames {
   display: flex;
   margin: auto auto auto 1em;
-  font-size: 1.1em;
+  font-size: 1.4em;
 }
 .folderNames span {
   color: black;
 }
 .folderNames span:hover {
   cursor: pointer;
+  transition: all .4s;
   color: black;
+  color: #5E50FF;
 }
 
 .projectPage {

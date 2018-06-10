@@ -7,9 +7,10 @@ const mongoose = require('mongoose');
 const Project = require('../../models/project');
 
 // Handle incoming GET requests to /folders
-// router.get('/', (req, res, next) => {
-//   Folder.find()
-//     .select('projects _id category ownerId')
+
+// router.get('/', (req, res) => {
+//   Project.find()
+//     .select('ownerId ')
 //     .exec()
 //     .then((docs) => {
 //       res.status(200).json({
@@ -32,39 +33,58 @@ const Project = require('../../models/project');
 //     });
 // });
 
-// FIND A PROJECT THEN MAP IT TO A FOLDER - GIVE A PRODUCT A FOLDER, THEN FIND ALL PRODUCTS WITH THAT FOLDER?
-router.post('/project', (req, res, next) => {
-  Project.findById(req.body.projectId)
-    .then((projects) => {
-      if (!projects) {
-        return res.status(404).json({
-          message: 'Project not found'
-        });
-      }
-      const folder = new Folder({
-        _id: mongoose.Types.ObjectId(),
-        category: req.body.category,
-        ownerId: req.body.ownerId,
-        projects: req.body.projectId
+router.get('/folder_projects', (req, res) => {
+  Project.find({
+    user: req.query.ownerId,
+    parentFolder: req.query.parentFolder,
+    parentCategory: req.query.parentCategory
+  })
+    .select('_id ownerId title parentFolder')
+    .exec()
+    .then((docs) => {
+      res.status(200).json({
+        projects: docs.map((doc) => ({
+          _id: doc._id,
+          ownerId: doc.ownerId,
+          title: doc.title,
+          parentFolder: doc.parentFolder,
+          request: {
+            type: 'GET',
+            url: `http://localhost:3000/api/projects/folder_projects/${doc._id}`
+          }
+        }))
       });
-      return folder.save();
     })
-    .then((result) => {
-      console.log(result);
-      res.status(201).json({
-        message: 'Project stored',
-        createdFolder: {
-          _id: result._id,
-          projects: result.projects,
-          ownerId: result.ownerId,
-          category: result.category
-        },
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+});
+
+// POST A FOLDER to a specific owner//
+
+router.post('/', (req, res, next) => {
+  const project = new Project({
+    _id: new mongoose.Types.ObjectId(),
+    ...req.body
+  });
+  project.save().then((result) => {
+    console.log(result);
+    res.status(201).json({
+      message: 'Handling POST requests to /projects',
+      createdFolder: {
+        ownerId: result.ownerId,
+        _id: result._id,
+        parentFolder: result.parentFolder,
+        title: result.title,
         request: {
           type: 'GET',
-          url: `http://localhost:3000/api/folders/${result._id}`
+          url: `http://localhost:3000/folders/${result._id}`
         }
-      });
-    })
+      }
+    });
+  })
     .catch((err) => {
       console.log(err);
       res.status(500).json({
@@ -72,6 +92,47 @@ router.post('/project', (req, res, next) => {
       });
     });
 });
+
+// FIND A PROJECT THEN MAP IT TO A FOLDER - GIVE A PRODUCT A FOLDER, THEN FIND ALL PRODUCTS WITH THAT FOLDER?
+// router.post('/project', (req, res, next) => {
+//   Project.findById(req.body.projectId)
+//     .then((projects) => {
+//       if (!projects) {
+//         return res.status(404).json({
+//           message: 'Project not found'
+//         });
+//       }
+//       const folder = new Folder({
+//         _id: mongoose.Types.ObjectId(),
+//         category: req.body.category,
+//         ownerId: req.body.ownerId,
+//         projects: req.body.projectId
+//       });
+//       return folder.save();
+//     })
+//     .then((result) => {
+//       console.log(result);
+//       res.status(201).json({
+//         message: 'Project stored',
+//         createdFolder: {
+//           _id: result._id,
+//           projects: result.projects,
+//           ownerId: result.ownerId,
+//           category: result.category
+//         },
+//         request: {
+//           type: 'GET',
+//           url: `http://localhost:3000/api/folders/${result._id}`
+//         }
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// });
 
 // *** WHEN YOU CLICK FOLDER REVEAL THESE PROJECTS ***//
 // TODO: .find() method should look for matching owner id

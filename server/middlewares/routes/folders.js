@@ -6,7 +6,7 @@ const router = express.Router();
 
 const Folders = require('../../models/user-folders');
 
-// retrieve all
+// retrieve all from specific owner
 
 router.get('/', (req, res, next) => {
   Folders.find()
@@ -36,7 +36,7 @@ router.get('/', (req, res, next) => {
 });
 
 
-// POST A FOLDER //
+// POST A FOLDER to a specific owner//
 
 router.post('/', (req, res, next) => {
   const folders = new Folders({

@@ -45,14 +45,14 @@ const { auth } = require('./middlewares/auth');
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-// const projectRoutes = require('./middlewares/routes/projects');
 
+const projectRoutes = require('./middlewares/routes/projects');
 const folderRoutes = require('./middlewares/routes/folders');
+
 const Folders = require('./models/user-folders');
 
-
 app.use('/api/folders', folderRoutes);
-// app.use('/api/projects', projectRoutes);
+app.use('/api/projects', projectRoutes);
 
 
 app.use((req, res, next) => {
