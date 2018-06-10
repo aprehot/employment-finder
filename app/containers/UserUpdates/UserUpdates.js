@@ -5,25 +5,29 @@ import './styles.scss';
 
 
 class UserUpdates extends React.Component {
-
   componentDidMount() {
-    this.props.dispatch(getUpdates())
+    this.props.dispatch(getUpdates());
   }
 
 
   ShowUpdates = (updates) => (
-    <div className="cell large-7" style={{margin: '65px 0 0 0'}}>
+    <div className="cell large-3" style={{ margin: '65px 0 0 0' }}>
       {updates ?
         updates.map((listItem) => (
-          <div key={listItem._id} className="" style={{display: 'flex'}}>
-            {console.log(listItem)}
-            <img src={listItem.image} alt={'ANi User Update Feed'} />
-            <p>{listItem.text}</p>
+          <div key={listItem._id} className="feedBox">
+            <img
+              className="feedImg"
+              src={listItem.image}
+              alt={'ANi User Update Feed'}
+            />
+            <p className="feedInfo">{listItem.text}</p>
+            <p className="feedTime">{listItem.time}</p>
+            <hr></hr>
           </div>
         ))
         : null
       }
-  </div>
+    </div>
   )
 
   render() {
