@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import AniGrid from '../hoc/AniGrid';
 import UserFolders from '../UserFolders/Loadable';
 import VaultColumn from '../../components/vaultColumn/vaultColumn';
-import UserUpdates from '../../components/UserUpdates/UserUpdates';
+import UserUpdates from '../UserUpdates/Loadable';
 import './style.scss';
 
 // OPTIMIZE: React.PureComponent

@@ -1,44 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { getUpdates } from './actions';
 import './styles.scss';
 
 
 class UserUpdates extends React.Component {
-  state = {
-    userUpdates: null
-  }
 
-  componentDidUpdate(prevprops, prevState, snapshot) {
-    if (snapshot !== null && this.state.userUpdates === null) {
-      this.setState({ userUpdates: snapshot });
-    }
-  }
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    if (Object.keys(prevProps.user).length === 2 && this.state.userUpdates === null) {
-      const updates = this.props.user.userUpdates.userUpdates.staticFeed;
-      return updates;
-    }
-    return null;
+  componentDidMount() {
+    this.props.dispatch(getUpdates())
   }
 
 
   ShowUpdates = (updates) => (
-    <div className="cell large-2">
-      {updates !== null ?
+    <div className="cell large-7" style={{margin: '65px 0 0 0'}}>
+      {updates ?
         updates.map((listItem) => (
-          <div key={listItem._id} className="grid-x  large-3">
+          <div key={listItem._id} className="" style={{display: 'flex'}}>
             {console.log(listItem)}
             <img src={listItem.image} alt={'ANi User Update Feed'} />
+            <p>{listItem.text}</p>
           </div>
         ))
         : null
       }
-    </div>
+  </div>
   )
 
   render() {
-    const { userUpdates } = this.state
+    const { userUpdates } = this.props.user;
     return (
       <div className="grid-x large-10 align-right" >
         <div className=" grid-y large-10 updateContainer" >
@@ -49,7 +38,7 @@ class UserUpdates extends React.Component {
             />
             <h2>Updates</h2>
           </div>
-          <div className="grid-y grid-frame">
+          <div className="grid-y grid-frame cell">
             {this.ShowUpdates(userUpdates)}
           </div>
         </div>

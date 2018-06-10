@@ -34,7 +34,7 @@ class UserFolders extends React.Component {
 
   showUserFolders = (folders) => (
     folders ?
-      folders.userFolders.map((folder) => (
+      folders.map((folder) => (
         this.state.projectType && folder.category === 'Company' ?
           <div key={folder._id} className="grid-x cell folder">
             <img
