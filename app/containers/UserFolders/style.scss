@@ -99,7 +99,9 @@ align-items: center;
 .projectPage {
   height: 92vh;
 }
-
+.folder {
+  outline: lavender;
+}
 .folderDir::-webkit-scrollbar-thumb {
     background: linear-gradient(115deg, #5E50FF, lavender 180%);
     border-radius: 105px;
@@ -133,6 +135,17 @@ align-items: center;
   .folderContainer {
     overflow: none !important;
   }
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 0 0 20px;
+}
+.folderProjects {
+  // color: rgb(132, 132, 255);
+  color: #4f4f4f;
+  cursor: pointer;
 }
 
 .folderContainer {

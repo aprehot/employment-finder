@@ -8,11 +8,14 @@ const Folders = require('../../models/user-folders');
 
 // retrieve all from specific owner
 
-router.get('/', (req, res, next) => {
-  Folders.find()
+router.get('/user_folders', (req, res, next) => {
+  Folders.find({
+    user: req.query.ownerId
+  })
     .select('ownerId folderName _id category')
     .exec()
     .then((docs) => {
+      // if (docs.ownerId === req.query.ownerId) {
       const response = {
         folders: docs.map((doc) => ({
           ownerId: doc.ownerId,
@@ -25,6 +28,7 @@ router.get('/', (req, res, next) => {
           }
         }))
       };
+      // }
       res.status(200).json(response);
     })
     .catch((err) => {

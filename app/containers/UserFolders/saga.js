@@ -10,9 +10,9 @@ export const folderContentsSelector = (state) => state.user.contentRequest;
 function* fetchFolders() {
   try {
     const requestParams = yield select(userIdSelector);
-    const folderUri = fetch(`/api/user_folders?user=${requestParams}`);
+    const folderUri = fetch(`/api/folders/user_folders?user=${requestParams}`);
     const folderRes = yield call(fetchData, folderUri);
-    yield put(putFolders(folderRes));
+    yield put(putFolders(folderRes.folders));
   } catch (e) {
     console.log(e);
   }

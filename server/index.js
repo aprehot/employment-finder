@@ -96,17 +96,17 @@ app.post('/api/login', (req, res) => {
 });
 
 
-// REQUIRES OWNER ID //
-
-app.get('/api/user_folders', (req, res) => {
-  Folders.find({
-    user: req.query.ownerId,
-    // category: req.query.category
-  }).exec((err, docs) => {
-    if (err) return res.status(400).send(err);
-    res.send(docs);
-  });
-});
+// // REQUIRES OWNER ID //
+//
+// app.get('/api/user_folders', (req, res) => {
+//   Folders.find({
+//     user: req.query.ownerId,
+//     // category: req.query.category
+//   }).exec((err, docs) => {
+//     if (err) return res.status(400).send(err);
+//     res.send(docs);
+//   });
+// });
 
 
 // VERIFIES USER AUTH ON PAGE ROUTE //

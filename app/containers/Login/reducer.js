@@ -18,7 +18,8 @@ export default function (state = {}, action) {
     case GET_FOLDER_CONTENTS:
       return {
         ...state,
-        contentRequest: action.contentRequest
+        contentRequest: action.contentRequest,
+        folderContents: ''
       };
     case PUT_FOLDER_CONTENTS:
       return {
