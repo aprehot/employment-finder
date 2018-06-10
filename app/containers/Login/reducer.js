@@ -1,4 +1,4 @@
-import { PUT_USER_FOLDERS } from '../UserFolders/actions';
+import { PUT_USER_FOLDERS, GET_FOLDER_CONTENTS, PUT_FOLDER_CONTENTS } from '../UserFolders/actions';
 import { PUT_USER_UPDATES } from '../UserUpdates/actions';
 import { USER_LOGIN, USER_AUTH } from './actions';
 
@@ -14,6 +14,16 @@ export default function (state = {}, action) {
       return {
         ...state,
         login: action.payload
+      };
+    case GET_FOLDER_CONTENTS:
+      return {
+        ...state,
+        contentRequest: action.contentRequest
+      };
+    case PUT_FOLDER_CONTENTS:
+      return {
+        ...state,
+        folderContents: action.folderContents
       };
     case PUT_USER_FOLDERS:
       return {

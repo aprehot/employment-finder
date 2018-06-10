@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoadingIndicator from 'components/LoadingIndicator';
 
-import { getFolders } from './actions';
+import { getFolders, getContents } from './actions';
 import './style.scss';
 
 /* eslint no-underscore-dangle: 0 */
@@ -10,7 +10,8 @@ import './style.scss';
 // OPTIMIZE: Pure Component ?
 class UserFolders extends React.Component {
   state = {
-    projectType: true
+    projectType: true,
+    category: 'Company'
   }
   componentDidMount() {
     this.props.dispatch(getFolders());
@@ -32,11 +33,19 @@ class UserFolders extends React.Component {
       : null
   )
 
+
   showUserFolders = (folders) => (
     folders ?
       folders.map((folder) => (
         this.state.projectType && folder.category === 'Company' ?
-          <div key={folder._id} className="grid-x cell folder">
+          <div
+            key={folder._id}
+            role="button"
+            tabIndex="0"
+            className="grid-x cell folder"
+            onClick={(e) => this.props.dispatch(getContents(e.target.innerText, this.state.category))}
+            onKeyPress={(e) => this.props.dispatch(getContents(e.target.innerText, this.state.category))}
+          >
             <img
               alt={folder.folderName}
               className="folderImg cell large-3"
@@ -67,12 +76,12 @@ class UserFolders extends React.Component {
               role="button"
               tabIndex="0"
               className="cell large-6 projectType text-center"
-              onClick={() => this.setState({ projectType: true })}
+              onClick={() => this.setState({ projectType: true, category: 'Company' })}
               style={{
                 background: projectType ? '#8484FF' : '#C9C9FF',
                 borderRadius: projectType ? '20px 0 0 0' : '0 0 0 20px',
               }}
-              onKeyDown={() => this.setState({ projectType: true })}
+              onKeyDown={() => this.setState({ projectType: true, category: 'Company' })}
             >
               <h5>
                 Company
@@ -82,12 +91,12 @@ class UserFolders extends React.Component {
               role="button"
               tabIndex="0"
               className="cell large-6 projectType text-center"
-              onClick={() => this.setState({ projectType: false })}
+              onClick={() => this.setState({ projectType: false, category: 'Personal' })}
               style={{
                 background: projectType ? '#C9C9FF' : '#8484FF',
                 borderRadius: projectType ? '0 0 20px 0' : '0 20px 0 0'
               }}
-              onKeyDown={() => this.setState({ projectType: false })}
+              onKeyDown={() => this.setState({ projectType: false, category: 'Personal' })}
             >
               <h5>
                 Personal

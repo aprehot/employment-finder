@@ -1,9 +1,10 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 
-import { GET_USER_FOLDERS, putFolders } from './actions';
+import { GET_USER_FOLDERS, GET_FOLDER_CONTENTS, putFolders, putContents } from './actions';
 import fetchData from '../../utils/fetch';
 
 export const userIdSelector = (state) => state.user.login.id;
+export const folderContentsSelector = (state) => state.user.contentRequest;
 
 
 function* fetchFolders() {
@@ -17,6 +18,23 @@ function* fetchFolders() {
   }
 }
 
-export default function* userFoldersSaga() {
+export function* userFoldersSaga() {
   yield takeLatest(GET_USER_FOLDERS, fetchFolders);
+}
+
+
+function* fetchFolderContents() {
+  try {
+    const userId = yield select(userIdSelector);
+    const contentRequest = yield select(folderContentsSelector);
+    const contentsUri = fetch(`/api/projects/folder_projects?user=${userId}&parentFolder=${contentRequest[0]}&parentCategory=${contentRequest[1]}`);
+    const contentRes = yield call(fetchData, contentsUri);
+    yield put(putContents(contentRes));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export function* userFolderContentsSaga() {
+  yield takeLatest(GET_FOLDER_CONTENTS, fetchFolderContents);
 }
