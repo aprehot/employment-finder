@@ -14,9 +14,26 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const config = require('./config/config').get(process.env.NODE_ENV);
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+  }
+});
+
+
+const upload = multer({ storage, limits: {
+    fileSize: 1024 * 1024 * 5
+}
+});
 
 mongoose.connect(config.DATABASE);
 mongoose.Promise = global.Promise;
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -79,7 +96,6 @@ app.post('/api/login', (req, res) => {
 });
 
 
-
 // REQUIRES OWNER ID //
 
 app.get('/api/user_folders', (req, res) => {
@@ -110,7 +126,7 @@ app.get('/api/auth', auth, (req, res) => {
 // RETRIEVE USER SPECIFIC UPDATES //
 app.get('/api/user_updates', (req, res) => {
   Updates.find()
-    .select('_id text')
+    .select('_id text time image')
     .exec()
     .then((docs) => {
       const response = {
@@ -183,17 +199,39 @@ app.get('/api/user_posts', (req, res) => {
   });
 });
 
-// POST USERUPDATE //
-app.post('/api/user_updates', (req, res) => {
-  const updates = new Updates(req.body);
 
-  updates.save((err, doc) => {
-    if (err) return res.status(400).send(err);
-    res.status(200).json({
-      update: true,
-      updateId: doc._id
-    });
+// POST USERUPDATE //
+app.post('/api/user_updates', upload.single('image'), (req, res) => {
+  console.log(req.file);
+  const updates = new Updates({
+    _id: new mongoose.Types.ObjectId(),
+    text: req.body.text,
+    time: req.body.time,
+    image: req.file.path
   });
+  updates
+    .save()
+    .then((result) => {
+      console.log(result);
+      res.status(201).json({
+        message: 'Created feed update successfully',
+        createdProduct: {
+          text: result.text,
+          time: result.time,
+          _id: result._id,
+          request: {
+            type: 'GET',
+            url: `http://localhost:3000/api/user_updates${result._id}`
+          }
+        }
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 
