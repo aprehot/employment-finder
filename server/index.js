@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const { User } = require('./models/user');
-// const { Categories } = require('./models/user-categories');
+const Updates = require('./models/user-updates');
 const { auth } = require('./middlewares/auth');
 
 
@@ -32,6 +32,7 @@ const { auth } = require('./middlewares/auth');
 
 const folderRoutes = require('./middlewares/routes/folders');
 const Folders = require('./models/user-folders');
+
 
 app.use('/api/folders', folderRoutes);
 // app.use('/api/projects', projectRoutes);
@@ -49,6 +50,34 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// LOGIN //
+
+app.post('/api/login', (req, res) => {
+  console.log(req.body.email);
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (!user) return res.json({ isAuth: false, message: 'Auth failed, email not found' });
+
+    user.comparePassword(req.body.password, (error, isMatch) => {
+      if (!isMatch) {
+        return res.json({
+          isAuth: false,
+          message: 'Wrong password'
+        });
+      }
+
+      user.generateToken((err, user) => {
+        if (err) return res.status(400).send(err);
+        res.cookie('auth', user.token).json({
+          isAuth: true,
+          id: user._id,
+          email: user.email
+        });
+      });
+    });
+  });
+});
+
 
 
 // REQUIRES OWNER ID //
@@ -78,15 +107,33 @@ app.get('/api/auth', auth, (req, res) => {
 });
 
 
-// // GET //
-// app.get('/api/getFolder', (req, res) => {
-//   const id = req.query.id;
-//
-//   Folders.findById(id, (err, doc) => {
-//     if (err) return res.status(400).send(err);
-//     res.send(doc);
-//   });
-// });
+// RETRIEVE USER SPECIFIC UPDATES //
+app.get('/api/user_updates', (req, res) => {
+  Updates.find()
+    .select('_id text')
+    .exec()
+    .then((docs) => {
+      const response = {
+        staticFeed: docs.map((doc) => ({
+          text: doc.text,
+          image: doc.image,
+          time: doc.time,
+          _id: doc._id,
+          request: {
+            type: 'GET',
+            url: `http://localhost:3000/user_updates/${doc._id}`
+          }
+        }))
+      };
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 
 // LOGOUT //
@@ -136,19 +183,20 @@ app.get('/api/user_posts', (req, res) => {
   });
 });
 
-// // POST //
-// app.post('/api/categories', (req, res) => {
-//   const categories = new Categories(req.body);
-//
-//   categories.save((err, doc) => {
-//     if (err) return res.status(400).send(err);
-//     res.status(200).json({
-//       categories: true,
-//       categoryId: doc._id
-//     });
-//   });
-// });
-//
+// POST USERUPDATE //
+app.post('/api/user_updates', (req, res) => {
+  const updates = new Updates(req.body);
+
+  updates.save((err, doc) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).json({
+      update: true,
+      updateId: doc._id
+    });
+  });
+});
+
+
 // REGISTER //
 
 app.post('/api/register', (req, res) => {
@@ -163,31 +211,7 @@ app.post('/api/register', (req, res) => {
   });
 });
 //
-// LOGIN //
 
-app.post('/api/login', (req, res) => {
-  User.findOne({ email: req.body.email }, (err, user) => {
-    if (!user) return res.json({ isAuth: false, message: 'Auth failed, email not found' });
-
-    user.comparePassword(req.body.password, (error, isMatch) => {
-      if (!isMatch) {
-        return res.json({
-          isAuth: false,
-          message: 'Wrong password'
-        });
-      }
-
-      user.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
-        res.cookie('auth', user.token).json({
-          isAuth: true,
-          id: user._id,
-          email: user.email
-        });
-      });
-    });
-  });
-});
 //
 // // UPDATE //
 //

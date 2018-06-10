@@ -16,13 +16,13 @@ const folderSchema = new Schema({
   folderName: {
     type: String,
     required: true
-  },
-  // projects: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' }
+  }
 });
 
 
 module.exports = mongoose.model('Folders', folderSchema);
 
+// projects: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' }
 
 // const populateFolders = async function () {
 //   await this.populate('Project');

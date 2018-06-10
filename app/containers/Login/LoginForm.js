@@ -38,6 +38,7 @@ class LoginForm extends Component {
 
 
   render() {
+    console.log(this.state)
     const { user } = this.props;
     return (
       <div className="grid-container grid-padding-y grid-y grid-frame" >

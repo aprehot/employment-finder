@@ -8,11 +8,11 @@ import './style.scss';
 /* eslint no-underscore-dangle: 0 */
 
 // OPTIMIZE: Pure Component ?
-class UserFolders extends Component {
+class UserFolders extends React.Component {
   state = {
     projectType: true
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(getFolders());
   }
 

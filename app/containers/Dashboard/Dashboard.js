@@ -8,7 +8,7 @@ import UserUpdates from '../../components/UserUpdates/UserUpdates';
 import './style.scss';
 
 // OPTIMIZE: React.PureComponent
-export default class Dashboard extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class Dashboard extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <main>

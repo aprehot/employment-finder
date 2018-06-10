@@ -76,13 +76,13 @@ align-items: center;
 }
 
 .folderDir {
-  align-items: center;
+  align-content: flex-start;
   height: 100%;
   overflow: overlay;
 }
 .folderNames {
   display: flex;
-  margin: auto;
+  margin: auto auto auto 1em;
   font-size: 1.1em;
 }
 .folderNames span {
@@ -121,6 +121,15 @@ align-items: center;
 
 *::selection {
   background: lavender
+}
+
+@-moz-document url-prefix() {
+  .folderDir {
+    overflow-y:auto !important;
+  }
+  .folderContainer {
+    overflow: none !important;
+  }
 }
 
 .folderContainer {
