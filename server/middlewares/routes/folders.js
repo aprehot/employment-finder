@@ -10,9 +10,8 @@ const Folders = require('../../models/user-folders');
 
 router.get('/user_folders', (req, res, next) => {
   Folders.find({
-    user: req.query.ownerId
+    ownerId: req.query.ownerId
   })
-    .select('ownerId folderName _id category')
     .exec()
     .then((docs) => {
       // if (docs.ownerId === req.query.ownerId) {

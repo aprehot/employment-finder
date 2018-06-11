@@ -26,9 +26,11 @@ const storage = multer.diskStorage({
 });
 
 
-const upload = multer({ storage, limits: {
+const upload = multer({
+  storage,
+  limits: {
     fileSize: 1024 * 1024 * 5
-}
+  }
 });
 
 mongoose.connect(config.DATABASE);
@@ -192,12 +194,12 @@ app.get('/api/users', (req, res) => {
 
 // REQUIRES OWNER ID //
 
-app.get('/api/user_posts', (req, res) => {
-  Categories.find({ ownerId: req.query.user }).exec((err, docs) => {
-    if (err) return res.status(400).send(err);
-    res.send(docs);
-  });
-});
+// app.get('/api/user_posts', (req, res) => {
+//   Categories.find({ ownerId: req.query.user }).exec((err, docs) => {
+//     if (err) return res.status(400).send(err);
+//     res.send(docs);
+//   });
+// });
 
 
 // POST USERUPDATE //

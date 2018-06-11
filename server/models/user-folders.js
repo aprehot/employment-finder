@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-
+// mongoose.set('debug', true);
 const folderSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   category: {

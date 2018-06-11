@@ -37,7 +37,7 @@ const Project = require('../../models/project');
 
 router.get('/folder_projects', (req, res) => {
   Project.find({
-    user: req.query.ownerId,
+    ownerId: req.query.ownerId,
     parentFolder: req.query.parentFolder,
     parentCategory: req.query.parentCategory
   })
