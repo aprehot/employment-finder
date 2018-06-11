@@ -15,6 +15,12 @@ const updateSchema = new Schema({
   time: {
     type: String,
     required: true
+  },
+  name: {
+    type: String
+  },
+  role: {
+    type: String
   }
 });
 

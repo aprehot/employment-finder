@@ -6,6 +6,7 @@ import AniGrid from '../hoc/aniGrid';
 import QuickShare from '../../components/quickShare/quickShare';
 import ProjectHeader from '../../components/projectHeader/projectHeader';
 import ProjectStory from '../../components/projectStory/projectStory';
+import ProjectTeam from '../../components/projectTeam/projectTeam';
 
 const ProjectLeftColumn = () => (
   <AniColumn Top={ProjectHeader} Bottom={QuickShare} />
@@ -22,7 +23,7 @@ class ProjectPage extends Component {
 
   render() {
     return (
-    this.props.project.projectData ? <AniGrid Left={ProjectLeftColumn} Middle={ProjectStory} /> : null
+    this.props.project.projectData ? <AniGrid Left={ProjectLeftColumn} Middle={ProjectStory} Right={ProjectTeam} /> : null
     );
   }
 }

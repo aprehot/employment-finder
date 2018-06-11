@@ -23,3 +23,9 @@
 #downArrow:hover{
   opacity: .6;
 }
+.teamIdentity {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center
+}
