@@ -1,6 +1,6 @@
-import { PUT_USER_FOLDERS, GET_FOLDER_CONTENTS, PUT_FOLDER_CONTENTS } from '../UserFolders/actions';
-import { PUT_USER_UPDATES } from '../UserUpdates/actions';
-import { USER_LOGIN, USER_AUTH } from './actions';
+import { PUT_USER_FOLDERS, GET_FOLDER_CONTENTS, PUT_FOLDER_CONTENTS } from './UserFolders/actions';
+import { PUT_USER_UPDATES } from './UserUpdates/actions';
+import { USER_LOGIN, USER_AUTH } from './Login/actions';
 
 
 export default function (state = {}, action) {

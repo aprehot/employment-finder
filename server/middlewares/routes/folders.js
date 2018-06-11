@@ -14,7 +14,6 @@ router.get('/user_folders', (req, res, next) => {
   })
     .exec()
     .then((docs) => {
-      // if (docs.ownerId === req.query.ownerId) {
       const response = {
         folders: docs.map((doc) => ({
           ownerId: doc.ownerId,
@@ -27,7 +26,6 @@ router.get('/user_folders', (req, res, next) => {
           }
         }))
       };
-      // }
       res.status(200).json(response);
     })
     .catch((err) => {

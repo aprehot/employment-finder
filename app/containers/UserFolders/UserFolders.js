@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { Link } from 'react-router-dom';
 
 import { getFolders, getContents } from './actions';
+import { getProjectId } from '../ProjectPage/actions';
 import './style.scss';
 
 /* eslint no-underscore-dangle: 0 */
@@ -18,19 +20,20 @@ class UserFolders extends React.Component {
     this.props.dispatch(getFolders());
   }
 
-  // TODO: Find out why querying ownerid of each folder doesnt display just owner folders
-
   showContents = (folderContents, folder) => (
     folderContents && this.state.activeFolder === folder.folderName ?
       folderContents.projects[0] ?
         <div className="contentContainer">
           {folderContents.projects.map((project) => (
-            <h5
-              className="folderProjects"
+            <Link
               key={project._id}
+              to={`/project/${project._id}`}
+              onClick={() => this.props.dispatch(getProjectId(project._id))}
             >
-              {project.title}
-            </h5>
+              <h5 className="folderProjects">
+                {project.title}
+              </h5>
+            </Link>
           ))}
         </div>
         :
@@ -100,7 +103,6 @@ class UserFolders extends React.Component {
   render() {
     const { userFolders, folderContents } = this.props.user;
     const { projectType } = this.state;
-    console.log(folderContents);
     return (
       <div className="grid-y large-10 folderContainer">
         <div className="grid-x" >
@@ -151,7 +153,8 @@ class UserFolders extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    project: state.project
   };
 }
 

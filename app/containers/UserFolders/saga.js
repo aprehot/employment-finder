@@ -6,23 +6,6 @@ import fetchData from '../../utils/fetch';
 export const userIdSelector = (state) => state.user.login.id;
 export const folderContentsSelector = (state) => state.user.contentRequest;
 
-
-function* fetchFolders() {
-  try {
-    const requestParams = yield select(userIdSelector);
-    const folderUri = fetch(`/api/folders/user_folders?ownerId=${requestParams}`);
-    const folderRes = yield call(fetchData, folderUri);
-    yield put(putFolders(folderRes.folders));
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-export function* userFoldersSaga() {
-  yield takeLatest(GET_USER_FOLDERS, fetchFolders);
-}
-
-
 function* fetchFolderContents() {
   try {
     const userId = yield select(userIdSelector);
@@ -37,4 +20,19 @@ function* fetchFolderContents() {
 
 export function* userFolderContentsSaga() {
   yield takeLatest(GET_FOLDER_CONTENTS, fetchFolderContents);
+}
+
+function* fetchFolders() {
+  try {
+    const requestParams = yield select(userIdSelector);
+    const folderUri = fetch(`/api/folders/user_folders?ownerId=${requestParams}`);
+    const folderRes = yield call(fetchData, folderUri);
+    yield put(putFolders(folderRes.folders));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export function* userFoldersSaga() {
+  yield takeLatest(GET_USER_FOLDERS, fetchFolders);
 }

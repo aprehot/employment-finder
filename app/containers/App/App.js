@@ -15,6 +15,7 @@ import Login from 'containers/Login/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Home from 'components/Home';
+import ProjectPage from 'containers/ProjectPage/Loadable';
 
 import './style.scss';
 import Auth from '../hoc/auth/auth';
@@ -30,6 +31,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
+      <Route exact path="/project/:id" component={Auth(ProjectPage, true)} />
       <Route exact path="/login" component={Auth(Login, false)} />
       <Route exact path="/" component={Auth(Home, null)} />
       <Route path="" component={NotFoundPage} />
