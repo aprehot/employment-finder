@@ -3,7 +3,7 @@ import React from 'react';
 
 const QuickShare = ({}) => (
   <div className="cell large-6">
-    <div className="grid-y grid-frame ">
+    <div className="grid-y grid-frame" style={{justifyContent: 'center'}}>
       <div className="cell large-10" style={{display: 'flex'}}>
         <div className="grid-x align-middle align-center">
           <div className="grid-x cell large-11 quickShare grid-padding-y">

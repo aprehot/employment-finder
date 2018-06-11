@@ -13,4 +13,16 @@
 }
 .unic {
   font-size: 27px;
+  height: 1.47em;
+}
+.projectDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.projTitle {
+  padding: 0 !important;
+  margin: 0;
 }
