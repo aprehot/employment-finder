@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const vaultColumn = ({Top, Bottom}) => (
+const AniColumn = ({ Top, Bottom }) => (
   <div className="grid-y grid-frame">
     <div className="cell large-5">
       <div className="grid-y grid-frame align-center">
@@ -12,4 +12,4 @@ const vaultColumn = ({Top, Bottom}) => (
   </div>
 );
 
-export default vaultColumn;
+export default AniColumn;

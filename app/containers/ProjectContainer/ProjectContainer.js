@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getProject } from './actions';
+import AniColumn from '../hoc/aniColumn'
+import AniGrid from '../hoc/AniGrid'
+import QuickShare from '../../components/quickShare/quickShare'
+import ProjectHeader from '../../components/projectHeader/projectHeader'
 
+const ProjectLeftColumn = (props) => (
+  <AniColumn Top={ProjectHeader} Bottom={QuickShare} />
+)
 
 class ProjectPage extends Component {
   componentDidMount() {
@@ -11,7 +18,7 @@ class ProjectPage extends Component {
 
   render() {
     return (
-      <div></div>
+      <AniGrid Left={ProjectLeftColumn} />
     );
   }
 }

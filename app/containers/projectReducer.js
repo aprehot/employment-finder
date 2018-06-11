@@ -1,4 +1,4 @@
-import { GET_PROJECT_ID, PUT_PROJECT } from './ProjectPage/actions';
+import { GET_PROJECT_ID, PUT_PROJECT } from './ProjectContainer/actions';
 
 
 export default function (state = {}, action) {

@@ -10,11 +10,11 @@ const AniGrid = ({ Left, Middle, Right }) => (
     </div>
 
     <div className="grid-y large-4 cell align-center">
-        {Middle ? <Middle {...Middle} /> : null }
+      {Middle ? <Middle {...Middle} /> : null }
     </div>
 
     <div className="grid-y large-4 cell align-center">
-        {Right ? <Right {...Right} /> : null}
+      {Right ? <Right {...Right} /> : null}
     </div>
   </article>
 );

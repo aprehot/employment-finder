@@ -4,7 +4,7 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import { Link } from 'react-router-dom';
 
 import { getFolders, getContents } from './actions';
-import { getProjectId } from '../ProjectPage/actions';
+import { getProjectId } from '../ProjectContainer/actions';
 import './style.scss';
 
 /* eslint no-underscore-dangle: 0 */
