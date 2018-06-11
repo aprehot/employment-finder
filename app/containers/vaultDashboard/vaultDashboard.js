@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import AniGrid from '../hoc/AniGrid';
+import AniGrid from '../hoc/aniGrid';
 import UserFolders from '../UserFolders/Loadable';
 import AniColumn from '../hoc/aniColumn';
 import UserUpdates from '../UserUpdates/Loadable';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import AniGrid from '../hoc/AniGrid';
+import AniGrid from '../hoc/aniGrid';
 import LoginForm from './LoginForm';
 
 const Login = () =>

@@ -8,8 +8,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Switch, Route } from 'react-router-dom';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 import VaultDashboard from 'containers/vaultDashboard/Loadable';
 import Login from 'containers/Login/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -38,5 +37,6 @@ const App = () => (
     </Switch>
   </div>
 );
+
 
 export default App;
