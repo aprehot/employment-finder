@@ -2,22 +2,43 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
 import DownArrow from './downArrow';
-// import ProjectContainer from '../../containers/ProjectContainer/ProjectContainer.js';
 
-interface IProps {
-  project: any; 
-}
+
 interface IState {
   projectType: boolean;
 }
 
-class ProjectStory extends React.Component<IProps, IState> {
+interface IProject {
+  project: IContent
+}
+
+interface IContent {
+  projectData: {
+    premise: string,
+    roles: IProjectItem[];
+  }
+}
+
+interface IProjectItem {
+  _id: string,
+  name: string,
+  minAge: number,
+  maxAge: number,
+  description?: string,
+  isOpen?: boolean,
+  gender?: Gender,
+  roleType?: string
+}
+
+enum Gender { 'Male', 'Female' }
+
+class ProjectStory extends React.Component<IProject, IState> {
   state: IState = {
     projectType: true
   }
   render() {
     const { projectType } = this.state;
-    const { projectData } = this.props.project;
+    const { projectData }: IContent = this.props.project;
     return (
       <div className="grid-y large-10 folderContainer">
         <div className="myProjectsHeader cell">
@@ -27,39 +48,33 @@ class ProjectStory extends React.Component<IProps, IState> {
         <div className="grid-x projectTypes cell" >
           <div
             role="button"
-            // tabIndex="0"
+            tabIndex={0}
             className="cell large-6 projectType text-center"
             onClick={() => this.setState({ projectType: true })}
             style={{
               background: projectType ? '#8484FF' : '#C9C9FF',
               borderRadius: projectType ? '20px 0 0 0' : '0 0 0 20px',
             }}
-            onKeyDown={() => this.setState({ projectType: true })}
           >
-            <h5>
-                Premise
-            </h5>
+            <h5>Premise</h5>
           </div>
           <div
             role="button"
-            // tabIndex="0"
+            tabIndex={0}
             className="cell large-6 projectType text-center"
             onClick={() => this.setState({ projectType: false })}
             style={{
               background: projectType ? '#C9C9FF' : '#8484FF',
               borderRadius: projectType ? '0 0 20px 0' : '0 20px 0 0'
             }}
-            onKeyDown={() => this.setState({ projectType: false })}
           >
-            <h5>
-                Characters
-            </h5>
+            <h5> Characters </h5>
           </div>
         </div>
         {projectData.roles && projectType ?
-          <h5 style={{padding: '25px 0'}}>{projectData.premise}</h5>
+          <h5 style={{ padding: '25px 0' }}>{projectData.premise}</h5>
           :
-          projectData.roles.map((role: any, i:number) => (
+          projectData.roles.map((role: IProjectItem, i: number) => (
             <div key={`${role._id}${i}`} className="grid-x roleContainer">
               <div className="cell large-10">
                 <h4>{role.name}</h4>
@@ -82,10 +97,7 @@ class ProjectStory extends React.Component<IProps, IState> {
   }
 }
 
-function mapStateToProps(state: any) {
-  return {
-    project: state.project
-  };
-}
+const mapStateToProps = ({ project }: IProject) => ({ project });
+
 
 export default connect(mapStateToProps)(ProjectStory);

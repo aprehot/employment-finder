@@ -1,17 +1,30 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
-import LoadingIndicator from 'components/LoadingIndicator';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 import PropTypes from 'prop-types';
 import { auth } from '../../Login/actions';
 
 
-export default function (ComposedClass, reload) {
-  class AuthenticationCheck extends Component {
+interface IProps {
+  dispatch: any,
+  user: {
+    login: {
+      isAuth: boolean,
+      id: string
+    }
+  }
+}
+interface IState {
+  loading: boolean
+}
+
+const Auth = (ComposedClass:any, reload:boolean) => {
+  class AuthenticationCheck extends React.Component<IProps, IState> {
     static contextTypes = {
       router: PropTypes.object
     }
 
-    state = {
+    state: IState = {
       loading: true
     }
 
@@ -19,7 +32,7 @@ export default function (ComposedClass, reload) {
       this.props.dispatch(auth());
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps:any) {
       this.setState({ loading: false });
 
       if (!nextProps.user.login.isAuth) {
@@ -41,10 +54,9 @@ export default function (ComposedClass, reload) {
     }
   }
 
-  function mapStateToProps(state) {
-    return {
-      user: state.user
-    };
-  }
+  const mapStateToProps = ({user}:IProps) => ({user})
+  
   return connect(mapStateToProps)(AuthenticationCheck);
 }
+
+export default Auth

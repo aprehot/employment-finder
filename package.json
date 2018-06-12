@@ -32,6 +32,7 @@
   "dependencies": {
     "@types/fontfaceobserver": "^0.0.6",
     "@types/node": "^10.3.2",
+    "@types/prop-types": "^15.5.3",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
@@ -79,6 +80,7 @@
     "redux-saga": "0.16.0",
     "reselect": "3.0.1",
     "sanitize.css": "4.1.0",
+    "typescript": "^2.9.1",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.4"
   },

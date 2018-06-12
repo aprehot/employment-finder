@@ -1,7 +1,13 @@
 import React from 'react';
 import './style.scss';
 
-const AniGrid = ({ Left, Middle, Right }) => (
+interface IProps {
+  Left: any,
+  Middle: any,
+  Right: any  
+}
+ 
+const AniGrid:React.SFC<IProps> = ({ Left, Middle, Right }) => (
   <article className="grid-x myVault">
     <div className="cell grid-x large-4 ">
       <div className="cell large-9 vaultColumn">

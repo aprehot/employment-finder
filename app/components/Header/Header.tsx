@@ -45,6 +45,6 @@ const Header: React.SFC<IProps> = ({login}) => {
   );
 };
 
-const mapStateToProps = ({user}: any) => user
+const mapStateToProps = ({user}: any) => ({user})
 
 export default connect(mapStateToProps)(Header);
