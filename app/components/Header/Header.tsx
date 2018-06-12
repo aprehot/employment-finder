@@ -1,9 +1,21 @@
-import React from 'react';
+import *  as React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import './style.scss';
 
-const Header = (username, companyName, profileName) => {
-  const user = 'https://s3-us-west-1.amazonaws.com/anidemo/dilan.png';
+interface IProps {
+  login: {
+    isAuth: boolean,
+    id: string,
+    firstname: string,
+    lastname: string
+  } 
+}
+
+const Header: React.SFC<IProps> = ({login}) => {
+  console.log(login)
+  const user: string = 'https://s3-us-west-1.amazonaws.com/anidemo/dilan.png';
 
   return (
     <nav className="grid-x navANi align-middle">
@@ -33,4 +45,6 @@ const Header = (username, companyName, profileName) => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({user}: any) => user
+
+export default connect(mapStateToProps)(Header);

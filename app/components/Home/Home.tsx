@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import './styles.scss';
 
 
-const Home = () => (
+const Home: React.SFC = () => (
   <div style={{ height: '92vh', display: 'flex' }}>
     <div className="container">
       <div className="ball"></div>

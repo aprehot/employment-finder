@@ -25,7 +25,19 @@ module.exports = (options) => ({
         use: {
           loader: 'babel-loader',
           options: options.babelQuery,
-        },
+        }
+      },
+      {
+        test: /\.jsx?$/, // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+        exclude: /node_modules/,
+        // include: __dirname
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.tsx?$/, // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+        loader:  ['babel-loader',  'awesome-typescript-loader'],
+        exclude: /node_modules/
+       
       },
       {
         // Preprocess our own .scss files
@@ -108,6 +120,8 @@ module.exports = (options) => ({
     extensions: [
       '.js',
       '.jsx',
+      '.ts',
+      '.tsx',
       '.scss',
       '.react.js'
     ],

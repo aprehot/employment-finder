@@ -1,8 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 
-const DownArrow = () => (
+
+
+const DownArrow: React.SFC = () => (
   <svg
-		style={{maxHeight: '28px', maxWidth: '28px', fill: 'grey' }}
+    style={{ maxHeight: '28px', maxWidth: '28px', fill: 'grey' }}
     width="284.929px"
     height="284.929px"
     viewBox="0 0 284.929 284.929"

@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 
-const SearchVault = ({}) => (
+const SearchVault: React.SFC = () => (
   <div className="cell large-7">
     <div className="grid-x align-middle align-center" style={{ height: '100%' }}>
       <div className="grid-x large-9" style={{ height: '100%' }}>

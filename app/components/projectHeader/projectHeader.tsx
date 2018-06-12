@@ -1,14 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
 
-const ProjectHeader = ({ project }) => {
+interface IProps {
+  project: any
+}
+
+const ProjectHeader: React.SFC<IProps> = ({ project }: any) => {
   const { projectData } = project;
   return (
-    <div className="cell large-11 grid-x align-center">
-      <div className="large-11 projectHeader grid-padding-y">
-        <h1 className="cell large-12 projTitle">{projectData.title}</h1>
-        <h2 className="cell projTitle">{projectData.projectType}</h2>
+    <div className="cell large-12 grid-x align-center">
+      <div className="large-11 projectHeader ">
+        <h1 className="cell large-12 projTitle" style={{color: '#433aa5'}}>{projectData.title}</h1>
+        <h2 className="cell projTitle" style={{color: '#9691c3'}}>{projectData.projectType}</h2>
         <h5 className="grid-x align-middle">
           <span role="img" className="cell large-2 unic" aria-label="start and end date" >
               &#128197;
@@ -45,7 +49,7 @@ const ProjectHeader = ({ project }) => {
   );
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return {
     project: state.project
   };

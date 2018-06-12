@@ -1,10 +1,18 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
 import DownArrow from './downArrow';
+// import ProjectContainer from '../../containers/ProjectContainer/ProjectContainer.js';
 
-class ProjectStory extends Component {
-  state= {
+interface IProps {
+  project: any; 
+}
+interface IState {
+  projectType: boolean;
+}
+
+class ProjectStory extends React.Component<IProps, IState> {
+  state: IState = {
     projectType: true
   }
   render() {
@@ -19,7 +27,7 @@ class ProjectStory extends Component {
         <div className="grid-x projectTypes cell" >
           <div
             role="button"
-            tabIndex="0"
+            // tabIndex="0"
             className="cell large-6 projectType text-center"
             onClick={() => this.setState({ projectType: true })}
             style={{
@@ -34,7 +42,7 @@ class ProjectStory extends Component {
           </div>
           <div
             role="button"
-            tabIndex="0"
+            // tabIndex="0"
             className="cell large-6 projectType text-center"
             onClick={() => this.setState({ projectType: false })}
             style={{
@@ -51,8 +59,8 @@ class ProjectStory extends Component {
         {projectData.roles && projectType ?
           <h5 style={{padding: '25px 0'}}>{projectData.premise}</h5>
           :
-          projectData.roles.map((role) => (
-            <div key={role._id} className="grid-x roleContainer">
+          projectData.roles.map((role: any, i:number) => (
+            <div key={`${role._id}${i}`} className="grid-x roleContainer">
               <div className="cell large-10">
                 <h4>{role.name}</h4>
                 <div className="roleInfo">
@@ -74,7 +82,7 @@ class ProjectStory extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return {
     project: state.project
   };

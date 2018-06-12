@@ -1,7 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 // import '../../containers/HomePage/style.scss';
 
-const QuickShare = ({}) => (
+
+const styles = {
+  opac: {
+    opacity: 0.4
+  }
+}
+
+const QuickShare: React.SFC = () => (
   <div className="cell large-6">
     <div className="grid-y grid-frame" style={{justifyContent: 'center'}}>
       <div className="cell large-10" style={{display: 'flex'}}>
@@ -11,15 +18,15 @@ const QuickShare = ({}) => (
             <input placeholder="Enter Project" className="cell quickShareInput" type="text" />
             <input placeholder="Enter Name or Email" className="cell quickShareInput" type="text" />
             <div className="quickShareOption">
-              <div className="cloudBtns" style={{ opacity: '0.4' }} >
+              <div className="cloudBtns" style= {styles.opac}  >
                 <img alt="quick share" className="cloudImgs" src="https://s3-us-west-1.amazonaws.com/anidemo/anicloud%402x.png" />
                 <p style={{ color: '#8484FF' }}>Open</p>
               </div>
-              <div className="cloudBtns" style={{ opacity: '0.4' }} >
+              <div className="cloudBtns" style= {styles.opac} >
                 <img alt="quick share" className="cloudImgs" src="https://s3-us-west-1.amazonaws.com/anidemo/anicloud%402x.png" />
                 <p style={{ color: '#8484FF' }}>1st</p>
               </div>
-              <div className="cloudBtns" style={{ opacity: '0.4' }} >
+              <div className="cloudBtns" style= {styles.opac} >
                 <img alt="quick share" className="cloudImgs" src="https://s3-us-west-1.amazonaws.com/anidemo/anicloud%402x.png" />
                 <p style={{ color: '#8484FF' }}>2nd</p>
               </div>

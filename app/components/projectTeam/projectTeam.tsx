@@ -1,8 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
-class ProjectTeam extends React.PureComponent {
-  state = {
+interface IState {
+  userUpdates: any
+}
+
+class ProjectTeam extends React.PureComponent<IState> {
+  state: IState = {
     userUpdates: [
       {
         image: '/uploads/2018-06-10T15-31-49.294Za09263b57e71774dc63f84d800c1442f.png',
@@ -41,8 +45,8 @@ class ProjectTeam extends React.PureComponent {
           <div className="grid-y grid-frame cell">
             <div className="cell large-3" style={{ margin: '15px 0 0 0' }}>
               {userUpdates ?
-                userUpdates.map((listItem) => (
-                  <div key={listItem._id} className="grid-x grid-padding-x">
+                userUpdates.map((listItem:any, i:number) => (
+                  <div key={i} className="grid-x grid-padding-x">
                     <img
                       className="cell large-3 feedImg"
                       src={listItem.image}
@@ -65,7 +69,7 @@ class ProjectTeam extends React.PureComponent {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return {
     user: state.user
   };

@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import './style.scss';
 
-const LoadingIndicator = () => (
+const LoadingIndicator: React.SFC = () => (
   <div className="loading-indicator">
     <div />
     <div />
