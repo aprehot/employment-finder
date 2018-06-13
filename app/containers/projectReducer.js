@@ -1,18 +1,18 @@
 import { GET_PROJECT_ID, PUT_PROJECT } from './ProjectContainer/actions';
 
 
-export default function (state = {}, action) {
-  switch (action.type) {
+export default function (state = {}, { type, projectId, projectData }) {
+  switch (type) {
     case GET_PROJECT_ID:
       return {
         ...state,
-        projectId: action.projectId,
+        projectId,
         projectData: ''
       };
     case PUT_PROJECT:
       return {
         ...state,
-        projectData: action.projectData
+        projectData
       };
     default:
       return state;

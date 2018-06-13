@@ -14,7 +14,14 @@ const ProjectLeftColumn = () => (
 
 // COMBAK: : REDIRECT USER IF PAGE REFERESHES WHILE IN PROJECT PAGE
 
-class ProjectPage extends Component {
+interface IProps {
+  dispatch: any,
+  project: {
+    projectData: any[]
+  }
+}
+
+class ProjectPage extends Component<IProps> {
 
 
   componentDidMount() {
@@ -22,16 +29,13 @@ class ProjectPage extends Component {
   }
 
   render() {
+    const { projectData } = this.props.project
     return (
-    this.props.project.projectData ? <AniGrid Left={ProjectLeftColumn} Middle={ProjectStory} Right={ProjectTeam} /> : null
+      projectData ? <AniGrid Left={ProjectLeftColumn} Middle={ProjectStory} Right={ProjectTeam} /> : null
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    project: state.project
-  };
-}
+const mapStateToProps = ({project}:IProps) => ({project})
 
 export default connect(mapStateToProps)(ProjectPage);
