@@ -15,7 +15,7 @@ interface IProject {
 interface IContent {
   projectData: {
     premise: string,
-    roles: IProjectItem[];
+    roles: IProjectItem[]
   }
 }
 

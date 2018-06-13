@@ -4,13 +4,27 @@ import { getUpdates } from './actions';
 import './styles.scss';
 
 
-class UserUpdates extends React.Component {
+interface IProps {
+  dispatch: any,
+  user: {
+    userUpdates: IUpdates[]
+  }
+}
+
+interface IUpdates {
+  text: string,
+  image: string,
+  time: string,
+  _id: string
+}
+
+class UserUpdates extends React.Component<IProps> {
   componentDidMount() {
     this.props.dispatch(getUpdates());
   }
 
 
-  ShowUpdates = (updates) => (
+  ShowUpdates = (updates: IProps["user"]["userUpdates"]) => (
     <div className="cell large-3" style={{ margin: '15px 0 0 0' }}>
       {updates ?
         updates.map((listItem) => (
@@ -31,7 +45,7 @@ class UserUpdates extends React.Component {
   )
 
   render() {
-    const { userUpdates } = this.props.user;
+    const { userUpdates }: IProps["user"] = this.props.user;
     return (
       <div className="grid-x large-10 align-right" >
         <div className=" grid-y large-10 updateContainer" >
@@ -52,10 +66,6 @@ class UserUpdates extends React.Component {
 }
 
 
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  };
-}
+const mapStateToProps = ({ user }: IProps) => ({ user })
 
 export default connect(mapStateToProps)(UserUpdates);

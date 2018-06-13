@@ -10,10 +10,14 @@ interface IProps {
   user: {
     login: {
       isAuth: boolean,
-      id: string
+      id: string,
+      accountType?: Priviledges 
     }
   }
 }
+
+enum Priviledges { 'Representative', 'Casting Director', 'Producer', 'Executive', 'Actor', 'Writer', 'Director' }
+
 interface IState {
   loading: boolean
 }
