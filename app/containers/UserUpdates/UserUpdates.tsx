@@ -5,17 +5,17 @@ import './styles.scss';
 
 
 interface IProps {
-  dispatch: any,
+  dispatch: any;
   user: {
-    userUpdates: IUpdates[]
+    userUpdates: IUpdates[];
   }
 }
 
 interface IUpdates {
-  text: string,
-  image: string,
-  time: string,
-  _id: string
+  text: string;
+  image: string;
+  time: string;
+  _id: string;
 }
 
 class UserUpdates extends React.Component<IProps> {

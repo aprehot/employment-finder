@@ -11,32 +11,32 @@ import './style.scss';
 /* eslint no-nested-ternary: 0 */
 
 interface IState {
-  projectType: boolean,
-  activeFolder: string
+  projectType: boolean;
+  activeFolder: string;
 }
 
 interface IProps {
-  dispatch: any,
+  dispatch: any;
   user: {
-    userFolders: IUserFolders[],
-    folderContents: IFolderContents
+    userFolders: IUserFolders[];
+    folderContents: IFolderContents;
   },
   project: {
-    projectData: any
+    projectData: any;
   }
 }
 interface IUserFolders {
-  ownerId: string,
-  category: string,
-  folderName: string,
-  _id: string,
+  ownerId: string;
+  category: string;
+  folderName: string;
+  _id: string;
 }
 interface IFolderContents {
   projects: IProject[]
 }
 interface IProject {
-  _id: string,
-  title: string
+  _id: string;
+  title: string;
 }
 
 

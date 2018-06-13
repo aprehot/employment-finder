@@ -14,9 +14,9 @@ const Home: React.SFC = () => (
       <div className="ball"></div>
     </div>
     <img
-      src="https://s3-us-west-1.amazonaws.com/anidemo/ANi+Logo+Full.png"
-      className="homeLogo"
       alt="ANiLogo"
+      className="homeLogo"
+      src="https://s3-us-west-1.amazonaws.com/anidemo/ANi+Logo+Full.png"
     />
 
   </div>

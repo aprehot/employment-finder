@@ -2,9 +2,9 @@ import React from 'react';
 import './style.scss';
 
 interface IProps {
-  Left: any,
-  Middle: any,
-  Right: any  
+  Left?: any,
+  Middle?: any,
+  Right?: any  
 }
  
 const AniGrid:React.SFC<IProps> = ({ Left, Middle, Right }) => (

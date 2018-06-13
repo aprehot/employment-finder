@@ -1,16 +1,33 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { loginUser } from './actions';
 import './style.scss';
 
-class LoginForm extends Component {
+interface IProps {
+  dispatch: any,
+  user: {
+    login: {
+      isAuth: boolean,
+      message?: string
+    }
+  }
+}
+interface IState {
+  email: string;
+  password: string;
+  error?: string;
+  success?: boolean;
+}
+
+class LoginForm extends React.Component<IProps, IState> {
+
   static contextTypes = {
     router: PropTypes.object
   }
 
-  state = {
+  state: IState = {
     email: '',
     password: '',
     error: '',
@@ -18,20 +35,27 @@ class LoginForm extends Component {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.login.isAuth) {
+  componentWillReceiveProps(nextProps: IProps) {
+    const { isAuth } = nextProps.user.login
+    if (isAuth) {
       this.context.router.history.push('/dashboard');
     }
   }
 
-  handleInputEmail = (event) => {
-    this.setState({ email: event.target.value });
+  handleInputEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    const { value }: any = e.target
+    this.setState({
+      email: value
+    });
   }
-  handleInputPassword = (event) => {
-    this.setState({ password: event.target.value });
+  handleInputPassword = (e: React.FormEvent<HTMLInputElement>) => {
+    const { value }: any = e.target
+    this.setState({
+      password: value
+    });
   }
 
-  submitForm = (e) => {
+  submitForm = (e: React.FormEvent) => {
     e.preventDefault();
     this.props.dispatch(loginUser(this.state));
   }
@@ -82,13 +106,6 @@ class LoginForm extends Component {
 }
 
 
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  };
-}
-
-
-// LoginForm = connect(mapStateToProps)(LoginForm)
+const mapStateToProps = ({ user }: IProps) => ({ user })
 
 export default connect(mapStateToProps)(LoginForm);
