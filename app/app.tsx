@@ -1,6 +1,6 @@
+///<reference types="webpack-env" />
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
-
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -16,7 +16,7 @@ import 'sanitize.css/sanitize.css';
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 /* eslint-enable import/no-webpack-loader-syntax */
 import 'styles/theme.scss';
-import App from 'containers/App';
+import App from './containers/App';
 import configureStore from './configureStore';
 
 const montserratObserver = new FontFaceObserver('Montserrat', {});
@@ -26,10 +26,10 @@ montserratObserver.load().then(() => {
   document.body.classList.remove('fontLoaded');
 });
 
-const initialState = {};
+// const initialState = {};
 const history = createHistory();
 const MOUNT_NODE = document.getElementById('app');
-const store = configureStore(initialState, history);
+const store = configureStore();
 
 const render = () => {
   ReactDOM.render(

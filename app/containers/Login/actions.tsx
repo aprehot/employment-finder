@@ -30,8 +30,6 @@ export const loginUser = ({ email, password }:IActions) => {
   };
 }
 
-// let myLoginUser: <T>(arg: T) => T = loginUser
-
 
 export const auth = () => {
   const request = axios.get('/api/auth')

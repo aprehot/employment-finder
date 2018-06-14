@@ -5,21 +5,21 @@
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
-
-import React from 'react';
+import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
-import VaultDashboard from 'containers/vaultDashboard/Loadable';
-import Login from 'containers/Login/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Home from 'components/Home';
-import ProjectPage from 'containers/ProjectContainer/Loadable';
+
+import Home from '../../components/Home';
+import Header from '../../components/Header';
+import Login from '../../containers/Login/Loadable';
+import NotFoundPage from '../../containers/NotFoundPage/Loadable';
+import ProjectPage from '../../containers/ProjectContainer/Loadable';
+import VaultDashboard from '../../containers/vaultDashboard/Loadable';
 
 import './style.scss';
 import Auth from '../hoc/auth/auth';
 
-const App = () => (
+const App: React.SFC = () => (
   <div className="app-wrapper">
     <Helmet
       titleTemplate="Discover ANi"

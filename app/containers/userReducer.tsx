@@ -2,41 +2,66 @@ import { PUT_USER_FOLDERS, GET_FOLDER_CONTENTS, PUT_FOLDER_CONTENTS } from './Us
 import { PUT_USER_UPDATES } from './UserUpdates/actions';
 import { USER_LOGIN, USER_AUTH } from './Login/actions';
 
+interface IReducer {
+  type: string,
+  payload: {
+    isAuth: boolean,
+    id: string,
+    email: string,
+    accountType?: string 
+  },
+  contentRequest: string[],
+  folderContents: {
+    projects: {}[]
+  },
+  userFolders: {}[],
+  userUpdates: {
+    staticFeed: {}[]
+  }
+}
 
-export default function (state = {}, action) {
-  switch (action.type) {
+const user = (state: {} = {}, {
+  type,
+  payload,
+  contentRequest,
+  folderContents,
+  userFolders,
+  userUpdates
+}:IReducer) => {
+  switch (type) {
     case USER_LOGIN:
       return {
         ...state,
-        login: action.payload
+        login: payload
       };
     case USER_AUTH:
       return {
         ...state,
-        login: action.payload
+        login: payload
       };
     case GET_FOLDER_CONTENTS:
       return {
         ...state,
-        contentRequest: action.contentRequest,
+        contentRequest,
         folderContents: ''
       };
     case PUT_FOLDER_CONTENTS:
       return {
         ...state,
-        folderContents: action.folderContents
+        folderContents
       };
     case PUT_USER_FOLDERS:
       return {
         ...state,
-        userFolders: action.userFolders
+        userFolders
       };
     case PUT_USER_UPDATES:
       return {
         ...state,
-        userUpdates: action.userUpdates.staticFeed
+        userUpdates: userUpdates.staticFeed
       };
     default:
       return state;
   }
 }
+export default user

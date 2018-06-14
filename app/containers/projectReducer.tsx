@@ -1,7 +1,16 @@
 import { GET_PROJECT_ID, PUT_PROJECT } from './ProjectContainer/actions';
 
+interface IReducer {
+  type: string,
+  projectId: string,
+  projectData: {}[]
+}
 
-export default function (state = {}, { type, projectId, projectData }) {
+const project = (state: {} = {}, { 
+  type,
+  projectId,
+  projectData 
+}:IReducer) => {
   switch (type) {
     case GET_PROJECT_ID:
       return {
@@ -18,3 +27,4 @@ export default function (state = {}, { type, projectId, projectData }) {
       return state;
   }
 }
+export default project

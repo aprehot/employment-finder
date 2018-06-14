@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+
 import LoadingIndicator from '../../../components/LoadingIndicator';
 import PropTypes from 'prop-types';
 import { auth } from '../../Login/actions';
 
 
 interface IProps {
-  dispatch: any,
+  dispatch: (action: any) => void;
   user: {
     login: {
       isAuth: boolean,
@@ -31,7 +32,7 @@ const Auth = (ComposedClass:any, reload:boolean) => {
     state: IState = {
       loading: true
     }
-
+  
     componentWillMount() {
       this.props.dispatch(auth());
     }
@@ -58,9 +59,14 @@ const Auth = (ComposedClass:any, reload:boolean) => {
     }
   }
 
+// const mapDispatchToProps = (dispatch: Dispatch) => ({
+//   auth: () => dispatch(auth()),
+// });
+
   const mapStateToProps = ({user}:IProps) => ({user})
   
-  return connect(mapStateToProps)(AuthenticationCheck);
+  
+  return connect(mapStateToProps, null)(AuthenticationCheck);
 }
 
 export default Auth
