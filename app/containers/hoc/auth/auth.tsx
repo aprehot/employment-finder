@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
+import { authenticateUser } from './actions';
 import LoadingIndicator from '../../../components/LoadingIndicator';
-// import PropTypes from 'prop-types';
-// import { authenticateUser } from '../../Login/actions';
 
 
 interface IProps {
   dispatch: (action: any) => void;
+  router: {
+    location?: {
+      pathname?: string
+    }
+  };
   user: {
-    login: {
+    payload: {
       isAuth: boolean,
       id: string,
       accountType?: Priviledges
@@ -23,37 +28,34 @@ interface IState {
   loading: boolean
 }
 
-const Auth = (
+
+
+const Auth: any = (
   ComposedClass: any,
-  // reload: boolean
+  reload: boolean
 ) => {
+
   class AuthenticationCheck extends React.Component<IProps, IState> {
-    // static contextTypes = {
-    //   router: PropTypes.object
-    // }
 
     state: IState = {
       loading: true
     }
 
-    // componentWillMount() {
-    // this.props.dispatch(authenticateUser());
-    // }
+    componentDidMount() {
+      this.props.dispatch(authenticateUser());
+    }
 
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    // }
-
-    // componentWillReceiveProps(nextProps: any) {
-    //   this.setState({ loading: false });
-
-    //   if (!nextProps.user.login.isAuth) {
-    //     if (reload) {
-    //       this.context.router.history.push('/login');
-    //     }
-    //   } else if (reload === false) {
-    //     this.context.router.history.push('/dashboard')
-    //   }
-    // }
+    componentWillReceiveProps(nextProps: any) {
+      this.setState({ loading: false });
+      console.log(nextProps)
+      if (!nextProps.user.payload.isAuth) {
+        if (reload) {
+          this.props.dispatch(push('/login'))
+        }
+      } else if (reload === false) {
+        this.props.dispatch(push('/dashboard'))
+      }
+    }
 
     render() {
       if (this.state.loading) {
@@ -64,13 +66,7 @@ const Auth = (
       );
     }
   }
-
-  // const mapDispatchToProps = (dispatch: Dispatch) => ({
-  //   auth: () => dispatch(auth()),
-  // });
-
-  const mapStateToProps = ({ user }: IProps) => ({ user })
-
+  const mapStateToProps = ({ user, router }: IProps) => ({ user, router });
 
   return connect(mapStateToProps, null)(AuthenticationCheck);
 }

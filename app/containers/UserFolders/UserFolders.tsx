@@ -41,7 +41,7 @@ interface IProject {
 
 
 // OPTIMIZE: Pure Component ?
-class UserFolders extends React.Component<IProps, IState> {
+class UserFolders extends React.PureComponent<IProps, IState> {
   state = {
     projectType: true,
     activeFolder: ''

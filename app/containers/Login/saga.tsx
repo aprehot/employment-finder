@@ -32,7 +32,6 @@ export const userEmailSelector = (state: any) => state.login.email;
 export const userPassSelector = (state: any) => state.login.password;
 
 function* fetchCreds(action: any) {
-    console.log(action)
     try {
         const contentRes = yield call(fetchPost, action.payload);
         yield put(putUser(contentRes));
@@ -45,19 +44,3 @@ function* fetchCreds(action: any) {
 export function* userLoginSaga() {
     yield takeLatest(USER_LOGIN, fetchCreds);
 }
-
-
-// function* fetchAuth() {
-//     try {
-//         const contentsUri = fetch(`/api/auth`);
-//         const contentRes: IValue = yield call(fetchData, contentsUri);
-//         yield put(putAuth(contentRes));
-//     } catch (e) {
-//         console.log(e);
-//     }
-// }
-
-
-// export function* userAuthSaga() {
-//     yield takeLatest(USER_AUTH, fetchAuth);
-// }

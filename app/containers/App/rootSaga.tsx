@@ -3,14 +3,12 @@ import { all } from 'redux-saga/effects';
 import userFeedSaga from '../UserUpdates/saga';
 import userProjectsSaga from '../ProjectContainer/saga';
 import { userFolderContentsSaga, userFoldersSaga } from '../UserFolders/saga';
-import {
-  // userAuthSaga,
-  userLoginSaga
-} from '../Login/saga';
+import { userLoginSaga } from '../Login/saga';
+import { userAuthSaga } from '../hoc/auth/saga';
 
 export default function* rootSaga() {
   yield all([
-    // userAuthSaga(),
+    userAuthSaga(),
     userLoginSaga(),
     userFeedSaga(),
     userProjectsSaga(),

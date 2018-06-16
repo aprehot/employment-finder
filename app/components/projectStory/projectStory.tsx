@@ -32,7 +32,7 @@ interface IProjectItem {
 
 enum Gender { 'Male', 'Female' }
 
-class ProjectStory extends React.Component<IProject, IState> {
+class ProjectStory extends React.PureComponent<IProject, IState> {
   state: IState = {
     projectType: true
   }

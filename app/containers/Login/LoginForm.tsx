@@ -35,7 +35,7 @@ interface IState {
 const mapStateToProps = ({ user, router }: IProps) => ({ user, router })
 
 @(connect(mapStateToProps, null) as any)
-export default class LoginForm extends React.Component<IProps, IState> {
+export default class LoginForm extends React.PureComponent<IProps, IState> {
 
   state: IState = {
     email: '',
@@ -47,28 +47,17 @@ export default class LoginForm extends React.Component<IProps, IState> {
 
 
   componentDidUpdate(prevProps: IProps) {
-    // if (this.props.user) {
-    //   // return this.props.user.payload.isAuth ? this.props.history.push('/') : null
-    //   console.log('hiFromDidUpdate')
-    // }
     if (prevProps.user !== this.props.user) {
       const { user } = this.props
-      console.log('hi')
       return user &&
         user.payload.isAuth ?
-        // console.log('yay')
-        // this.props.navigateTo('/dashboard')
         this.props.dispatch(push('/dashboard'))
         :
         console.log('not authorized')
     }
   }
 
-  // static getDerivedStateFromProps(nextProps: any) {
-  // console.log(prevState)
-  // console.log(nextProps)
-  // const { isAuth } = nextProps.user.payload
-  // }
+
 
   // componentDidUpdate(prevProps: any) {
   //   if (prevProps.user.payload.isAuth === null && this.props.user.payload.isAuth === true) {

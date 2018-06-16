@@ -1,10 +1,12 @@
-import { PUT_USER_FOLDERS, GET_FOLDER_CONTENTS, PUT_FOLDER_CONTENTS } from './UserFolders/actions';
-import { PUT_USER_UPDATES } from './UserUpdates/actions';
 import {
-  // USER_LOGIN,
-  PUT_USER,
-  // PUT_AUTH
-} from './Login/actions';
+  PUT_USER_FOLDERS,
+  GET_FOLDER_CONTENTS,
+  PUT_FOLDER_CONTENTS
+} from './UserFolders/actions';
+import { PUT_AUTH } from './hoc/auth/actions';
+import { PUT_USER } from './Login/actions';
+import { PUT_USER_UPDATES } from './UserUpdates/actions';
+
 
 interface IReducer {
   type: string,
@@ -33,15 +35,15 @@ const user = (state: {} = {}, {
   userUpdates
 }: IReducer) => {
   switch (type) {
-    // case PUT_AUTH:
-    //   return {
-    //     ...state,
-    //     login: payload
-    //   };
+    case PUT_AUTH:
+      return {
+        ...state,
+        payload
+      };
     // case USER_LOGIN:
     //   return {
     //     ...state,
-    //     login: payload
+    //     payload
     //   };
     case PUT_USER:
       return {

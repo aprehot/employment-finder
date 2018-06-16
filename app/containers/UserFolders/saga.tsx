@@ -22,8 +22,7 @@ export function* userFolderContentsSaga() {
   yield takeLatest(GET_FOLDER_CONTENTS, fetchFolderContents);
 }
 
-function* fetchFolders(action: any) {
-  console.log(action)
+function* fetchFolders() {
   try {
     const requestParams = yield select(userIdSelector);
     const folderUri = fetch(`/api/folders/user_folders?ownerId=${requestParams}`);
