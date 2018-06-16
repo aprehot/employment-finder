@@ -17,7 +17,7 @@ import ProjectPage from '../../containers/ProjectContainer/Loadable';
 import VaultDashboard from '../../containers/vaultDashboard/Loadable';
 
 import './style.scss';
-import Auth from '../hoc/auth/auth';
+// import Auth from '../hoc/auth/auth';
 
 const App: React.SFC = () => (
   <div className="app-wrapper">
@@ -29,10 +29,10 @@ const App: React.SFC = () => (
     </Helmet>
     <Header />
     <Switch>
-      <Route exact path="/dashboard" component={Auth(VaultDashboard, true)} />
-      <Route exact path="/project/:id" component={Auth(ProjectPage, true)} />
-      <Route exact path="/login" component={Auth(Login, false)} />
-      <Route exact path="/" component={Auth(Home, null)} />
+      <Route exact path="/dashboard" component={VaultDashboard} />
+      <Route exact path="/project/:id" component={ProjectPage} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/" component={Home} />
       <Route path="" component={NotFoundPage} />
     </Switch>
   </div>

@@ -32,14 +32,12 @@
   "dependencies": {
     "@types/fontfaceobserver": "^0.0.6",
     "@types/node": "^10.3.2",
-    "@types/prop-types": "^15.5.3",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "@types/react-helmet": "^5.0.6",
     "@types/react-redux": "^6.0.2",
     "@types/react-router-dom": "^4.2.7",
     "@types/react-router-redux": "^5.0.15",
-    "@types/redux-saga": "^0.10.5",
     "@types/webpack-hot-middleware": "^2.16.3",
     "awesome-typescript-loader": "^5.0.0",
     "axios": "^0.18.0",
@@ -51,6 +49,7 @@
     "concurrently": "^3.5.1",
     "cookie-parser": "^1.4.3",
     "cross-env": "5.1.4",
+    "diff-so-fancy": "^1.2.0",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
     "foundation-sites": "^6.4.4-rc1",
@@ -89,6 +88,7 @@
     "whatwg-fetch": "2.0.4"
   },
   "devDependencies": {
+    "@types/prop-types": "^15.5.3",
     "@types/react-loadable": "^5.4.0",
     "@types/webpack-env": "^1.13.6",
     "add-asset-html-webpack-plugin": "2.1.3",

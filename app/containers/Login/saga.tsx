@@ -1,0 +1,63 @@
+import {
+    put,
+    call,
+    // select, 
+    takeLatest
+} from 'redux-saga/effects';
+
+// import fetchData from '../../utils/fetch';
+import {
+    USER_LOGIN,
+    // USER_AUTH,
+    putUser,
+    // putAuth 
+} from './actions';
+import { fetchPost } from '../../utils/post';
+
+export interface IValue {
+    type: string;
+    payload: IUserCred;
+}
+export interface IUserCred {
+    data: {
+        isAuth: boolean;
+        id: string;
+        email: string;
+    }
+}
+
+
+
+export const userEmailSelector = (state: any) => state.login.email;
+export const userPassSelector = (state: any) => state.login.password;
+
+function* fetchCreds(action: any) {
+    console.log(action)
+    try {
+        const contentRes = yield call(fetchPost, action.payload);
+        yield put(putUser(contentRes));
+    } catch (e) {
+        // history.push('/')
+        console.log(e);
+    }
+}
+
+export function* userLoginSaga() {
+    yield takeLatest(USER_LOGIN, fetchCreds);
+}
+
+
+// function* fetchAuth() {
+//     try {
+//         const contentsUri = fetch(`/api/auth`);
+//         const contentRes: IValue = yield call(fetchData, contentsUri);
+//         yield put(putAuth(contentRes));
+//     } catch (e) {
+//         console.log(e);
+//     }
+// }
+
+
+// export function* userAuthSaga() {
+//     yield takeLatest(USER_AUTH, fetchAuth);
+// }

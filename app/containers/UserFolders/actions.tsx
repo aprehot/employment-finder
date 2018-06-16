@@ -9,7 +9,7 @@ export const getFolders = () => ({ type: GET_USER_FOLDERS });
 export const putFolders = (folders: {}[]) => ({ type: PUT_USER_FOLDERS, userFolders: folders });
 
 
-export const getContents = ({ fold, cat }: { fold: string, cat: string }) => ({ type: GET_FOLDER_CONTENTS, contentRequest: [fold, cat] });
+export const getContents = (fold: string, cat: string) => ({ type: GET_FOLDER_CONTENTS, contentRequest: [fold, cat] });
 export const putContents = (folderContents: IContents) => ({ type: PUT_FOLDER_CONTENTS, folderContents });
 interface IContents {
     folderContents: {

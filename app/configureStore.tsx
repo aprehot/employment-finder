@@ -3,7 +3,7 @@
  */
 
 import createSagaMiddleware from 'redux-saga';
-// import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import rootSaga from './containers/App/rootSaga';
 // import promiseMiddleware from 'redux-promise';
@@ -14,11 +14,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const sagaMiddleware = createSagaMiddleware();
 
 /* eslint-disable */
-export default function configureStore() {
+export default function configureStore(history: any) {
   const middlewares = [
     // promiseMiddleware,
     sagaMiddleware,
-    // routerMiddleware(history),
+    routerMiddleware(history),
   ];
 
   const enhancers = [
@@ -38,7 +38,11 @@ export default function configureStore() {
   //     : compose;
   /* eslint-enable */
 
-  const combinedReducers = combineReducers({ user, project } as any);
+  const combinedReducers = combineReducers({
+    user,
+    project,
+    router: routerReducer,
+  } as any);
 
   const store = createStore(
     // combineReducers({
@@ -49,7 +53,7 @@ export default function configureStore() {
     combinedReducers,
     // composeEnhancers(...enhancers)
     composeWithDevTools(
-    ...enhancers
+      ...enhancers
     )
   );
 

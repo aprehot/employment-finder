@@ -1,15 +1,23 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { push } from 'react-router-redux';
 
 import { loginUser } from './actions';
 import './style.scss';
 
 interface IProps {
-  dispatch: any,
+  dispatch: (action: any) => void;
+  router: {
+    location?: {
+      pathname?: string
+    }
+  };
+  navigateTo: (location: any) => void;
+  // mapStateToProps: (user: IProps['user']) => any;
   user: {
-    login: {
+    payload: {
       isAuth: boolean,
+      id?: string,
       message?: string
     }
   }
@@ -17,30 +25,63 @@ interface IProps {
 interface IState {
   email: string;
   password: string;
-  error?: string;
-  success?: boolean;
+  user?: IProps['user'];
+  isAuth?: boolean | null
+  // error?: string;
+  // success?: boolean;
 }
 
-class LoginForm extends React.Component<IProps, IState> {
 
-  static contextTypes = {
-    router: PropTypes.object
-  }
+const mapStateToProps = ({ user, router }: IProps) => ({ user, router })
+
+@(connect(mapStateToProps, null) as any)
+export default class LoginForm extends React.Component<IProps, IState> {
 
   state: IState = {
     email: '',
     password: '',
-    error: '',
-    success: false
+    // isAuth: null
+    // error: '',
+    // success: false
   }
 
 
-  componentWillReceiveProps(nextProps: IProps) {
-    const { isAuth } = nextProps.user.login
-    if (isAuth) {
-      this.context.router.history.push('/dashboard');
+  componentDidUpdate(prevProps: IProps) {
+    // if (this.props.user) {
+    //   // return this.props.user.payload.isAuth ? this.props.history.push('/') : null
+    //   console.log('hiFromDidUpdate')
+    // }
+    if (prevProps.user !== this.props.user) {
+      const { user } = this.props
+      console.log('hi')
+      return user &&
+        user.payload.isAuth ?
+        // console.log('yay')
+        // this.props.navigateTo('/dashboard')
+        this.props.dispatch(push('/dashboard'))
+        :
+        console.log('not authorized')
     }
   }
+
+  // static getDerivedStateFromProps(nextProps: any) {
+  // console.log(prevState)
+  // console.log(nextProps)
+  // const { isAuth } = nextProps.user.payload
+  // }
+
+  // componentDidUpdate(prevProps: any) {
+  //   if (prevProps.user.payload.isAuth === null && this.props.user.payload.isAuth === true) {
+  //     console.log('hi')
+  //   }
+  // }
+
+  // componentWillReceiveProps(nextProps: IProps) {
+  // const { isAuth } = nextProps.user.login
+  // if (isAuth) {
+  //   this.context.router.history.push('/dashboard');
+  // }
+  // }
 
   handleInputEmail = (e: React.FormEvent<HTMLInputElement>) => {
     const { value }: any = e.target
@@ -62,7 +103,6 @@ class LoginForm extends React.Component<IProps, IState> {
 
 
   render() {
-    console.log(this.state)
     const { user } = this.props;
     return (
       <div className="grid-container grid-padding-y grid-y grid-frame" >
@@ -92,8 +132,8 @@ class LoginForm extends React.Component<IProps, IState> {
               <a href="#">Forgot your password?</a>
               <div className="error">
                 {
-                  user.login ?
-                    <div> {user.login.message} </div>
+                  user.payload ?
+                    <div> {user.payload.message} </div>
                     : null
                 }
               </div>
@@ -105,7 +145,16 @@ class LoginForm extends React.Component<IProps, IState> {
   }
 }
 
+// const mapStateToProps = ({ user }: any) => ({ user })
 
-const mapStateToProps = ({ user }: IProps) => ({ user })
+// export function mergeProps(mapStateToProps: any, dispatchProps: null, IProps: IProps) {
+//   return Object.assign(mapStateToProps, dispatchProps, IProps);
+// }
 
-export default connect(mapStateToProps)(LoginForm);
+// const mapDispatchToProps = (dispatch: any) => ({
+//   navigateTo: (location: any) => {
+//     dispatch(push(location));
+//   }
+// })
+
+// export default connect(mapStateToProps, null)(LoginForm);

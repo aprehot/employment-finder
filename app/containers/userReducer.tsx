@@ -1,6 +1,10 @@
 import { PUT_USER_FOLDERS, GET_FOLDER_CONTENTS, PUT_FOLDER_CONTENTS } from './UserFolders/actions';
 import { PUT_USER_UPDATES } from './UserUpdates/actions';
-import { USER_LOGIN, USER_AUTH } from './Login/actions';
+import {
+  // USER_LOGIN,
+  PUT_USER,
+  // PUT_AUTH
+} from './Login/actions';
 
 interface IReducer {
   type: string,
@@ -8,7 +12,7 @@ interface IReducer {
     isAuth: boolean,
     id: string,
     email: string,
-    accountType?: string 
+    accountType?: string
   },
   contentRequest: string[],
   folderContents: {
@@ -27,17 +31,22 @@ const user = (state: {} = {}, {
   folderContents,
   userFolders,
   userUpdates
-}:IReducer) => {
+}: IReducer) => {
   switch (type) {
-    case USER_LOGIN:
+    // case PUT_AUTH:
+    //   return {
+    //     ...state,
+    //     login: payload
+    //   };
+    // case USER_LOGIN:
+    //   return {
+    //     ...state,
+    //     login: payload
+    //   };
+    case PUT_USER:
       return {
         ...state,
-        login: payload
-      };
-    case USER_AUTH:
-      return {
-        ...state,
-        login: payload
+        payload
       };
     case GET_FOLDER_CONTENTS:
       return {

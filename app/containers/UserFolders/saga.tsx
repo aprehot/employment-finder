@@ -3,8 +3,8 @@ import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { GET_USER_FOLDERS, GET_FOLDER_CONTENTS, putFolders, putContents } from './actions';
 import fetchData from '../../utils/fetch';
 
-export const userIdSelector = (state) => state.user.login.id;
-export const folderContentsSelector = (state) => state.user.contentRequest;
+export const userIdSelector = (state: any) => state.user.payload.id;
+export const folderContentsSelector = (state: any) => state.user.contentRequest;
 
 function* fetchFolderContents() {
   try {
@@ -22,7 +22,8 @@ export function* userFolderContentsSaga() {
   yield takeLatest(GET_FOLDER_CONTENTS, fetchFolderContents);
 }
 
-function* fetchFolders() {
+function* fetchFolders(action: any) {
+  console.log(action)
   try {
     const requestParams = yield select(userIdSelector);
     const folderUri = fetch(`/api/folders/user_folders?ownerId=${requestParams}`);

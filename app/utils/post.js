@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-export const fetch = (url, {email, password}) =>
-  axios.post(url, { email, password })
-    .then((data) => ({ data }))
-    .catch((error) => ({ error }));
+export const fetchPost = async ({ email, password }) => {
+  try {
+    const response = axios.post('/api/login', { email, password });
+    return response;
+  } catch (e) {
+    console.log('catching in login api');
+    return {
+      isError: true,
+    };
+  }
+};
