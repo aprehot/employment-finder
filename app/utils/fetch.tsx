@@ -1,4 +1,4 @@
-const fetchData = async (res) => {
+const fetchData = async (res: any) => {
   try {
     const response = await res;
     // console.log(response);

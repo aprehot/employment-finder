@@ -1,16 +1,19 @@
 import { GET_PROJECT_ID, PUT_PROJECT } from './ProjectContainer/actions';
+import { HANDLE_PROJ_TYPE } from './userPost/actions';
 
 interface IReducer {
   type: string,
   projectId: string,
-  projectData: {}[]
+  projectData: {}[],
+  projectType: string
 }
 
-const project = (state: {} = {}, { 
+const project = (state: {} = {}, {
   type,
   projectId,
-  projectData 
-}:IReducer) => {
+  projectData,
+  projectType
+}: IReducer) => {
   switch (type) {
     case GET_PROJECT_ID:
       return {
@@ -22,6 +25,11 @@ const project = (state: {} = {}, {
       return {
         ...state,
         projectData
+      };
+    case HANDLE_PROJ_TYPE:
+      return {
+        ...state,
+        projectType
       };
     default:
       return state;

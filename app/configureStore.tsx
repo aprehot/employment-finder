@@ -41,7 +41,7 @@ export default function configureStore(history: any) {
   const combinedReducers = combineReducers({
     user,
     project,
-    router: routerReducer,
+    router: routerReducer
   } as any);
 
   const store = createStore(

@@ -5,14 +5,15 @@ import { push } from 'react-router-redux';
 import { loginUser } from './actions';
 import './style.scss';
 
-interface IProps {
-  dispatch: (action: any) => void;
+export interface IProps {
+  dispatch?: (action: any) => void;
   router: {
     location?: {
       pathname?: string
     }
   };
-  navigateTo: (location: any) => void;
+
+  // navigateTo: (location: any) => void;
   // mapStateToProps: (user: IProps['user']) => any;
   user: {
     payload: {
@@ -20,6 +21,9 @@ interface IProps {
       id?: string,
       message?: string
     }
+  };
+  project?: {
+    projectType: string
   }
 }
 interface IState {

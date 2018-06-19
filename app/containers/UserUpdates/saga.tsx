@@ -3,7 +3,7 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 import { GET_USER_UPDATES, putUpdates } from './actions';
 import fetchData from '../../utils/fetch';
 
-export const userIdSelector = (state) => state.user.login.id;
+export const userIdSelector = (state: any) => state.user.login.id;
 
 
 function* fetchUpdates() {

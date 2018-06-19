@@ -42,12 +42,15 @@ const Auth: any = (
     }
 
     componentDidMount() {
-      this.props.dispatch(authenticateUser());
+      !this.props.user.payload
+        ?
+        this.props.dispatch(authenticateUser())
+        :
+        this.setState({ loading: false })
     }
 
     componentWillReceiveProps(nextProps: any) {
       this.setState({ loading: false });
-      console.log(nextProps)
       if (!nextProps.user.payload.isAuth) {
         if (reload) {
           this.props.dispatch(push('/login'))

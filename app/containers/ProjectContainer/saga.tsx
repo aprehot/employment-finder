@@ -3,7 +3,7 @@ import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { GET_PROJECT, GET_PROJECT_ID, putProject } from './actions';
 import fetchData from '../../utils/fetch';
 
-export const projectIdSelector = (state) => state.project.projectId;
+export const projectIdSelector = (state: any) => state.project.projectId;
 
 function* fetchProject() {
   try {
