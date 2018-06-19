@@ -4,7 +4,38 @@
     border-radius: 50%;
     min-height: 165px;
     min-width: 165px;
+    cursor: pointer;
 }
 .mainUniHolder:nth-child(2) {
     font-size: 22px;
+}
+.react-date-picker__button {
+    max-width: 200px;
+}
+.react-date-picker__button__input input {
+    width: auto !important;
+    border: solid 1px lightgrey;
+}
+.postDates {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 100%;
+}
+.postShoot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 100%;
+    padding: 15px;
+}
+.react-date-picker__clear-button {
+    display: none;
+}
+.formProject {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

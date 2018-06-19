@@ -1,21 +1,5 @@
 const mongoose = require('mongoose');
 
-// const orderSchema = mongoose.Schema({
-//   _id: mongoose.Schema.Types.ObjectId,
-//   product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-//   quantity: { type: Number, default: 1 }
-// });
-//
-// module.exports = mongoose.model('Order', orderSchema);
-//
-// const productSchema = mongoose.Schema({
-//   _id: mongoose.Schema.Types.ObjectId,
-//   name: { type: String, required: true },
-//   price: { type: Number, required: true }
-// });
-//
-
-
 const { Schema } = mongoose;
 
 const projectSchema = new Schema({
@@ -117,20 +101,3 @@ const projectSchema = new Schema({
 });
 
 module.exports = mongoose.model('Project', projectSchema);
-
-// //
-// // const populateRoles = async function() {
-// // 	await this.populate('Roles')
-// // }
-// // const populateTeams = async function() {
-// // 	await this.populate('Teams')
-// // }
-// //
-// // projectSchema.pre('find',populateRoles)
-// // projectSchema.pre('findOneAndUpdate',populateRoles)
-// // projectSchema.pre('find',populateTeams)
-// // projectSchema.pre('findOneAndUpdate',populateTeams)
-//
-// const Project = mongoose.model('Project', projectSchema);
-//
-// module.exports = { Project };
