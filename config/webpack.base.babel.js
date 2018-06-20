@@ -28,7 +28,7 @@ module.exports = (options) => ({
         }
       },
       {
-        test: /\.jsx?$/, // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+        test: /\.jsx?$/, // All files with a'.jsx' extension will be handled.
         exclude: /node_modules/,
         // include: __dirname
         loader: 'babel-loader'
@@ -122,7 +122,7 @@ module.exports = (options) => ({
     })
   ]),
   resolve: {
-    modules: ['app', 'node_modules'],
+    modules: ['app', 'node_modules', 'server'],
     extensions: [
       '.js',
       '.jsx',

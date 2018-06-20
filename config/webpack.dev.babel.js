@@ -11,9 +11,10 @@ module.exports = require('./webpack.base.babel')({
   mode: 'development',
   // Add hot reloading in development
   entry: [
+    // 'server/index.ts',
     'eventsource-polyfill', // Necessary for hot reloading with IE
     'webpack-hot-middleware/client?reload=true',
-    path.join(process.cwd(), 'app/app.tsx') // Start with js/app.js
+    path.join(process.cwd(), 'app/app.tsx') // Start with app/app.tsx
   ],
 
   // Don't use hashes in dev mode for better performance

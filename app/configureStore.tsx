@@ -13,6 +13,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const sagaMiddleware = createSagaMiddleware();
 
+
 /* eslint-disable */
 export default function configureStore(history: any) {
   const middlewares = [

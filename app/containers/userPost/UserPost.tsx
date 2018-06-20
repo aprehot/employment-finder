@@ -8,29 +8,24 @@ import {
     FieldArray,
 } from 'formik';
 import * as Yup from 'yup';
-import { connect } from 'react-redux';
-import './styles.scss';
-import { handleProjectType, handleStartDate, handleEndDate } from './actions';
 import DatePicker from 'react-date-picker';
+import { connect } from 'react-redux';
+
+import './styles.scss';
+import { IProps } from '../Login/LoginForm';
+import { handleStartDate, handleEndDate } from './actions';
 
 interface IValues {
-    text?: string,
     title?: string,
     studio?: string,
-    number?: number,
-    location?: string,
+    startDate?: string,
+    wrapDate?: string,
+    location?: string
     budget?: number,
     genres?: string,
     premise?: string,
-    startDate?: string,
-    wrapDate?: string,
-    name?: any,
-    projectStart?: string,
-    projectEnd?: string,
-    projectType?: string
 }
-interface OtherProps {  // important to set these to optional if not used by FormikEnhancer
-    text?: string;
+interface OtherProps {
     dispatch?: (action: any) => void;
     project?: {
         projectStart: Date,
@@ -38,10 +33,9 @@ interface OtherProps {  // important to set these to optional if not used by For
     }
 }
 interface postProps {
-    title?: string,
-    user?: any,
-    router?: any,
-    project?: any
+    user?: IProps['user'],
+    router?: IProps['router'],
+    project?: IProps['project']
 }
 
 const UserPost = (props: OtherProps & FormikProps<IValues>) => {
@@ -69,7 +63,10 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                         return (
                             <div key={i} className="cell large-6 grid-x align-center">
                                 <div
-                                    onClick={() => dispatch(handleProjectType(btn.type))}
+                                    onClick={() => {
+                                        props.setFieldValue('projectType', btn.type)
+                                    }
+                                    }
                                     className="mainUni cell shrink"
                                 >
                                     {btn.uni}
@@ -158,7 +155,7 @@ const FormikEnhancer = withFormik<postProps, IValues>({
             ownerId: user.payload.id,
             parentFolder: {},
             parentCategory: {},
-            projectType: project.projectType,
+            projectType: '',
             title: '',
             studio: '',
             startDate: '',
@@ -180,6 +177,7 @@ const FormikEnhancer = withFormik<postProps, IValues>({
         premise: Yup.string().min(8).required()
     }),
     handleSubmit: (values, { setErrors }) => {
+        console.log(values)
         if (Date.parse(values.startDate) >= Date.parse(values.wrapDate)) {
             setErrors({ startDate: 'start date cannot exceed end date' })
             return

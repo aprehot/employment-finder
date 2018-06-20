@@ -12,9 +12,6 @@ export interface IProps {
       pathname?: string
     }
   };
-
-  // navigateTo: (location: any) => void;
-  // mapStateToProps: (user: IProps['user']) => any;
   user: {
     payload: {
       isAuth: boolean,
@@ -23,16 +20,16 @@ export interface IProps {
     }
   };
   project?: {
-    projectType: string
+    projectType: string,
+    projectStart: Date,
+    projectEnd: Date
   }
 }
 interface IState {
   email: string;
   password: string;
   user?: IProps['user'];
-  isAuth?: boolean | null
-  // error?: string;
-  // success?: boolean;
+  isAuth?: boolean | null;
 }
 
 
@@ -44,9 +41,6 @@ export default class LoginForm extends React.PureComponent<IProps, IState> {
   state: IState = {
     email: '',
     password: '',
-    // isAuth: null
-    // error: '',
-    // success: false
   }
 
 
@@ -60,21 +54,6 @@ export default class LoginForm extends React.PureComponent<IProps, IState> {
         console.log('not authorized')
     }
   }
-
-
-
-  // componentDidUpdate(prevProps: any) {
-  //   if (prevProps.user.payload.isAuth === null && this.props.user.payload.isAuth === true) {
-  //     console.log('hi')
-  //   }
-  // }
-
-  // componentWillReceiveProps(nextProps: IProps) {
-  // const { isAuth } = nextProps.user.login
-  // if (isAuth) {
-  //   this.context.router.history.push('/dashboard');
-  // }
-  // }
 
   handleInputEmail = (e: React.FormEvent<HTMLInputElement>) => {
     const { value }: any = e.target
@@ -137,17 +116,3 @@ export default class LoginForm extends React.PureComponent<IProps, IState> {
     );
   }
 }
-
-// const mapStateToProps = ({ user }: any) => ({ user })
-
-// export function mergeProps(mapStateToProps: any, dispatchProps: null, IProps: IProps) {
-//   return Object.assign(mapStateToProps, dispatchProps, IProps);
-// }
-
-// const mapDispatchToProps = (dispatch: any) => ({
-//   navigateTo: (location: any) => {
-//     dispatch(push(location));
-//   }
-// })
-
-// export default connect(mapStateToProps, null)(LoginForm);

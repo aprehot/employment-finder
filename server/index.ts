@@ -1,5 +1,3 @@
-/* eslint consistent-return:0 */
-
 const express = require('express');
 const logger = require('./util//logger');
 
@@ -13,14 +11,20 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+// import * as mongoose from 'mongoose';
 const config = require('./config/config').get(process.env.NODE_ENV);
 const multer = require('multer');
 
+// interface IMult {
+// function: (cb?: (action: any) => void, req?: any, file?: any) => void
+// }
+
+
 const storage = multer.diskStorage({
-  destination(req, file, cb) {
+  destination(req: any, file: any, cb: any) {
     cb(null, './uploads/');
   },
-  filename(req, file, cb) {
+  filename(req: any, file: any, cb: any) {
     cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
   }
 });
@@ -57,7 +61,7 @@ app.use('/api/folders', folderRoutes);
 app.use('/api/projects', projectRoutes);
 
 
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
@@ -72,12 +76,12 @@ app.use((req, res, next) => {
 
 // LOGIN //
 
-app.post('/api/login', (req, res) => {
+app.post('/api/login', (req: any, res: any) => {
   console.log(req.body.email);
-  User.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ email: req.body.email }, (err: any, user: any) => {
     if (!user) return res.json({ isAuth: false, message: 'Auth failed, email not found' });
 
-    user.comparePassword(req.body.password, (error, isMatch) => {
+    user.comparePassword(req.body.password, (error: any, isMatch: any) => {
       if (!isMatch) {
         return res.json({
           isAuth: false,
@@ -85,7 +89,7 @@ app.post('/api/login', (req, res) => {
         });
       }
 
-      user.generateToken((err, user) => {
+      user.generateToken((err: any, user: any) => {
         if (err) return res.status(400).send(err);
         res.cookie('auth', user.token).json({
           isAuth: true,
@@ -112,7 +116,7 @@ app.post('/api/login', (req, res) => {
 
 
 // VERIFIES USER AUTH ON PAGE ROUTE //
-app.get('/api/auth', auth, (req, res) => {
+app.get('/api/auth', auth, (req: any, res: any) => {
   res.json({
     isAuth: true,
     id: req.user._id,
@@ -126,13 +130,13 @@ app.get('/api/auth', auth, (req, res) => {
 
 
 // RETRIEVE USER SPECIFIC UPDATES //
-app.get('/api/user_updates', (req, res) => {
+app.get('/api/user_updates', (req: any, res: any) => {
   Updates.find()
     .select('_id text time image')
     .exec()
-    .then((docs) => {
+    .then((docs: any) => {
       const response = {
-        staticFeed: docs.map((doc) => ({
+        staticFeed: docs.map((doc: any) => ({
           text: doc.text,
           image: doc.image,
           time: doc.time,
@@ -145,7 +149,7 @@ app.get('/api/user_updates', (req, res) => {
       };
       res.status(200).json(response);
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log(err);
       res.status(500).json({
         error: err
@@ -156,8 +160,8 @@ app.get('/api/user_updates', (req, res) => {
 
 // LOGOUT //
 
-app.get('/api/logout', auth, (req, res) => {
-  req.user.deleteToken(req.token, (err, user) => {
+app.get('/api/logout', auth, (req: any, res: any) => {
+  req.user.deleteToken(req.token, (err: any, user: any) => {
     if (err) return res.status(400).send(err);
     res.sendStatus(200);
   });
@@ -184,8 +188,8 @@ app.get('/api/logout', auth, (req, res) => {
 
 // TAKES ALL USERS ON DATABASE //
 
-app.get('/api/users', (req, res) => {
-  User.find({}, (err, users) => {
+app.get('/api/users', (req: any, res: any) => {
+  User.find({}, (err: any, users: any) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(users);
   });
@@ -203,7 +207,7 @@ app.get('/api/users', (req, res) => {
 
 
 // POST USERUPDATE //
-app.post('/api/user_updates', upload.single('image'), (req, res) => {
+app.post('/api/user_updates', upload.single('image'), (req: any, res: any) => {
   console.log(req.file);
   const updates = new Updates({
     _id: new mongoose.Types.ObjectId(),
@@ -213,7 +217,7 @@ app.post('/api/user_updates', upload.single('image'), (req, res) => {
   });
   updates
     .save()
-    .then((result) => {
+    .then((result: any) => {
       console.log(result);
       res.status(201).json({
         message: 'Created feed update successfully',
@@ -228,7 +232,7 @@ app.post('/api/user_updates', upload.single('image'), (req, res) => {
         }
       });
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log(err);
       res.status(500).json({
         error: err
@@ -239,10 +243,10 @@ app.post('/api/user_updates', upload.single('image'), (req, res) => {
 
 // REGISTER //
 
-app.post('/api/register', (req, res) => {
+app.post('/api/register', (req: any, res: any) => {
   const user = new User(req.body);
 
-  user.save((err, doc) => {
+  user.save((err: any, doc: any) => {
     if (err) return res.json({ success: false });
     res.status(200).json({
       success: true,
@@ -303,7 +307,7 @@ const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
 // Start your app.
-app.listen(port, host, (err) => {
+app.listen(port, host, (err: any) => {
   if (err) {
     return logger.error(err.message);
   }

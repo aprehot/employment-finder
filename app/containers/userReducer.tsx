@@ -35,38 +35,33 @@ const user = (state: {} = {}, {
   userUpdates
 }: IReducer) => {
   switch (type) {
-    case PUT_AUTH:
+    case PUT_AUTH: // Successful authentication will allow user to pass
       return {
         ...state,
         payload
       };
-    // case USER_LOGIN:
-    //   return {
-    //     ...state,
-    //     payload
-    //   };
-    case PUT_USER:
+    case PUT_USER: // adds isAuth response which determines if user is redicrected to dashboard or denied entry
       return {
         ...state,
         payload
       };
-    case GET_FOLDER_CONTENTS:
+    case GET_FOLDER_CONTENTS: // when a folder is clicked, display folder contents by querying ownder ID w/ folder name then call PUT_FOLDER_CONTENTS
       return {
         ...state,
         contentRequest,
         folderContents: ''
       };
-    case PUT_FOLDER_CONTENTS:
+    case PUT_FOLDER_CONTENTS:  // return project names to the folder that was clicked on
       return {
         ...state,
         folderContents
       };
-    case PUT_USER_FOLDERS:
+    case PUT_USER_FOLDERS: // queries API for all folders listed under that owner ID
       return {
         ...state,
         userFolders
       };
-    case PUT_USER_UPDATES:
+    case PUT_USER_UPDATES: // static news feed list with images in backend using multer/express stores in memory on returning data
       return {
         ...state,
         userUpdates: userUpdates.staticFeed

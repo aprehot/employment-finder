@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
+
 import { getProject } from './actions';
 import AniColumn from '../hoc/aniColumn';
 import AniGrid from '../hoc/aniGrid';
@@ -12,21 +15,25 @@ const ProjectLeftColumn = () => (
   <AniColumn Top={ProjectHeader} Bottom={QuickShare} />
 );
 
-// COMBAK: : REDIRECT USER IF PAGE REFERESHES WHILE IN PROJECT PAGE
-
 interface IProps {
-  dispatch: any,
-  project: {
-    projectData: any[]
-  }
+  dispatch: (action: any) => void,
+  project: any,
+  router: any
 }
 
-class ProjectPage extends Component<IProps> {
+const mapStateToProps = ({ project, router }: IProps) => ({ project, router })
+
+@(connect(mapStateToProps, null) as any)
+export default class ProjectPage extends Component<IProps> {
 
 
   componentDidMount() {
-    this.props.dispatch(getProject());
+    const { project, dispatch } = this.props;
+    if (!project.projectId) {
+      dispatch(push('/dashboard'));
+    }
   }
+
 
   render() {
     const { projectData } = this.props.project
@@ -35,7 +42,3 @@ class ProjectPage extends Component<IProps> {
     );
   }
 }
-
-const mapStateToProps = ({project}:IProps) => ({project})
-
-export default connect(mapStateToProps)(ProjectPage);
