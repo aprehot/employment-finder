@@ -6,8 +6,8 @@ interface IReducer {
   projectId: string,
   projectData: {}[],
   projectType: string,
-  projectStart: string,
-  projectEnd: string,
+  projectStart: Date,
+  projectEnd: Date,
 }
 
 const project = (state: {} = {}, {

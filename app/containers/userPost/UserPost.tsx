@@ -4,7 +4,8 @@ import {
     withFormik,
     FormikProps,
     Form,
-    Field
+    Field,
+    FieldArray,
 } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
@@ -15,17 +16,27 @@ import DatePicker from 'react-date-picker';
 interface IValues {
     text?: string,
     title?: string,
+    studio?: string,
+    number?: number,
+    location?: string,
+    budget?: number,
+    genres?: string,
+    premise?: string,
     startDate?: string,
-    number?: number
+    wrapDate?: string,
+    name?: any,
+    projectStart?: string,
+    projectEnd?: string,
+    projectType?: string
 }
-interface OtherProps {
+interface OtherProps {  // important to set these to optional if not used by FormikEnhancer
     text?: string;
     dispatch?: (action: any) => void;
+    project?: {
+        projectStart: Date,
+        projectEnd: Date
+    }
 }
-
-
-
-
 interface postProps {
     title?: string,
     user?: any,
@@ -38,7 +49,10 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
         values,
         handleChange,
         dispatch,
-        handleSubmit
+        handleSubmit,
+        errors,
+        project,
+        touched
     } = props;
     return (
         <div className="grid-container">
@@ -65,9 +79,9 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                         )
                     })
                     }
-                    <h3>What is this project called? </h3>
+                    <h3>What is this project called? </h3> {touched.title && errors.title && <h6>{errors.title}</h6>}
                     <Field type="text" name="title" placeholder="Enter Title" />
-                    <h3>Who is financing this project? </h3>
+                    <h3>Who is financing this project? </h3> {touched.studio && errors.studio && <h6>{errors.studio}</h6>}
                     <Field type="text" name="studio" placeholder="Enter Studio or Network" />
                     <div className='postDates'>
                         <h3>What are the shoot dates?</h3>
@@ -77,7 +91,13 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                                 name="startDate"
                                 returnValue="start"
                                 minDate={new Date()}
-                                onChange={(e) => dispatch(handleStartDate(e))}
+                                locale={'en-US'}
+                                value={project.projectStart}
+                                onChange={(e) => {
+                                    dispatch(handleStartDate(e))
+                                    props.setFieldValue('startDate', e.toLocaleDateString('en-US'))
+                                }
+                                }
                             />
                         </div>
                         <div className='postDates'>
@@ -86,31 +106,40 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                                 name="wrapDate"
                                 returnValue="end"
                                 minDate={new Date()}
-                                onChange={(e) => dispatch(handleEndDate(e))}
+                                value={project.projectEnd}
+                                onChange={(e) => {
+                                    dispatch(handleEndDate(e))
+                                    props.setFieldValue('wrapDate', e.toLocaleDateString('en-US'))
+                                }
+                                }
                             />
                         </div>
                     </div>
+                    {touched.startDate && errors.startDate && <h6>{errors.startDate}</h6>}
                     <div className="postShoot">
                         <h3>Where is it shooting? </h3>
+                        {touched.location && errors.location && <h6>{errors.location}</h6>}
                         <Field className="shrink" type="text" name="location" placeholder="Enter Location" />
                         <p>type in full city or country{`\n`}</p>
                         <p>Example: Los Angeles, United Kingdom</p>
                     </div>
                     <div className="postShoot">
                         <h3>What is the Production Budget? </h3>
+                        {touched.budget && errors.budget && <h6>{errors.budget}</h6>}
                         <Field className="shrink" type="number" name="budget" placeholder="#" />
                     </div>
                     <div className="postShoot">
                         <h3>What's the story about? </h3>
-                        <Field className="shrink" type="text" name="genre" placeholder="Genres" />
+                        {touched.genres && errors.genres && <h6>{errors.genres}</h6>}
+                        <Field className="shrink" type="text" name="genres" placeholder="Genres" />
                         <p>Example: Action; Comedy{`\n`}</p>
                         <Field
                             name="premise"
-                            render={({ field /* _form */ }) => (
-                                // <input {...field} placeholder="firstName" />
+                            render={({ field }) => (
                                 <textarea {...field} className="shrink" placeholder="Premise" />
                             )}
                         />
+                        {touched.premise && errors.premise && <h6>{errors.premise}</h6>}
                     </div>
                     <button className="button secondary">Submit</button>
                 </div>
@@ -120,28 +149,42 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
 }
 
 const mapStateToProps = ({ user, router, project }: postProps) => {
-    console.log(project.projectStart)
     return { user, router, project }
 }
 const FormikEnhancer = withFormik<postProps, IValues>({
     mapPropsToValues: ({ user, project }: postProps) => {
+        const { projectStart, projectEnd } = project
         return {
             ownerId: user.payload.id,
             parentFolder: {},
             parentCategory: {},
-            projectType: project.projectType || 'unspecified',
+            projectType: project.projectType,
             title: '',
             studio: '',
-            startDate: project.projectStart || 'no start date',
-            wrapDate: project.projectEnd || 'no wrap date',
+            startDate: '',
+            wrapDate: '',
             location: '',
-            budget: '',
+            budget: 0,
             genres: '',
-            premise: ''
+            premise: '',
+            roles: [],
+            teams: [],
         }
     },
-    handleSubmit: values => {
-        console.log(values)
+    validationSchema: Yup.object().shape({
+        title: Yup.string().min(2).required(),
+        studio: Yup.string().min(3).required(),
+        location: Yup.string().required(),
+        budget: Yup.number().positive().integer().required(),
+        genres: Yup.string().required(),
+        premise: Yup.string().min(8).required()
+    }),
+    handleSubmit: (values, { setErrors }) => {
+        if (Date.parse(values.startDate) >= Date.parse(values.wrapDate)) {
+            setErrors({ startDate: 'start date cannot exceed end date' })
+            return
+        }
+        return console.log('return')
     },
 })(UserPost)
 

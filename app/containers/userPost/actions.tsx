@@ -3,6 +3,6 @@ export const HANDLE_START_DATE = 'HANDLE_START_DATE';
 export const HANDLE_END_DATE = 'HANDLE_END_DATE';
 
 export const handleProjectType = (projectType: string) => ({ type: HANDLE_PROJ_TYPE, projectType });
-export const handleStartDate = (projectStart: any) => ({ type: HANDLE_START_DATE, projectStart: projectStart.toLocaleDateString('en-US') });
-export const handleEndDate = (projectEnd: any) => ({ type: HANDLE_END_DATE, projectEnd: projectEnd.toLocaleDateString('en-US') });
+export const handleStartDate = (projectStart: any) => ({ type: HANDLE_START_DATE, projectStart });
+export const handleEndDate = (projectEnd: any) => ({ type: HANDLE_END_DATE, projectEnd });
 
