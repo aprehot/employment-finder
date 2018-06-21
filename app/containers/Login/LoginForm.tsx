@@ -17,13 +17,15 @@ export interface IProps {
       isAuth: boolean,
       id?: string,
       message?: string
-    }
+    },
+    userFolders: any
   };
   project?: {
     projectType: string,
     projectStart: Date,
     projectEnd: Date,
-    projectRoles: {}[]
+    projectRoles: {}[],
+    activeBtn: number
   }
 }
 interface IState {

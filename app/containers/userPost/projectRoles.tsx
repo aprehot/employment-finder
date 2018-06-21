@@ -1,25 +1,12 @@
 import * as React from 'react';
 import { FieldArray, Field, Formik, Form } from 'formik'
+import { IValues } from './projectInterface';
 
-interface IRoles {
-    roleType: string,
-    name: string,
-    gender: string,
-    minAge: number,
-    maxAge: number,
-    specifics: string,
-    description: string,
-    isSag: boolean,
-    isOpen: boolean,
-    isLocal: boolean,
-    isOnOffer: boolean
-}
-
-class UserRoles extends React.PureComponent<IRoles> {
+export default class ProjectRoles extends React.PureComponent<IValues> {
     render() {
         return (
             <div>
-                <h1>Add New Roles</h1>
+                <h1 className="text-center">Add New Roles</h1>
                 <Formik
                     initialValues={{ roles: [] }}
                     onSubmit={values =>
@@ -31,11 +18,21 @@ class UserRoles extends React.PureComponent<IRoles> {
                         <FieldArray
                             name="roles"
                             render={arrayHelpers => (
-                                <Form>
-                                    {values.roles && values.roles.length > 0 ? (
+                                <Form
+                                    className="grid-x large-5 ">
+                                    <button
+                                        type="button"
+                                        className="hollow button secondary roleBtns"
+                                        onClick={() => arrayHelpers.push(values.roles[0])}
+                                    // insert an empty string at a position
+                                    >
+                                        <span style={{ fontSize: '30px' }}> &#43;  </span>
+                                        <span> Add a new Role</span>
+                                    </button>
+                                    {values.roles && values.roles.length > 0 && (
                                         values.roles.map((role, index) => (
-                                            <div key={`${role}.${index}`} className="">
-                                                <select name={`roles.${index}["roleType"]`}>
+                                            <div key={`${role}.${index}`} className="grid-x cell">
+                                                <select name={`roles.${index}["roleType"]`} className="cell">
                                                     <option value='select'>Select Role Type</option>
                                                     <option value="Lead">Lead</option>
                                                     <option value="Strong">Strong</option>
@@ -45,32 +42,18 @@ class UserRoles extends React.PureComponent<IRoles> {
                                                 </select>
                                                 <button
                                                     type="button"
-                                                    className="hollow button secondary roleBtns"
+                                                    className="hollow button secondary roleBtns cell"
                                                     onClick={() => arrayHelpers.remove(index)}
                                                 // remove a role from the list
                                                 >
-                                                    <span style={{ fontSize: '30px' }}> &#43;  </span>
-                                                    <span> Add Role</span>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    className="hollow button secondary roleBtns"
-                                                    onClick={() => arrayHelpers.insert(index, '')}
-                                                // insert an empty string at a position
-                                                >
                                                     <span style={{ fontSize: '30px' }}>&#45;</span>
-                                                    <span> Remove</span>
+                                                    <span> Remove Role</span>
                                                 </button>
                                             </div>
                                         ))
-                                    ) : (
-                                            <button type="button" onClick={() => arrayHelpers.push('')}>
-                                                {/* show this when user has removed all roles from the list */}
-                                                Add a friend
-                                            </button>
-                                        )}
+                                    )}
                                     <div>
-                                        <button type="button secondary">Submit</button>
+                                        <button className="button secondary">Next</button>
                                     </div>
                                 </Form>
                             )}
@@ -81,5 +64,3 @@ class UserRoles extends React.PureComponent<IRoles> {
         );
     }
 }
-
-export default UserRoles;

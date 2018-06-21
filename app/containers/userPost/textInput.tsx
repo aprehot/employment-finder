@@ -12,7 +12,7 @@ const Label = ({ name, error, children, ...props }:
 
 const TextInput: React.SFC<FieldProps> = ({
     field: { name, ...field },
-    form: { touched, errors },
+    form: { touched, errors, handleChange, handleBlur },
     label,
     ...props
 }: any) => {

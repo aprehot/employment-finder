@@ -5,12 +5,15 @@
     min-height: 135px;
     min-width: 135px;
     cursor: pointer;
-    transition: all 1s;
+    transition: all .5s;
     user-select: none;
 }
 .mainUni:hover {
     background: #8484FF;
-    transition: all 1s;
+    transition: all .4s;
+}
+.activeBtn {
+    background: #8484FF;
 }
 .mainUniHolder:nth-child(2) {
     font-size: 22px;
