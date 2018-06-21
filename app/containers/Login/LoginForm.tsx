@@ -22,7 +22,8 @@ export interface IProps {
   project?: {
     projectType: string,
     projectStart: Date,
-    projectEnd: Date
+    projectEnd: Date,
+    projectRoles: {}[]
   }
 }
 interface IState {

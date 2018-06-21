@@ -6,6 +6,7 @@ import {
     Form,
     Field,
     FieldArray,
+    FieldProps
 } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
@@ -14,6 +15,7 @@ import { connect } from 'react-redux';
 import './styles.scss';
 import { IProps } from '../Login/LoginForm';
 import { handleStartDate, handleEndDate } from './actions';
+import TextInput from './textInput';
 
 interface IValues {
     title?: string,
@@ -24,34 +26,44 @@ interface IValues {
     budget?: number,
     genres?: string,
     premise?: string,
+    roles?: any
 }
 interface OtherProps {
     dispatch?: (action: any) => void;
     project?: {
         projectStart: Date,
-        projectEnd: Date
+        projectEnd: Date,
     }
 }
 interface postProps {
     user?: IProps['user'],
     router?: IProps['router'],
-    project?: IProps['project']
+    project?: IProps['project'],
+    registerField: any,
+    unregisterField: any
 }
 
 const UserPost = (props: OtherProps & FormikProps<IValues>) => {
     const {
         values,
-        handleChange,
+        // handleChange,
+        handleBlur,
         dispatch,
         handleSubmit,
         errors,
         project,
-        touched
+        touched,
+        isSubmitting
     } = props;
+    const validate = (name: string) => {
+        const error: any = errors[name]
+        const touch: any = touched[name]
+        return touch && error && <h6>{error}</h6>
+    }
     return (
         <div className="grid-container">
             <Form className="formProject" >
-                <h1 style={{ flex: '1 1 100%', textAlign: 'center' }}>New Project</h1>
+                <h1 id="addProjTitle">New Project</h1>
                 <h3>What kind of project is it?</h3>
                 <div className="grid-x text-center">
                     {[
@@ -59,27 +71,31 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                         { uni: "\uD83D\uDCFA", type: 'TV Show' },
                         { uni: "\uD83D\uDCBB", type: 'Digital' },
                         { uni: "\uD83C\uDFAD", type: 'Theater' }
-                    ].map((btn, i) => {
-                        return (
-                            <div key={i} className="cell large-6 grid-x align-center">
-                                <div
-                                    onClick={() => {
-                                        props.setFieldValue('projectType', btn.type)
-                                    }
-                                    }
-                                    className="mainUni cell shrink"
-                                >
-                                    {btn.uni}
-                                </div>
-                                <span className="cell">{btn.type}</span>
+                    ].map((btn, i) => (
+                        <div key={i} className="cell large-6 grid-x align-center">
+                            <div
+                                className="mainUni cell shrink"
+                                onClick={() => { props.setFieldValue('projectType', btn.type) }}
+                            >
+                                {btn.uni}
                             </div>
-                        )
-                    })
+                            <span className="cell">{btn.type}</span>
+                        </div>
+                    )
+                    )
                     }
-                    <h3>What is this project called? </h3> {touched.title && errors.title && <h6>{errors.title}</h6>}
-                    <Field type="text" name="title" placeholder="Enter Title" />
-                    <h3>Who is financing this project? </h3> {touched.studio && errors.studio && <h6>{errors.studio}</h6>}
-                    <Field type="text" name="studio" placeholder="Enter Studio or Network" />
+                    <Field
+                        name="title"
+                        type="text"
+                        component={TextInput}
+                        label="What is this project called?"
+                    />
+                    <Field
+                        name="studio"
+                        type="text"
+                        component={TextInput}
+                        label="Enter Studio or Network"
+                    />
                     <div className='postDates'>
                         <h3>What are the shoot dates?</h3>
                         <div className='postDates'>
@@ -93,8 +109,7 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                                 onChange={(e) => {
                                     dispatch(handleStartDate(e))
                                     props.setFieldValue('startDate', e.toLocaleDateString('en-US'))
-                                }
-                                }
+                                }}
                             />
                         </div>
                         <div className='postDates'>
@@ -107,50 +122,55 @@ const UserPost = (props: OtherProps & FormikProps<IValues>) => {
                                 onChange={(e) => {
                                     dispatch(handleEndDate(e))
                                     props.setFieldValue('wrapDate', e.toLocaleDateString('en-US'))
-                                }
-                                }
+                                }}
                             />
                         </div>
                     </div>
-                    {touched.startDate && errors.startDate && <h6>{errors.startDate}</h6>}
-                    <div className="postShoot">
-                        <h3>Where is it shooting? </h3>
-                        {touched.location && errors.location && <h6>{errors.location}</h6>}
-                        <Field className="shrink" type="text" name="location" placeholder="Enter Location" />
-                        <p>type in full city or country{`\n`}</p>
-                        <p>Example: Los Angeles, United Kingdom</p>
-                    </div>
-                    <div className="postShoot">
-                        <h3>What is the Production Budget? </h3>
-                        {touched.budget && errors.budget && <h6>{errors.budget}</h6>}
-                        <Field className="shrink" type="number" name="budget" placeholder="#" />
-                    </div>
-                    <div className="postShoot">
-                        <h3>What's the story about? </h3>
-                        {touched.genres && errors.genres && <h6>{errors.genres}</h6>}
-                        <Field className="shrink" type="text" name="genres" placeholder="Genres" />
-                        <p>Example: Action; Comedy{`\n`}</p>
+                    {validate('startDate')}
+                    <Field
+                        name="location"
+                        type="text"
+                        roleclass="postProj"
+                        component={TextInput}
+                        label="Where is it Shooting?"
+                        statement1={`type in full city or country`}
+                        statement2={`Example: Los Angeles, United Kingdom`}
+                    />
+                    <Field
+                        name="budget"
+                        type="number"
+                        label="Budget"
+                        roleclass="postProj"
+                        component={TextInput}
+                    />
+                    <div className="postProj">
+                        <Field
+                            name="genres"
+                            type="text"
+                            component={TextInput}
+                            label="What's the story about?"
+                            statement1={'Example: Action; Comedy'}
+                        />
                         <Field
                             name="premise"
-                            render={({ field }) => (
+                            render={({ field }: any) => (
                                 <textarea {...field} className="shrink" placeholder="Premise" />
                             )}
                         />
-                        {touched.premise && errors.premise && <h6>{errors.premise}</h6>}
+                        {validate('premise')}
                     </div>
-                    <button className="button secondary">Submit</button>
+                    <button type="submit" disabled={isSubmitting} className="button secondary">Submit</button>
                 </div>
             </Form >
         </div >
     )
 }
-
 const mapStateToProps = ({ user, router, project }: postProps) => {
     return { user, router, project }
 }
 const FormikEnhancer = withFormik<postProps, IValues>({
     mapPropsToValues: ({ user, project }: postProps) => {
-        const { projectStart, projectEnd } = project
+        const { projectRoles } = project
         return {
             ownerId: user.payload.id,
             parentFolder: {},
@@ -164,7 +184,7 @@ const FormikEnhancer = withFormik<postProps, IValues>({
             budget: 0,
             genres: '',
             premise: '',
-            roles: [],
+            roles: projectRoles,
             teams: [],
         }
     },
@@ -176,13 +196,14 @@ const FormikEnhancer = withFormik<postProps, IValues>({
         genres: Yup.string().required(),
         premise: Yup.string().min(8).required()
     }),
-    handleSubmit: (values, { setErrors }) => {
-        console.log(values)
+    handleSubmit: (values, { setErrors, resetForm, setSubmitting }) => {
         if (Date.parse(values.startDate) >= Date.parse(values.wrapDate)) {
             setErrors({ startDate: 'start date cannot exceed end date' })
-            return
+        } else {
+            resetForm()
         }
-        return console.log('return')
+        console.log(values)
+        setSubmitting(false)
     },
 })(UserPost)
 

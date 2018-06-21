@@ -1,10 +1,16 @@
 .mainUni {
-    font-size: 90px;
+    font-size: 80px;
     background: #e9ecff;
     border-radius: 50%;
-    min-height: 165px;
-    min-width: 165px;
+    min-height: 135px;
+    min-width: 135px;
     cursor: pointer;
+    transition: all 1s;
+    user-select: none;
+}
+.mainUni:hover {
+    background: #8484FF;
+    transition: all 1s;
 }
 .mainUniHolder:nth-child(2) {
     font-size: 22px;
@@ -23,7 +29,7 @@
     align-items: center;
     flex: 1 1 100%;
 }
-.postShoot {
+.postProj {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,10 +45,20 @@
     justify-content: center;
     flex-wrap: wrap;
 }
-.formProject h6 {
+.formProject h6, .formErr {
     display: flex;
     padding: 15px;
     align-items: center;
     font-weight: bold;
     color: red;
+    justify-content: center
+}
+.roleBtns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#addProjTitle {
+    flex: 1 1 100%;
+    text-align: center;
 }
