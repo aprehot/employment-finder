@@ -86,5 +86,57 @@ textarea {
 }
 .roleCard {
     display: flex;
-    background: #635BBF;
+    background:#6257eae3;
+    border-radius: 15px;
+    color: white;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.roleCard > h6 {
+    flex: 1 1 50%;
+}
+.roleCard > h5 {
+    flex: 1 1 100%;
+}
+.roleCard > p {
+    flex: 1 1 100%;
+}
+.roleCard > div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.roleCard > div > a {
+    flex: 0 0 60% !important;
+}
+.roleCard > div > legend {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 0  0 7px 0 ;
+}
+.alertCheck {
+    background: rgba(175, 62, 45, 0.8) !important;
+}
+.roleEvents {
+    display: flex;
+    // width: 100%;
+    justify-content: space-between
+}
+.successCheck {
+    background: greenyellow !important;
+}
+
+input:checked ~ .switch-paddle {
+    background: #6257eae3;
+}
+.boolFlex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.boolLabel {
+    color: grey;
+    font-weight: 100
 }

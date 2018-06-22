@@ -32,7 +32,7 @@ const TextInput: React.SFC<FieldProps> = ({
             />
             {touch && error && <InputFeedback>{error}</InputFeedback>}
             {props.statement1 && <p className="cell">{props.statement1}</p>}
-            {props.statement2 && <p className="cell">{props.statement2}</p>}
+            {props.statement2 && <p className="cell help-text">{props.statement2}</p>}
         </div>
     )
 }
