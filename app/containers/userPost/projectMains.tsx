@@ -4,8 +4,9 @@ import { withFormik, FormikProps, Form, Field, } from 'formik';
 import * as Yup from 'yup'
 
 import './styles.scss';
-import { OtherProps, IValues, postProps } from './projectInterface';
 import TextInput from './textInput';
+import { IProps } from '../Login/LoginForm';
+import { OtherProps, IValues, postProps } from './projectInterface';
 
 const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
     const {
@@ -22,7 +23,7 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
         const touch: any = touched[name]
         return touch && error && <h6>{error}</h6>
     }
-    const { userFolders } = props.user
+    const { userFolders }: IProps['user'] = props.user
     return (
         <div className="large-6" style={{ margin: 'auto' }}>
             <Field
@@ -31,7 +32,7 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
                 component="select"
                 label="Pick Project's Folder."
             >
-                {userFolders && userFolders.map((folder: any) => (
+                {userFolders && userFolders.map((folder) => (
                     <option key={folder._id} value={folder.folderName}>{folder.folderName}</option>)
                 )}
             </Field>
@@ -58,6 +59,7 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
                 component={TextInput}
                 label="Enter Studio or Network"
             />
+            <button type="submit" disabled={isSubmitting} className="button secondary">Next</button>
         </div>
     )
 }

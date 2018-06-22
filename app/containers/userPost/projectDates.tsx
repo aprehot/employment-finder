@@ -75,7 +75,7 @@ const ProjectDates = (props: OtherProps & FormikProps<IValues>) => {
                         roleclass="postProj"
                         component={TextInput}
                     />
-                    {/* <div className="postProj">
+                    <div className="postProj">
                         <Field
                             name="genres"
                             type="text"
@@ -90,7 +90,7 @@ const ProjectDates = (props: OtherProps & FormikProps<IValues>) => {
                             )}
                         />
                         {validate('premise')}
-                    </div> */}
+                    </div>
                     <button type="submit" disabled={isSubmitting} className="button secondary">Next</button>
                 </div>
             </Form >
@@ -108,15 +108,15 @@ const FormikEnhancer = withFormik<postProps, IValues>({
             wrapDate: '',
             location: '',
             budget: 0,
-            // genres: '',
-            // premise: '',
+            genres: '',
+            premise: '',
         }
     },
     validationSchema: Yup.object().shape({
         location: Yup.string().required(),
         budget: Yup.number().positive().required(),
-        // genres: Yup.string().required(),
-        // premise: Yup.string().required()
+        genres: Yup.string().required(),
+        premise: Yup.string().required()
     }),
     handleSubmit: (values, { setErrors, resetForm, setSubmitting }) => {
         if (Date.parse(values.startDate) >= Date.parse(values.wrapDate)) {

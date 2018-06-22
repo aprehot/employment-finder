@@ -12,7 +12,7 @@ class ProjectType extends React.PureComponent {
         const { dispatch }: any = this.props
         const { activeBtn } = this.state
         return (
-            <div className="grid-x text-center">
+            <div className="grid-x text-center align-center">
                 <h1 id="addProjTitle">New Project</h1>
                 <h3 className="cell">What kind of project is it?</h3>
                 {[
@@ -37,6 +37,7 @@ class ProjectType extends React.PureComponent {
                     )
                 }
                 )}
+                <button type="submit" className="button secondary">Next</button>
             </div >
 
 

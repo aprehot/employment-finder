@@ -1,6 +1,7 @@
 import { IProps } from '../Login/LoginForm';
 
 export interface IValues {
+    rolePressed?: boolean,
     title?: string,
     studio?: string,
     startDate?: string,
@@ -13,8 +14,8 @@ export interface IValues {
         roleType?: string,
         name?: string,
         gender?: string,
-        minAge?: number,
-        maxAge?: number,
+        minAge?: number | null,
+        maxAge?: number | null,
         specifics?: string,
         description?: string,
         isSag?: boolean,

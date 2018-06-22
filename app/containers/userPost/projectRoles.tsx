@@ -1,66 +1,79 @@
 import * as React from 'react';
-import { FieldArray, Field, Formik, Form } from 'formik'
-import { IValues } from './projectInterface';
+import { FieldArray, Field, Formik, Form, FormikProps } from 'formik'
 
-export default class ProjectRoles extends React.PureComponent<IValues> {
+import TextInput from './textInput';
+import 'rc-slider/assets/index.css';
+import { IValues } from './projectInterface';
+import { RoleForm } from './roleForm';
+
+
+interface IState {
+    rolePressed: boolean,
+    allRoles: {}[]
+}
+
+export const RoleContext = React.createContext({});
+class RoleProvider extends React.Component {
+    state = {
+        rolePressed: false
+    }
     render() {
         return (
-            <div>
-                <h1 className="text-center">Add New Roles</h1>
-                <Formik
-                    initialValues={{ roles: [] }}
-                    onSubmit={values =>
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                        }, 500)
-                    }
-                    render={({ values }) => (
-                        <FieldArray
-                            name="roles"
-                            render={arrayHelpers => (
-                                <Form
-                                    className="grid-x large-5 ">
-                                    <button
-                                        type="button"
-                                        className="hollow button secondary roleBtns"
-                                        onClick={() => arrayHelpers.push(values.roles[0])}
-                                    // insert an empty string at a position
-                                    >
-                                        <span style={{ fontSize: '30px' }}> &#43;  </span>
-                                        <span> Add a new Role</span>
-                                    </button>
-                                    {values.roles && values.roles.length > 0 && (
-                                        values.roles.map((role, index) => (
-                                            <div key={`${role}.${index}`} className="grid-x cell">
-                                                <select name={`roles.${index}["roleType"]`} className="cell">
-                                                    <option value='select'>Select Role Type</option>
-                                                    <option value="Lead">Lead</option>
-                                                    <option value="Strong">Strong</option>
-                                                    <option value="Supporting">Supporting</option>
-                                                    <option value="Small">Small</option>
-                                                    <option value="Cameo">Cameo</option>
-                                                </select>
-                                                <button
-                                                    type="button"
-                                                    className="hollow button secondary roleBtns cell"
-                                                    onClick={() => arrayHelpers.remove(index)}
-                                                // remove a role from the list
-                                                >
-                                                    <span style={{ fontSize: '30px' }}>&#45;</span>
-                                                    <span> Remove Role</span>
-                                                </button>
-                                            </div>
-                                        ))
-                                    )}
-                                    <div>
-                                        <button className="button secondary">Next</button>
-                                    </div>
-                                </Form>
-                            )}
-                        />
-                    )}
-                />
-            </div>
+            <RoleContext.Provider value={{
+                state: this.state,
+                hideRoleForm: () => this.setState({
+                    rolePressed: false
+                })
+            }} >
+                {this.props.children}
+            </RoleContext.Provider>
+        )
+    }
+}
+
+export default class ProjectRoles extends React.PureComponent<IValues> {
+    state: any = {
+        // rolePressed: false,
+        allRoles: []
+    }
+    render() {
+        return (
+            <RoleProvider>
+                <div className="grid-x align-center">
+                    <h3 className="text-center cell">Add Character</h3>
+                    <Formik
+                        initialValues={{ roles: [] }}
+                        onSubmit={values =>
+                            // setTimeout(() => {
+                            //     alert(JSON.stringify(values, null, 2));
+                            // }, 500)
+                            this.setState({ allRoles: [...this.state.allRoles, values] })
+                        }
+                        render={({ values }) => (
+                            <div
+                                className="grid-x cell"
+                                onClick={() => {
+                                    this.setState({ rolePressed: true })
+                                }}
+                            >
+                                <RoleForm
+                                    values={values}
+                                // rolePressed={this.state.rolePressed}
+                                />
+                            </div>
+                        )}
+                    />
+
+                    <ul>
+                        {this.state.allRoles.length > 0 && this.state.allRoles.map((role: any, i: number) => (
+                            <li className="roleCard">
+                                Hi
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+            </RoleProvider>
         );
     }
 }

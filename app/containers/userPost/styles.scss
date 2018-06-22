@@ -65,3 +65,26 @@
     flex: 1 1 100%;
     text-align: center;
 }
+.rc-slider-track {
+    background: #635BBF !important;
+}
+.rc-slider-handle {
+    border-color: #635BBF !important;
+    margin-left: -12.5px !important;
+    margin-top: -10px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+.rc-slider-handle:active {
+    box-shadow:0 0 5px #817bc3 !important;
+}
+.rc-slider-handle:hover {
+    border-color: #2b2571 !important;
+}
+textarea {
+    min-height: 125px;
+}
+.roleCard {
+    display: flex;
+    background: #635BBF;
+}

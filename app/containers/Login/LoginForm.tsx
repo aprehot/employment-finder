@@ -9,16 +9,21 @@ export interface IProps {
   dispatch?: (action: any) => void;
   router: {
     location?: {
-      pathname?: string
+      pathname: string
     }
   };
   user: {
-    payload: {
+    payload?: {
       isAuth: boolean,
-      id?: string,
+      id: string,
       message?: string
     },
-    userFolders: any
+    userFolders?: {
+      ownerId: string
+      folderName: string
+      category: string
+      _id: string
+    }[]
   };
   project?: {
     projectType: string,

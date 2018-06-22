@@ -30,7 +30,7 @@ export default class PostingContainer extends React.Component<any, IState> {
                 <ProjectMains />
                 <ProjectDates />
                 <ProjectRoles />
-                <button className="secondary "></button>
+                <button className="success button">Next</button>
             </div>
         );
     }
