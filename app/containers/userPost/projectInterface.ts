@@ -43,3 +43,22 @@ export interface postProps {
     // registerField: (name: string, resetFn: (nextValues?: any) => void) => void;
     // unregisterField: (name: string) => void;
 }
+export interface ITeam {
+    job: string,
+    name: string,
+    email: string,
+    Admin: boolean,
+    Collaborator: boolean
+}
+export interface IRole {
+    roleType: string,
+    name: string,
+    gender: string,
+    ages: number[],
+    specifics: string,
+    description: string,
+    isSag: boolean,
+    isOpen: boolean,
+    isLocal: boolean,
+    isOnOffer: boolean
+}

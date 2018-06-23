@@ -55,7 +55,7 @@ const projectSchema = new Schema({
   roles: [{
     roleType: { type: String, required: true, enum: ['Lead', 'Strong', 'Supporting', 'Small', 'Cameo'] },
     name: { type: String, required: true },
-    gender: { type: String, required: true, enum: ['Male', 'Female', 'Either'] },
+    gender: { type: String, required: true },
     minAge: { type: Number, required: true },
     maxAge: { type: Number, required: true },
     specifics: [String],
@@ -66,13 +66,20 @@ const projectSchema = new Schema({
     isOnOffer: { type: Boolean }
   }],
   teams: [{
-    producer: { type: [String], required: true },
-    executive: { type: [String] },
-    director: { type: [String] },
-    writer: { type: [String] },
-    castingDirector: { type: [String] },
-    talent: { type: [String] }
+    job: { type: String, required: true, enum: ['producer', 'executive', 'director', 'writer', 'castingDirector', 'talent'] },
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    Admin: { type: Boolean, required: true },
+    Collaborator: { type: Boolean, required: true }
   }],
+  //   {
+  //   producer: { type: [String], required: true },
+  //   executive: { type: [String] },
+  //   director: { type: [String] },
+  //   writer: { type: [String] },
+  //   castingDirector: { type: [String] },
+  //   talent: { type: [String] }
+  // }],
   activeCasting: {
     type: Boolean
   },

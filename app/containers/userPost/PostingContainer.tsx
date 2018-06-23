@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 
 import { IProps } from '../Login/LoginForm';
 import { getFolders } from '../UserFolders/actions'
-import { OtherProps, IValues, postProps } from './projectInterface'
-import { ProjectDates, ProjectMains, ProjectType, ProjectRoles } from './projectPostExport'
+import { ProjectDates, ProjectMains, ProjectType, ProjectRoles, ProjectTeams } from './projectPostExport'
 
 interface IState {
-    postPage: string | undefined
+    postPage: number
 }
 
 const mapStateToProps = ({ user, router, project }: IProps) => ({ user, router, project })
@@ -15,21 +14,26 @@ const mapStateToProps = ({ user, router, project }: IProps) => ({ user, router, 
 @(connect(mapStateToProps, null) as any)
 export default class PostingContainer extends React.Component<any, IState> {
     state: IState = {
-        postPage: undefined
+        postPage: 0
     }
 
     async componentDidMount() {
-        const req = await this.props.dispatch(getFolders())
-        return req
+        if (!this.props.user.userFolders) {
+            const req = await this.props.dispatch(getFolders())
+            return req
+        }
     }
 
     render() {
+        const { postPage } = this.state
         return (
             <div className="grid-container">
-                <ProjectType />
-                <ProjectMains />
-                <ProjectDates />
-                <ProjectRoles />
+
+                {postPage === 0 && <ProjectType />}
+                {postPage === 1 && <ProjectMains />}
+                {postPage === 2 && <ProjectDates />}
+                {postPage === 3 && <ProjectRoles />}
+                {postPage === 4 && <ProjectTeams />}
                 <button className="success button">Submit Project</button>
             </div>
         );

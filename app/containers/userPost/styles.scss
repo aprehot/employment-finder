@@ -135,8 +135,27 @@ input:checked ~ .switch-paddle {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 25px;
 }
 .boolLabel {
-    color: grey;
-    font-weight: 100
+    color: black;
+    font-weight: 100;
 }
+.alertBox {
+    background-color: transparent !important;
+    padding: 0;
+}
+.alertBox:before {
+    content: ' \25CF';
+    font-size: 60px;
+    color: red;
+  }
+.successBox {
+    background-color: transparent !important;
+    padding: 0;
+}
+.successBox:before {
+    content: ' \25CF';
+    font-size: 60px;
+    color: greenyellow;
+  }
