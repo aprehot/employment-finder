@@ -21,7 +21,7 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                     initialValues={{ teams: [] }}
                     onSubmit={values =>
                         // console.log(values)
-                        this.props.handleForm({ teams: values }, 5)
+                        this.props.handleForm({ teams: values.teams }, 5)
                     }
                     render={({ values }) => (
                         <div className="grid-x cell align-center" >

@@ -27,7 +27,7 @@ export default class ProjectRoles extends React.PureComponent<IValues> {
                     initialValues={{ roles: [] }}
                     onSubmit={values => {
                         console.log(values)
-                        this.props.handleForm({ roles: values }, 4)
+                        this.props.handleForm({ roles: values.roles }, 4)
                     }
                     }
                     render={({ values }) => (
