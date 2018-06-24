@@ -56,6 +56,13 @@
     color: red;
     justify-content: center
 }
+.errorTxt {
+    color: red;
+    font-weight: bold;
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center
+}
 .roleBtns {
     display: flex;
     flex-direction: column;

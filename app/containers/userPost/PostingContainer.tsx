@@ -39,7 +39,10 @@ export default class PostingContainer extends React.Component<any, IState> {
         })
     )
 
-    postProject = () => this.props.dispatch(postProj(this.state.project))
+    postProject = (e: any) => {
+        e.preventDefault()
+        this.props.dispatch(postProj(this.state.project))
+    }
 
 
     render() {
@@ -54,7 +57,7 @@ export default class PostingContainer extends React.Component<any, IState> {
                 {postPage === 2 && <ProjectDates handleForm={this.handleFormPage} />}
                 {postPage === 3 && <ProjectRoles handleForm={this.handleFormPage} />}
                 {postPage === 4 && <ProjectTeams handleForm={this.handleFormPage} />}
-                {postPage === 5 && <ProjectOverview postProject={this.postProject} />}
+                {postPage === 5 && <ProjectOverview postProject={this.postProject} projectData={this.state.project} />}
             </div>
         );
     }

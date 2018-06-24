@@ -69,3 +69,50 @@ export interface IRole {
     isLocal: boolean,
     isOnOffer: boolean
 }
+
+
+export interface IOverviewProps {
+    postProject?: (action: any, action2: number) => void,
+    projectData?: [
+        {
+            projectType: string
+        },
+        {
+            parentCategory: string,
+            parentFolder: string,
+            studio: string,
+            title: string
+        },
+        {
+            budget: number,
+            genres: string,
+            location: string,
+            premise: string,
+            startDate: string,
+            wrapDate: string
+        },
+        {
+            roles: [{
+                ages: number[],
+                description: string,
+                gender: string,
+                isLocal: boolean,
+                isOnOffer: boolean,
+                isOpen: boolean,
+                isSag: boolean,
+                name: string,
+                roleType: string,
+                specifics: string
+            }]
+        },
+        {
+            teams: [{
+                Admin: boolean,
+                Collaborator: boolean,
+                email: string,
+                job: string,
+                name: string
+            }]
+        }
+    ]
+}
