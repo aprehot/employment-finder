@@ -4,6 +4,7 @@ import { FieldArray, Field, Formik, Form, FormikProps } from 'formik'
 import TextInput from './textInput';
 import { IValues } from './projectInterface';
 import { ITeam } from './projectInterface';
+import ReviewTeam from './decoupled/reviewTeam';
 
 interface IState {
     teamPressed: boolean
@@ -125,32 +126,9 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                         <ul className="grid-x">
                                             {this.state.teamPressed === false &&
                                                 values.teams.map((team: ITeam, i: number) => (
-                                                    <li className="roleCard callout large-3 cell " key={`${team}${i}`}>
-                                                        <button className="close-button alert" onClick={() => arrayHelpers.remove(i)}>
-                                                            <span aria-hidden="true" style={{ color: 'white' }}>&times;</span>
-                                                        </button>
-                                                        <h5>Job Type: {team.job}</h5>
-                                                        <h4>Member Name: {team.name}</h4>
-                                                        <h5>Email: {team.email}</h5>
-                                                        <div className="secondary button-group fieldset">
-                                                            <legend className="cell">Priviledges</legend>
-                                                            {['Admin', 'Collaborator'
-                                                            ].map((bool: string, indx: number) => (
-                                                                <React.Fragment key={`${bool}${indx}`}>
-                                                                    <span> {bool}?: {team[bool] ? 'yes' : 'no'} </span>
-                                                                    <span
-                                                                        key={`${bool}${indx}`}
-                                                                        className={`${team[bool] ? 'successBox' : 'alertBox'} button`}
-                                                                    >
-                                                                        <p className="boolLabel help-text" >
-                                                                            {bool === 'Admin' ? 'Access to the private page' : 'Access to edit shared page'}
-                                                                        </p>
-                                                                    </span>
-                                                                </React.Fragment>
-                                                            )
-                                                            )}
-                                                        </div>
-                                                    </li>
+
+                                                    <ReviewTeam team={team} index={i} arrayHelpers={arrayHelpers} />
+
                                                 ))}
                                         </ul>
                                     </React.Fragment>

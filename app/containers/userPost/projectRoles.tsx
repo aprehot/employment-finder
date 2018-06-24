@@ -6,6 +6,7 @@ import TextInput from './textInput';
 import 'rc-slider/assets/index.css';
 import { IValues } from './projectInterface';
 import { IRole } from './projectInterface';
+import ReviewRole from './decoupled/reviewRole';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -162,28 +163,9 @@ export default class ProjectRoles extends React.PureComponent<IValues> {
                                         <ul className="grid-x">
                                             {rolePressed === false &&
                                                 values.roles.map((role: IRole, i: number) => (
-                                                    <li className="roleCard callout large-3 cell " key={`${role}${i}`}> {/* TODO: pass both keys in as props and split this into new component */}
-                                                        <button className="close-button alert" onClick={() => arrayHelpers.remove(i)}>
-                                                            <span aria-hidden="true" style={{ color: 'white' }}>&times;</span>
-                                                        </button>
-                                                        <h5>Role Type: {role.roleType}</h5>
-                                                        <h4>Character Name: {role.name}</h4>
-                                                        <h5>Gender: {role.gender}</h5>
-                                                        <h6>MinAge: {role.ages[0]}</h6>
-                                                        <h6>MaxAge: {role.ages[1]}</h6>
-                                                        <div className="secondary button-group fieldset">
-                                                            <legend className="cell">Yes/No</legend>
-                                                            {['isSag', 'isOpen', 'isLocal', 'isOnOffer'].map((bool: string, indx: number) =>
-                                                                <a
-                                                                    key={`${bool}${indx}`}
-                                                                    className={`${role[bool] ? 'successCheck' : 'alertCheck'} button`}>
-                                                                    {bool} {role[bool] ? 'yes' : 'no'}
-                                                                </a>
-                                                            )}
-                                                        </div>
-                                                        <p>{role.specifics}</p>
-                                                        <p>{role.description}</p>
-                                                    </li>
+
+                                                    <ReviewRole role={role} index={i} arrayHelpers={arrayHelpers} />
+
                                                 ))}
                                         </ul>
                                     </React.Fragment>
