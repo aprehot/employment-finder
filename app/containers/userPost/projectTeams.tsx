@@ -20,7 +20,8 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                 <Formik
                     initialValues={{ teams: [] }}
                     onSubmit={values =>
-                        console.log(values)
+                        // console.log(values)
+                        this.props.handleForm({ teams: values }, 5)
                     }
                     render={({ values }) => (
                         <div className="grid-x cell align-center" >

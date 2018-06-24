@@ -91,7 +91,17 @@ const ProjectDates = (props: OtherProps & FormikProps<IValues>) => {
                         />
                         {validate('premise')}
                     </div>
-                    <button type="submit" disabled={isSubmitting} className="button secondary">Next</button>
+                    <button
+                        type="submit"
+
+                        onClick={() => {
+                            dispatch(handleStartDate(''))
+                            dispatch(handleEndDate(''))
+                        }
+                        }
+                        // disabled={isSubmitting} Do not use async/subscription when putting in parent state
+                        className="button secondary">
+                        Next</button>
                 </div>
             </Form >
         </React.Fragment>
@@ -118,14 +128,15 @@ const FormikEnhancer = withFormik<postProps, IValues>({
         genres: Yup.string().required(),
         premise: Yup.string().required()
     }),
-    handleSubmit: (values, { setErrors, resetForm, setSubmitting }) => {
+    handleSubmit: (values, { props, setErrors, resetForm, setSubmitting }) => {
         if (Date.parse(values.startDate) >= Date.parse(values.wrapDate)) {
             setErrors({ startDate: 'start date cannot exceed end date' })
         } else {
-            resetForm()
+            props.handleForm(values, 3)
+            // resetForm()
         }
-        console.log(values)
-        setSubmitting(false)
+        // console.log(values)
+        // setSubmitting(false) do not use async/subscription when putting in parent state
     },
 })(ProjectDates)
 

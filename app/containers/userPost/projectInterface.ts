@@ -1,6 +1,8 @@
 import { IProps } from '../Login/LoginForm';
 
 export interface IValues {
+    handleForm?: (action: any, action2: number) => void,
+    // userFolders?: any
     rolePressed?: boolean,
     title?: string,
     studio?: string,
@@ -35,11 +37,16 @@ export interface OtherProps {
     user?: {
         userFolders?: any
     }
+    // userFolders?: any
 }
 export interface postProps {
     user?: IProps['user'],
     router?: IProps['router'],
     project?: IProps['project'],
+    handleForm?: (action: any, action2: number) => void,
+    userFolders?: IProps['user']['userFolders'],
+    // dispatch?: (action: any) => void,
+    // errors?: any
     // registerField: (name: string, resetFn: (nextValues?: any) => void) => void;
     // unregisterField: (name: string) => void;
 }

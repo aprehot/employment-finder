@@ -25,8 +25,10 @@ export default class ProjectRoles extends React.PureComponent<IValues> {
                 <h3 className="text-center cell">Add Character</h3>
                 <Formik
                     initialValues={{ roles: [] }}
-                    onSubmit={values =>
+                    onSubmit={values => {
                         console.log(values)
+                        this.props.handleForm({ roles: values }, 4)
+                    }
                     }
                     render={({ values }) => (
                         <div className="grid-x cell align-center" >
@@ -160,7 +162,7 @@ export default class ProjectRoles extends React.PureComponent<IValues> {
                                         <ul className="grid-x">
                                             {rolePressed === false &&
                                                 values.roles.map((role: IRole, i: number) => (
-                                                    <li className="roleCard callout large-3 cell " key={`${role}${i}`}>
+                                                    <li className="roleCard callout large-3 cell " key={`${role}${i}`}> {/* TODO: pass both keys in as props and split this into new component */}
                                                         <button className="close-button alert" onClick={() => arrayHelpers.remove(i)}>
                                                             <span aria-hidden="true" style={{ color: 'white' }}>&times;</span>
                                                         </button>

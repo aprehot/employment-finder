@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const fetchPost = async ({ email, password }: any) => {
+export const postLogin = async ({ email, password }: any) => {
   try {
     const response = axios.post('/api/login', { email, password });
     return response;

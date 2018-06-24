@@ -1,12 +1,19 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { actionBtn } from './actions'
+// import { actionBtn } from './actions'
 
+interface IHandleForm {
+    handleForm: (action: any, action2: number) => void
+}
 
 const mapStateToProps = ({ project }: any) => ({ project })
 
-class ProjectType extends React.PureComponent {
-    state: any = { activeBtn: undefined }
+class ProjectTypes extends React.PureComponent<IHandleForm> {
+
+    state: any = {
+        activeBtn: undefined,
+        projectType: ''
+    }
 
     render() {
         const { dispatch }: any = this.props
@@ -26,8 +33,11 @@ class ProjectType extends React.PureComponent {
                             <div
                                 className={`mainUni cell shrink ${activeBtn === i && 'activeBtn'}`}
                                 onClick={() => {
-                                    this.setState({ activeBtn: i })
-                                    dispatch(actionBtn(btn.type))
+                                    this.setState({
+                                        activeBtn: i,
+                                        projectType: btn.type
+                                    })
+                                    // dispatch(actionBtn(btn.type))
                                 }}
                             >
                                 {btn.uni}
@@ -37,7 +47,7 @@ class ProjectType extends React.PureComponent {
                     )
                 }
                 )}
-                <button type="submit" className="button secondary">Next</button>
+                <button type="submit" onClick={() => this.props.handleForm({ projectType: this.state.projectType }, 1)} className="button secondary">Next</button>
             </div >
 
 
@@ -47,4 +57,4 @@ class ProjectType extends React.PureComponent {
 
 export default connect(
     mapStateToProps,
-)(ProjectType);
+)(ProjectTypes);

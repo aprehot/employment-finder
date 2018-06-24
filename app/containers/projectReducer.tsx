@@ -1,5 +1,5 @@
 import { GET_PROJECT_ID, PUT_PROJECT } from './ProjectContainer/actions';
-import { HANDLE_START_DATE, HANDLE_END_DATE, ACTION_BTN } from './userPost/actions';
+import { HANDLE_START_DATE, HANDLE_END_DATE } from './userPost/actions';
 
 interface IReducer {
   type: string,
@@ -40,11 +40,6 @@ const project = (state: {} = {}, {
         ...state,
         projectEnd
       };
-    case ACTION_BTN:
-      return {
-        ...state,
-        actionBtn
-      }
     default:
       return state;
   }

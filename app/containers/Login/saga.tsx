@@ -12,7 +12,7 @@ import {
     putUser,
     // putAuth 
 } from './actions';
-import { fetchPost } from '../../utils/post';
+import { postLogin } from '../../utils/post';
 
 export interface IValue {
     type: string;
@@ -33,7 +33,7 @@ export const userPassSelector = (state: any) => state.login.password;
 
 function* fetchCreds(action: any) {
     try {
-        const contentRes = yield call(fetchPost, action.payload);
+        const contentRes = yield call(postLogin, action.payload);
         yield put(putUser(contentRes));
     } catch (e) {
         // history.push('/')

@@ -1,14 +1,16 @@
-import ProjectType from './projectType';
+import ProjectTypes from './projectTypes';
 import ProjectMains from './projectMains';
 import ProjectDates from './projectDates';
 import ProjectRoles from './projectRoles';
 import ProjectTeams from './projectTeams';
+import ProjectOverview from './projectOverview';
 
 
 export {
-    ProjectType,
+    ProjectTypes,
     ProjectMains,
     ProjectDates,
     ProjectRoles,
-    ProjectTeams
+    ProjectTeams,
+    ProjectOverview
 }
