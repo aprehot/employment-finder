@@ -10,21 +10,17 @@ import QuickShare from '../../components/quickShare/quickShare';
 import ProjectHeader from '../../components/projectHeader/projectHeader';
 import ProjectStory from '../../components/projectStory/projectStory';
 import ProjectTeam from '../../components/projectTeam/projectTeam';
+import { IReduxProps } from '../userPost/projectInterface';
 
-const ProjectLeftColumn = () => (
+const ProjectLeftColumn: React.SFC = () => (
   <AniColumn Top={ProjectHeader} Bottom={QuickShare} />
 );
 
-interface IProps {
-  dispatch: (action: any) => void,
-  project: any,
-  router: any
-}
 
-const mapStateToProps = ({ project, router }: IProps) => ({ project, router })
+const mapStateToProps = ({ project, router }: IReduxProps) => ({ project, router })
 
 @(connect(mapStateToProps, null) as any)
-export default class ProjectPage extends Component<IProps> {
+export default class ProjectPage extends Component<IReduxProps> {
 
 
   componentDidMount() {

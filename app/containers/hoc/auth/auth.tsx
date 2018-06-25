@@ -4,23 +4,8 @@ import { push } from 'react-router-redux';
 
 import { authenticateUser } from './actions';
 import LoadingIndicator from '../../../components/LoadingIndicator';
+import { IReduxProps } from '../../userPost/projectInterface';
 
-
-interface IProps {
-  dispatch: (action: any) => void;
-  router: {
-    location?: {
-      pathname?: string
-    }
-  };
-  user: {
-    payload: {
-      isAuth: boolean,
-      id: string,
-      accountType?: Priviledges
-    }
-  }
-}
 
 enum Priviledges { 'Representative', 'Casting Director', 'Producer', 'Executive', 'Actor', 'Writer', 'Director' }
 
@@ -35,7 +20,7 @@ const Auth: any = (
   reload: boolean
 ) => {
 
-  class AuthenticationCheck extends React.Component<IProps, IState> {
+  class AuthenticationCheck extends React.Component<IReduxProps, IState> {
 
     state: IState = {
       loading: true
@@ -69,7 +54,7 @@ const Auth: any = (
       );
     }
   }
-  const mapStateToProps = ({ user, router }: IProps) => ({ user, router });
+  const mapStateToProps = ({ user, router }: IReduxProps) => ({ user, router });
 
   return connect(mapStateToProps, null)(AuthenticationCheck);
 }

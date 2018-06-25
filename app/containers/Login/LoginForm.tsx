@@ -4,47 +4,21 @@ import { push } from 'react-router-redux';
 
 import { loginUser } from './actions';
 import './style.scss';
+import { postProps, IReduxProps } from '../userPost/projectInterface';
 
-export interface IProps {
-  dispatch?: (action: any) => void;
-  router: {
-    location?: {
-      pathname: string
-    }
-  };
-  user: {
-    payload?: {
-      isAuth: boolean,
-      id: string,
-      message?: string
-    },
-    userFolders?: {
-      ownerId: string
-      folderName: string
-      category: string
-      _id: string
-    }[]
-  };
-  project?: {
-    projectType: string,
-    projectStart: Date,
-    projectEnd: Date,
-    projectRoles: {}[],
-    activeBtn: number
-  }
-}
+
 interface IState {
   email: string;
   password: string;
-  user?: IProps['user'];
+  user?: IReduxProps['user'];
   isAuth?: boolean | null;
 }
 
 
-const mapStateToProps = ({ user, router }: IProps) => ({ user, router })
+const mapStateToProps = ({ user, router }: postProps) => ({ user, router })
 
 @(connect(mapStateToProps, null) as any)
-export default class LoginForm extends React.PureComponent<IProps, IState> {
+export default class LoginForm extends React.PureComponent<IReduxProps, IState> {
 
   state: IState = {
     email: '',
@@ -52,7 +26,7 @@ export default class LoginForm extends React.PureComponent<IProps, IState> {
   }
 
 
-  componentDidUpdate(prevProps: IProps) {
+  componentDidUpdate(prevProps: IReduxProps) {
     if (prevProps.user !== this.props.user) {
       const { user } = this.props
       return user &&

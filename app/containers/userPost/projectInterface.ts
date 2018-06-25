@@ -1,6 +1,3 @@
-import { IProps } from '../Login/LoginForm';
-import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
-
 export interface IValues {
     handleForm?: (action: any, action2: number) => void,
     rolePressed?: boolean,
@@ -41,11 +38,12 @@ export interface OtherProps {
     }
 }
 export interface postProps {
-    user?: IProps['user'],
-    router?: IProps['router'],
-    project?: IProps['project'],
+
+    user?: IReduxProps['user'],
+    router?: IReduxProps['router'],
+    project?: IReduxProps['project'],
     handleForm?: (action: any, action2: number) => void,
-    userFolders?: IProps['user']['userFolders'],
+    userFolders?: IReduxProps['user']['userFolders'],
 }
 export interface ITeam {
     job: string,
@@ -113,5 +111,93 @@ export interface IOverviewProps {
         }
     ]
 }
+
+export interface IReduxProps {
+    dispatch?: (action: any) => void;
+    router?: {
+        location?: {
+            pathname: string
+        }
+    };
+    user?: {
+        payload?: {
+            isAuth: boolean,
+            id: string,
+            message?: string
+        },
+        userFolders?: {
+            ownerId: string
+            folderName: string
+            category: string
+            _id: string,
+        }[],
+        folderContents?: {
+            projects: actualProjectModel
+        },
+        userUpdates?: {
+            text: string;
+            image: string;
+            time: string;
+            _id: string;
+        }[]
+
+    };
+    project?: {
+        projectType: string,
+        projectStart: Date,
+        projectEnd: Date,
+        projectRoles: {}[],
+        activeBtn: number,
+        projectData: any,
+        projectId: any
+    }
+    folderContents?: actualProjectModel[]
+}
+
+
+export interface actualProjectModel {
+    map?: any,
+    projects?: {
+        _id: any,
+
+        projectType: string
+
+
+        parentCategory: string,
+        parentFolder: string,
+        studio: string,
+        title: string,
+        hasCD: boolean,
+
+
+        budget: number,
+        genres: string,
+        location: string,
+        premise: string,
+        startDate: string,
+        wrapDate: string,
+
+
+        roles: [{
+            ages: number[],
+            description: string,
+            gender: string,
+            isLocal: boolean,
+            isOnOffer: boolean,
+            isOpen: boolean,
+            isSag: boolean,
+            name: string,
+            roleType: string,
+            specifics: string
+        }]
+        teams: [{
+            priviledge: Priviledge,
+            email: string,
+            job: string,
+            name: string
+        }]
+    }
+}
+
 
 enum Priviledge { 'admin', 'collab', 'viewer', 'downloader' }

@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IProps } from '../Login/LoginForm';
 import { getFolders } from '../UserFolders/actions'
 import { ProjectDates, ProjectMains, ProjectTypes, ProjectRoles, ProjectTeams, ProjectOverview } from './projectPostExport'
+import { IReduxProps } from './projectInterface';
 
 interface IState {
     postPage: number,
     project: any
 }
 
-const mapStateToProps = ({ user, router, project }: IProps) => ({ user, router, project })
+const mapStateToProps = ({ user, router, project }: IReduxProps) => ({ user, router, project })
 
 @(connect(mapStateToProps, null) as any)
 export default class PostingContainer extends React.Component<any, IState> {

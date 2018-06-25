@@ -4,10 +4,10 @@ import './style.scss';
 interface IProps {
   Left?: any,
   Middle?: any,
-  Right?: any  
+  Right?: any,
 }
- 
-const AniGrid:React.SFC<IProps> = ({ Left, Middle, Right }) => (
+
+const AniGrid: React.SFC<IProps> = ({ Left, Middle, Right }) => (
   <article className="grid-x myVault">
     <div className="cell grid-x large-4 ">
       <div className="cell large-9 vaultColumn">
@@ -16,7 +16,7 @@ const AniGrid:React.SFC<IProps> = ({ Left, Middle, Right }) => (
     </div>
 
     <div className="grid-y large-4 cell align-center">
-      {Middle ? <Middle /> : null }
+      {Middle ? <Middle /> : null}
     </div>
 
     <div className="grid-y large-4 cell align-center">

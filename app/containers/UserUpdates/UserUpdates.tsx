@@ -2,29 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getUpdates } from './actions';
 import './styles.scss';
+import { IReduxProps } from '../userPost/projectInterface';
 
 
-interface IProps {
-  dispatch: any;
-  user: {
-    userUpdates: IUpdates[];
-  }
-}
+const mapStateToProps = ({ user }: IReduxProps) => ({ user })
 
-interface IUpdates {
-  text: string;
-  image: string;
-  time: string;
-  _id: string;
-}
-
-class UserUpdates extends React.Component<IProps> {
+@(connect(mapStateToProps, null) as any)
+export default class UserUpdates extends React.Component<IReduxProps> {
   componentDidMount() {
     this.props.dispatch(getUpdates());
   }
 
 
-  ShowUpdates = (updates: IProps["user"]["userUpdates"]) => (
+  ShowUpdates = (updates: IReduxProps['user']['userUpdates']) => (
     <div className="cell large-3" style={{ margin: '15px 0 0 0' }}>
       {updates ?
         updates.map((listItem) => (
@@ -45,7 +35,7 @@ class UserUpdates extends React.Component<IProps> {
   )
 
   render() {
-    const { userUpdates }: IProps["user"] = this.props.user;
+    const { userUpdates }: IReduxProps['user'] = this.props.user;
     return (
       <div className="grid-x large-10 align-right" >
         <div className=" grid-y large-10 updateContainer" >
@@ -65,7 +55,3 @@ class UserUpdates extends React.Component<IProps> {
   }
 }
 
-
-const mapStateToProps = ({ user }: IProps) => ({ user })
-
-export default connect(mapStateToProps)(UserUpdates);

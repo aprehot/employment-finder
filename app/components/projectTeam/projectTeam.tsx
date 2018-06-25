@@ -2,8 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 interface IState {
-  userUpdates: any
+  userUpdates: {
+    image: string,
+    name: string,
+    role: Role | string
+  }[]
 }
+
+enum Role { 'Casting Director', 'Producer', 'Director' }
 
 class ProjectTeam extends React.PureComponent<IState> {
   state: IState = {
@@ -45,7 +51,7 @@ class ProjectTeam extends React.PureComponent<IState> {
           <div className="grid-y grid-frame cell">
             <div className="cell large-3" style={{ margin: '15px 0 0 0' }}>
               {userUpdates ?
-                userUpdates.map((listItem:any, i:number) => (
+                userUpdates.map((listItem: any, i: number) => (
                   <div key={i} className="grid-x grid-padding-x">
                     <img
                       className="cell large-3 feedImg"

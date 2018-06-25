@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getFolders, getContents } from './actions';
 import { getProjectId } from '../ProjectContainer/actions';
 import './style.scss';
+import { IReduxProps, actualProjectModel, postProps, OtherProps } from '../userPost/projectInterface';
 
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-nested-ternary: 0 */
@@ -15,33 +16,11 @@ interface IState {
   activeFolder: string;
 }
 
-interface IProps {
-  dispatch: any;
-  user: {
-    userFolders: IUserFolders[];
-    folderContents: IFolderContents;
-  },
-  project: {
-    projectData: any;
-  }
-}
-interface IUserFolders {
-  ownerId: string;
-  category: string;
-  folderName: string;
-  _id: string;
-}
-interface IFolderContents {
-  projects: IProject[]
-}
-interface IProject {
-  _id: string;
-  title: string;
-}
 
+const mapStateToProps = ({ project, user }: IReduxProps) => ({ project, user })
 
-// OPTIMIZE: Pure Component ?
-class UserFolders extends React.PureComponent<IProps, IState> {
+@(connect(mapStateToProps, null) as any)
+export default class UserFolders extends React.PureComponent<any, IState> {
   state = {
     projectType: true,
     activeFolder: ''
@@ -51,13 +30,13 @@ class UserFolders extends React.PureComponent<IProps, IState> {
   }
 
   showContents = (
-    folder: IUserFolders,
-    folderContents: IFolderContents
+    folder: IReduxProps['user']['userFolders'][any],
+    folderContents: IReduxProps['user']['folderContents']
   ) => (
       folderContents && this.state.activeFolder === folder.folderName ?
         folderContents.projects[0] ?
           <div className="contentContainer">
-            {folderContents.projects.map((project) => (
+            {folderContents.projects.map((project: actualProjectModel['projects']) => (
               <Link
                 key={project._id}
                 to={`/project/${project._id}`}
@@ -76,8 +55,8 @@ class UserFolders extends React.PureComponent<IProps, IState> {
     )
 
   showPersonal = (
-    personal: IUserFolders,
-    folderContents: IFolderContents
+    personal: IReduxProps['user']['userFolders'][any],
+    folderContents: IReduxProps['user']['folderContents']
   ) => (
       !this.state.projectType && personal.category === 'Personal' ?
         <div
@@ -106,8 +85,8 @@ class UserFolders extends React.PureComponent<IProps, IState> {
 
 
   showUserFolders = (
-    folders: IProps["user"]["userFolders"],
-    folderContents: IFolderContents
+    folders: IReduxProps['user']['userFolders'],
+    folderContents: IReduxProps['user']['folderContents']
   ) => (
       folders ?
         folders.map((folder) => (
@@ -188,6 +167,3 @@ class UserFolders extends React.PureComponent<IProps, IState> {
   }
 }
 
-const mapStateToProps = ({ user, project }: IProps) => ({ user, project })
-
-export default connect(mapStateToProps)(UserFolders);

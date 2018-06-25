@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
-
-interface IProps {
-  project: any
-}
+import { postProps } from '../../containers/userPost/projectInterface';
 
 const shortenNumber = (num: number, decimalPlaces = 0) => {
   var str,
@@ -13,7 +10,7 @@ const shortenNumber = (num: number, decimalPlaces = 0) => {
   decimalPlaces = decimalPlaces;
   num = +num;
 
-  var factor = Math.pow(10, decimalPlaces);
+  let factor = Math.pow(10, decimalPlaces);
   //99999 -> 99.9K
 
   if (num < 1000) {
@@ -35,7 +32,7 @@ const shortenNumber = (num: number, decimalPlaces = 0) => {
 }
 
 
-const ProjectHeader: React.SFC<IProps> = ({ project }: any) => {
+const ProjectHeader: React.SFC<postProps> = ({ project }) => {
   const { projectData } = project;
   return (
     <div className="cell large-12 grid-x align-center">
@@ -77,10 +74,6 @@ const ProjectHeader: React.SFC<IProps> = ({ project }: any) => {
   );
 };
 
-function mapStateToProps(state: any) {
-  return {
-    project: state.project
-  };
-}
+const mapStateToProps = ({ project }: postProps) => ({ project })
 
 export default connect(mapStateToProps)(ProjectHeader);

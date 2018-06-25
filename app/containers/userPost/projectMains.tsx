@@ -5,8 +5,7 @@ import * as Yup from 'yup'
 
 import './styles.scss';
 import TextInput from './textInput';
-import { IProps } from '../Login/LoginForm';
-import { OtherProps, IValues, postProps } from './projectInterface';
+import { OtherProps, IValues, postProps, IReduxProps } from './projectInterface';
 
 const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
     const {
@@ -22,7 +21,7 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
         const touch: any = touched[name]
         return touch && error && <h6 style={{ color: 'red', fontWeight: 'bold' }}>{error}</h6>
     }
-    const { userFolders }: IProps['user'] = props
+    const { userFolders }: IReduxProps['user'] = props
     return (
         <div className="large-6" style={{ margin: 'auto', display: 'flex', height: '100vh', alignItems: 'center' }}>
             <Form>
