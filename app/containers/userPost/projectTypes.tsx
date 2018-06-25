@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-// import { actionBtn } from './actions'
 
 interface IHandleForm {
     handleForm: (action: any, action2: number) => void
@@ -8,7 +7,8 @@ interface IHandleForm {
 
 const mapStateToProps = ({ project }: any) => ({ project })
 
-class ProjectTypes extends React.PureComponent<IHandleForm> {
+@(connect(mapStateToProps, null) as any)
+export default class ProjectTypes extends React.PureComponent<IHandleForm> {
 
     state: any = {
         activeBtn: undefined,
@@ -19,7 +19,6 @@ class ProjectTypes extends React.PureComponent<IHandleForm> {
     render() {
         const { dispatch }: any = this.props
         const { activeBtn } = this.state
-        console.log(this.state.activeBtn)
         return (
             <div className="grid-x text-center align-center">
                 <h1 id="addProjTitle">New Project</h1>
@@ -62,7 +61,3 @@ class ProjectTypes extends React.PureComponent<IHandleForm> {
         );
     }
 }
-
-export default connect(
-    mapStateToProps,
-)(ProjectTypes);

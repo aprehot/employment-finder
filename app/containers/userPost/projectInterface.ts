@@ -1,11 +1,13 @@
 import { IProps } from '../Login/LoginForm';
+import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
 
 export interface IValues {
     handleForm?: (action: any, action2: number) => void,
-    // userFolders?: any
     rolePressed?: boolean,
+    hadCD?: boolean,
     title?: string,
     studio?: string,
+    parentCategory?: string,
     startDate?: string,
     wrapDate?: string,
     location?: string
@@ -37,7 +39,6 @@ export interface OtherProps {
     user?: {
         userFolders?: any
     }
-    // userFolders?: any
 }
 export interface postProps {
     user?: IProps['user'],
@@ -45,17 +46,12 @@ export interface postProps {
     project?: IProps['project'],
     handleForm?: (action: any, action2: number) => void,
     userFolders?: IProps['user']['userFolders'],
-    // dispatch?: (action: any) => void,
-    // errors?: any
-    // registerField: (name: string, resetFn: (nextValues?: any) => void) => void;
-    // unregisterField: (name: string) => void;
 }
 export interface ITeam {
     job: string,
     name: string,
     email: string,
-    Admin: boolean,
-    Collaborator: boolean
+    priviledge: [string]
 }
 export interface IRole {
     roleType: string,
@@ -72,7 +68,8 @@ export interface IRole {
 
 
 export interface IOverviewProps {
-    postProject?: (action: any, action2: number) => void,
+    user?: any,
+    postProject?: (action: any) => void,
     projectData?: [
         {
             projectType: string
@@ -81,7 +78,8 @@ export interface IOverviewProps {
             parentCategory: string,
             parentFolder: string,
             studio: string,
-            title: string
+            title: string,
+            hasCD: boolean,
         },
         {
             budget: number,
@@ -89,7 +87,7 @@ export interface IOverviewProps {
             location: string,
             premise: string,
             startDate: string,
-            wrapDate: string
+            wrapDate: string,
         },
         {
             roles: [{
@@ -107,8 +105,7 @@ export interface IOverviewProps {
         },
         {
             teams: [{
-                Admin: boolean,
-                Collaborator: boolean,
+                priviledge: Priviledge,
                 email: string,
                 job: string,
                 name: string
@@ -116,3 +113,5 @@ export interface IOverviewProps {
         }
     ]
 }
+
+enum Priviledge { 'admin', 'collab', 'viewer', 'downloader' }

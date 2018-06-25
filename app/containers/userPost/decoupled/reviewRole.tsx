@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewRole = ({ role, arrayHelpers, index }: any) => {
     return (
-        <li className="roleCard callout large-3 cell " key={`${role.name}${index}`}> {/* TODO: pass both keys in as props and split this into new component */}
+        <li className="roleCard callout large-3 cell " key={`${role.name}${index}`}>
             <button className="close-button alert" onClick={() => arrayHelpers.remove(index)}>
                 <span aria-hidden="true" style={{ color: 'white' }}>&times;</span>
             </button>

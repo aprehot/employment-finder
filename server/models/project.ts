@@ -56,8 +56,7 @@ const projectSchema = new Schema({
     roleType: { type: String, required: true, enum: ['Lead', 'Strong', 'Supporting', 'Small', 'Cameo'] },
     name: { type: String, required: true },
     gender: { type: String, required: true },
-    minAge: { type: Number, required: true },
-    maxAge: { type: Number, required: true },
+    ages: [Number],
     specifics: [String],
     description: { type: String, required: true },
     isSAG: { type: Boolean },
@@ -69,8 +68,7 @@ const projectSchema = new Schema({
     job: { type: String, required: true, enum: ['producer', 'executive', 'director', 'writer', 'castingDirector', 'talent'] },
     name: { type: String, required: true },
     email: { type: String, required: true },
-    Admin: { type: Boolean, required: true },
-    Collaborator: { type: Boolean, required: true }
+    priviledge: { type: String, required: true, eunm: ['admin', 'collab', 'viewer', 'downloader'] }
   }],
   //   {
   //   producer: { type: [String], required: true },
@@ -100,11 +98,6 @@ const projectSchema = new Schema({
   },
   inProduction: {
     type: Boolean
-  },
-  security: {
-    type: String,
-    required: true,
-    enum: ['Open', 'first', 'second']
   }
 });
 

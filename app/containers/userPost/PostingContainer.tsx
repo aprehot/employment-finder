@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { IProps } from '../Login/LoginForm';
 import { getFolders } from '../UserFolders/actions'
-import { postProj } from './actions';
 import { ProjectDates, ProjectMains, ProjectTypes, ProjectRoles, ProjectTeams, ProjectOverview } from './projectPostExport'
 
 interface IState {
@@ -18,7 +17,6 @@ export default class PostingContainer extends React.Component<any, IState> {
     constructor(props: any) {
         super(props)
         this.handleFormPage = this.handleFormPage.bind(this);
-        this.postProject = this.postProject.bind(this);
     }
     state: IState = {
         postPage: 0,
@@ -39,11 +37,6 @@ export default class PostingContainer extends React.Component<any, IState> {
         })
     )
 
-    postProject = (e: any) => {
-        e.preventDefault()
-        this.props.dispatch(postProj(this.state.project))
-    }
-
 
     render() {
         const { postPage } = this.state
@@ -57,7 +50,7 @@ export default class PostingContainer extends React.Component<any, IState> {
                 {postPage === 2 && <ProjectDates handleForm={this.handleFormPage} />}
                 {postPage === 3 && <ProjectRoles handleForm={this.handleFormPage} />}
                 {postPage === 4 && <ProjectTeams handleForm={this.handleFormPage} />}
-                {postPage === 5 && <ProjectOverview postProject={this.postProject} projectData={this.state.project} />}
+                {postPage === 5 && <ProjectOverview projectData={this.state.project} />}
             </div>
         );
     }

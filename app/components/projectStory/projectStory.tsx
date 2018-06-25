@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import './styles.scss';
 import DownArrow from './downArrow';
 
-
 interface IState {
   projectType: boolean;
 }
@@ -27,7 +26,8 @@ interface IProjectItem {
   description?: string,
   isOpen?: boolean,
   gender?: Gender,
-  roleType?: string
+  roleType?: string,
+  ages?: [number]
 }
 
 enum Gender { 'Male', 'Female' }
@@ -81,7 +81,7 @@ class ProjectStory extends React.PureComponent<IProject, IState> {
                 <div className="roleInfo">
                   <h6>{role.roleType}</h6>
                   <h6>{role.gender}</h6>
-                  <h6>{`${role.minAge}-${role.maxAge}`}</h6>
+                  <h6>{`${role.minAge || role.ages[0]}-${role.maxAge || role.ages[1]}`}</h6>
                 </div>
               </div>
               <div className="cell large-2 downArrow">

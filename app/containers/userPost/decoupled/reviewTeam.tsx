@@ -11,7 +11,7 @@ const ReviewTeam = ({ team, arrayHelpers, index }: any) => {
             <h5>Email: {team.email}</h5>
             <div className="secondary button-group fieldset">
                 <legend className="cell">Priviledges</legend>
-                {['Admin', 'Collaborator'
+                {/* {['Admin', 'Collaborator'
                 ].map((bool: string, indx: number) => (
                     <React.Fragment key={`${bool}${indx}`}>
                         <span> {bool}?: {team[bool] ? 'yes' : 'no'} </span>
@@ -25,7 +25,7 @@ const ReviewTeam = ({ team, arrayHelpers, index }: any) => {
                         </span>
                     </React.Fragment>
                 )
-                )}
+                )} */}
             </div>
         </li>
     );

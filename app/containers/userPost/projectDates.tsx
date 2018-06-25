@@ -133,9 +133,7 @@ const FormikEnhancer = withFormik<postProps, IValues>({
             setErrors({ startDate: 'start date cannot exceed end date' })
         } else {
             props.handleForm(values, 3)
-            // resetForm()
         }
-        // console.log(values)
         // setSubmitting(false) do not use async/subscription when putting in parent state
     },
 })(ProjectDates)

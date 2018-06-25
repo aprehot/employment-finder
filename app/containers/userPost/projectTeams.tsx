@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FieldArray, Field, Formik, Form, FormikProps } from 'formik'
+import * as Yup from 'yup';
 
 import TextInput from './textInput';
 import { IValues } from './projectInterface';
@@ -7,24 +8,37 @@ import { ITeam } from './projectInterface';
 import ReviewTeam from './decoupled/reviewTeam';
 
 interface IState {
-    teamPressed: boolean
+    teamPressed: boolean,
+    privErr: boolean
 }
+
 
 export default class ProjectTeams extends React.PureComponent<IValues> {
     state: IState = {
-        teamPressed: false
+        teamPressed: false,
+        privErr: false
     }
     render() {
         return (
             <div className="grid-x align-center">
                 <h3 className="text-center cell">Who is the Team?</h3>
                 <Formik
+                    validationSchema={Yup.object().shape({
+                        teams: Yup.array()
+                            .of(
+                                Yup.object().shape({
+                                    job: Yup.string().required('A Team member must have a job'),
+                                    name: Yup.string().required('A Team member requires a name'),
+                                    email: Yup.string().required('Team member requires an email'),
+                                    priviledge: Yup.string().required('A priviledge type is required')
+                                })
+                            ),
+                    })}
                     initialValues={{ teams: [] }}
-                    onSubmit={values =>
-                        // console.log(values)
+                    onSubmit={(values) =>
                         this.props.handleForm({ teams: values.teams }, 5)
                     }
-                    render={({ values }) => (
+                    render={({ values, errors, touched }) => (
                         <div className="grid-x cell align-center" >
                             <FieldArray
                                 name="teams"
@@ -42,8 +56,7 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                                             job: '',
                                                             name: '',
                                                             email: '',
-                                                            Admin: false,
-                                                            Collaborator: false
+                                                            priviledge: ''
                                                         })
                                                     }}
                                                 >
@@ -53,69 +66,89 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                                 :
                                                 values.teams.map((team: ITeam, index: number) => {
                                                     const lastIndex = values.teams.length - 1;
-                                                    return index === lastIndex &&
-                                                        <div key={`${team}.${index}`} className="grid-x cell">
-                                                            <Field component="select" name={`teams.${index}.job`} className="cell">
-                                                                <option disabled value="">Team member's job?</option>
-                                                                {/* TODO: add YUP validation to not trigger submit on this value */}
-                                                                <option value="producer">Producer</option>
-                                                                <option value="executive">Executive</option>
-                                                                <option value="director">Director</option>
-                                                                <option value="writer">Writer</option>
-                                                                <option value="castingDirector">Casting Director</option>
-                                                                <option value="talent">Talent</option>
-                                                            </Field>
-                                                            <Field
-                                                                type="text"
-                                                                component={TextInput}
-                                                                placeholder="Name"
-                                                                name={`teams.${index}.name`}
-                                                            />
 
-                                                            <Field
-                                                                name={`teams.${index}.email`}
-                                                                type="email"
-                                                                placeholder="Enter Email Address"
-                                                                component={TextInput}
-                                                            />
-                                                            <div className="boolFlex">
-                                                                {['Admin', 'Collaborator'].map((bool: string, ind: number) =>
+
+                                                    if (index === lastIndex || values.teams.length === 1) {
+                                                        console.log(errors)
+                                                        console.log(values.teams[index])
+                                                        const validate = (name: string) => {
+                                                            const error: any = errors.teams && errors.teams[index] && errors.teams[index][name]
+                                                            const touch: any = touched.teams && touched.teams[index] && touched.teams[index][name]
+                                                            return touch && error && <h6 className="errorTxt">{error}</h6>
+                                                        }
+                                                        return (
+                                                            <div key={`${team}.${index}`} className="grid-x cell">
+                                                                <Field component="select" name={`teams.${index}.job`} className="cell">
+                                                                    <option value=''>Team member's job?</option>
+                                                                    <option value="producer">Producer</option>
+                                                                    <option value="executive">Executive</option>
+                                                                    <option value="director">Director</option>
+                                                                    <option value="writer">Writer</option>
+                                                                    <option value="castingDirector">Casting Director</option>
+                                                                    <option value="talent">Talent</option>
+                                                                </Field>
+                                                                <Field
+                                                                    type="text"
+                                                                    component={TextInput}
+                                                                    placeholder="Name"
+                                                                    name={`teams.${index}.name`}
+                                                                />
+                                                                {validate(`name`)}
+                                                                <Field
+                                                                    name={`teams.${index}.email`}
+                                                                    type="email"
+                                                                    placeholder="Enter Email Address"
+                                                                    component={TextInput}
+                                                                />
+                                                                {validate(`email`)}
+                                                                <div className="boolFlex">
+
                                                                     <Field
-                                                                        key={`${bool}${ind}`}
-                                                                        name={`teams.${index}.${bool}`}
-                                                                        render={({ field }: any) => (
-                                                                            <div className="switch" >
-                                                                                <p className="boolLabel help-text" >{bool}</p>
-                                                                                <input {...field}
-                                                                                    type="checkbox"
-                                                                                    className="switch-input"
-                                                                                    id={`teams.${index}.${bool}`}
-                                                                                    name={`teams.${index}.${bool}`}
-                                                                                />
-                                                                                <label className="switch-paddle" htmlFor={`teams.${index}.${bool}`} >
-                                                                                    <span className="show-for-sr">{bool}</span>
-                                                                                </label>
-                                                                            </div>
+                                                                        name={`teams.${index}.priviledge`}
+                                                                        render={({ field, form }: any) => (
+                                                                            <fieldset >
+                                                                                <legend>Choose The Priviledge</legend>
+                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'admin'} id="admin" required /><label htmlFor="admin">Admin</label>
+                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'collab'} id="collab" /><label htmlFor="collab">Collab</label>
+                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'viewer'} id="viewer" /><label htmlFor="viewer">Viewer</label>
+                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'downloader'} id="downloader" /><label htmlFor="downloader">Downloader</label>
+                                                                            </fieldset>
                                                                         )}
                                                                     />
-                                                                )}
-                                                            </div>
+                                                                    {this.state.privErr && errors.teams && errors.teams[index] && errors.teams[index].priviledge && <div className="errorTxt">Priviledge Type is Required</div>}
+                                                                    {/* TODO: dont need this many checks */}
 
-                                                            <div className="roleEvents grid-x cell">
-                                                                <button
-                                                                    type="submit"
-                                                                    className="button secondary cell shrink"
-                                                                    onClick={() => (this.setState({ teamPressed: false }))}
-                                                                > Add</button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="button alert roleBtns cell shrink"
-                                                                    onClick={() => {
-                                                                        this.setState({ teamPressed: false })
-                                                                        arrayHelpers.remove(index)
-                                                                    }} > cancel </button>
+                                                                </div>
+
+                                                                <div className="roleEvents grid-x cell">
+                                                                    <button
+                                                                        type="submit"
+                                                                        className="button secondary cell shrink"
+                                                                        onClick={(e) => {
+                                                                            if (errors.teams && errors.teams[index] !== null) {
+                                                                                e.preventDefault()
+                                                                                this.setState({ privErr: true })
+                                                                            } else if (values.teams[index].job === "") {
+                                                                                e.preventDefault()
+                                                                                this.setState({ privErr: true })
+                                                                            } else {
+                                                                                this.setState({ teamPressed: false })
+                                                                                this.setState({ privErr: false })
+                                                                            }
+                                                                        }}
+                                                                    > Add</button>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="button alert roleBtns cell shrink"
+                                                                        onClick={() => {
+                                                                            this.setState({ teamPressed: false })
+                                                                            arrayHelpers.remove(index)
+                                                                        }} > cancel </button>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        )
+                                                    }
+                                                    return console.log('next')
                                                 })
                                             }
                                             {values.teams.length > 0 &&
@@ -127,7 +160,7 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                             {this.state.teamPressed === false &&
                                                 values.teams.map((team: ITeam, i: number) => (
 
-                                                    <ReviewTeam team={team} index={i} arrayHelpers={arrayHelpers} />
+                                                    <ReviewTeam team={team} key={`${team.name}${i}`} index={i} arrayHelpers={arrayHelpers} />
 
                                                 ))}
                                         </ul>
@@ -135,9 +168,10 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                 )}
                             />
                         </div>
-
-                    )}
+                    )
+                    }
                 />
+
             </div>
         );
     }

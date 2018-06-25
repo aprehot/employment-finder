@@ -1,14 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { IOverviewProps } from './projectInterface';
+import { postProps } from './projectInterface';
+import { postProject } from '../../utils/post';
 
 const ProjectOverview: React.SFC<IOverviewProps> = (props) => {
-    const { projectData, postProject } = props
-    const { studio, parentFolder, parentCategory, title } = projectData[1]
+    const { projectData } = props
+    const { studio, parentFolder, parentCategory, title, hasCD } = projectData[1]
     const { budget, genres, location, premise, startDate, wrapDate } = projectData[2]
     const { roles } = projectData[3]
     const { teams } = projectData[4]
-    roles.map(role => console.log(role))
+    const project = {
+        ownerId: props.user.payload.id,
+        parentFolder: parentFolder,
+        parentCategory: parentCategory,
+        projectType: props.projectData[0].projectType,
+        title: title,
+        studio: studio,
+        startDate: startDate,
+        wrapDate: wrapDate,
+        location: location,
+        budget: budget,
+        genres: genres,
+        premise: premise,
+        hasCD: hasCD,
+        roles: roles,
+        teams: teams
+    }
+    console.log(project)
     return (
         <div>
             <h1><b>Project Title:</b> {title}</h1>
@@ -20,10 +40,6 @@ const ProjectOverview: React.SFC<IOverviewProps> = (props) => {
             <h5>Genres</h5><h6>{genres}</h6>
             <h5>location:</h5><h6>{location}</h6>
             <h5>Premise:</h5><h6>{premise}</h6>
-            {/* <div style={{ border: 'solid 1px black', margin: '15px', padding: '15px' }}>
-                <h3>Start Date:</h3><h4>{startDate}</h4>
-                <h3>Wrap Date:</h3><h4>{wrapDate}</h4>
-            </div> */}
             <p className="help-text">Start Date: <b>{startDate}</b> Wrap Date: <b>{wrapDate}</b> </p>
             <hr></hr>
             {roles.map((role, i) => (
@@ -44,20 +60,25 @@ const ProjectOverview: React.SFC<IOverviewProps> = (props) => {
             ))}
             {teams.map((member, ind) => (
                 <React.Fragment key={`${member.name}${ind}`}>
-                    <h4>Team member: {member.name}</h4>
+                    <h4><b>Team member: {member.name}</b></h4>
                     <h5>Team member's Email:</h5><h6>{member.email}</h6>
                     <h5>Team Member's Job:</h5><h6>{member.job}</h6>
                     <h5>Priviledges:</h5>
                     <p className="help-text">
-                        Admin?: <b>{member.Admin ? 'yes' : 'no'}</b><br></br>
-                        Collaborator?: <b>{member.Collaborator ? 'yes' : 'no'}</b>
+                        Member has the priviledges of a <b>{member.priviledge}</b>
                     </p>
                     <hr></hr>
                 </React.Fragment>
             ))}
-            <button type="submit" className="success button">Submit Project</button>
+            <button
+                onClick={() => postProject(project)}
+                className="success button">Submit Project</button>
         </div>
     );
 };
 
-export default ProjectOverview;
+const mapStateToProps = ({ user }: postProps) => {
+    return { user }
+}
+
+export default connect(mapStateToProps)(ProjectOverview);

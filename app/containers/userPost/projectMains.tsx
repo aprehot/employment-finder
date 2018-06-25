@@ -11,7 +11,6 @@ import { OtherProps, IValues, postProps } from './projectInterface';
 const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
     const {
         values,
-        // dispatch,
         handleSubmit,
         errors,
         project,
@@ -24,9 +23,8 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
         return touch && error && <h6 style={{ color: 'red', fontWeight: 'bold' }}>{error}</h6>
     }
     const { userFolders }: IProps['user'] = props
-    // console.log(errors)
     return (
-        <div className="large-6" style={{ margin: 'auto' }}>
+        <div className="large-6" style={{ margin: 'auto', display: 'flex', height: '100vh', alignItems: 'center' }}>
             <Form>
                 <Field
                     name="parentCategory"
@@ -34,7 +32,6 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
                     component="select"
                     label="Folder Type"
                 >
-                    <option disabled value=''>Company or Personal?</option>
                     <option value="Company"> Company </option>
                     <option value="Personal"> Personal </option>
 
@@ -47,11 +44,13 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
                     label="Folder Name"
                 >
                     <option disabled value=''>What is the Project's Folder?</option>
-                    {userFolders && userFolders.map((folder) => (
-                        <option key={folder._id} value={folder.folderName}>{folder.folderName}</option>)
-                    )}
+                    {userFolders && userFolders.map((folder) => {
+                        return folder.category === values.parentCategory &&
+                            <option key={folder._id} value={folder.folderName}>{folder.folderName}</option>
+                    })}
                 </Field>
                 {validate('parentFolder')}
+
                 <Field
                     name="title"
                     type="text"
@@ -65,6 +64,23 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
                     component={TextInput}
                     label="Enter Studio or Network"
                 />
+                <Field
+                    name='hasCD'
+                    render={({ field }: any) => (
+                        <div className="switch float-right" >
+                            <p className="boolLabel help-text">Does it have Casting Director?</p>
+                            <input {...field}
+                                type="checkbox"
+                                className="switch-input"
+                                id={`hasCD`}
+                                name={`hasCD`}
+                            />
+                            <label className="switch-paddle" htmlFor={`hasCD`} >
+                                <span className="show-for-sr">hasCD</span>
+                            </label>
+                        </div>
+                    )}
+                />
                 <button type="submit" className="button secondary">Next</button>
             </Form>
         </div>
@@ -72,18 +88,14 @@ const ProjectMains = (props: OtherProps & FormikProps<IValues>) => {
 }
 
 
-
-// const mapStateToProps = ({ project, user }: postProps) => ({ project, user });
-
 const FormikEnhancer = withFormik<postProps, IValues>({
     mapPropsToValues: ({ user, project }: postProps) => {
-        // console.log(handleForm)
-        // const { projectRoles } = project
         return {
+            parentCategory: 'Company',
             parentFolder: '',
-            parentCategory: '',
             title: '',
             studio: '',
+            hasCD: false,
         }
     },
     validationSchema: Yup.object().shape({
@@ -94,10 +106,7 @@ const FormikEnhancer = withFormik<postProps, IValues>({
     }),
     handleSubmit: (values, { props, setErrors, resetForm, setSubmitting }) => {
         props.handleForm(values, 2)
-        // resetForm();
-        // setSubmitting(false)
     },
 })(ProjectMains)
 
-// export default connect(mapStateToProps)(FormikEnhancer)
 export default (FormikEnhancer)
