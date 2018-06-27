@@ -38,7 +38,6 @@ export interface OtherProps {
     }
 }
 export interface postProps {
-
     user?: IReduxProps['user'],
     router?: IReduxProps['router'],
     project?: IReduxProps['project'],
@@ -123,7 +122,8 @@ export interface IReduxProps {
         payload?: {
             isAuth: boolean,
             id: string,
-            message?: string
+            message?: string,
+            error?: boolean
         },
         userFolders?: {
             ownerId: string
@@ -157,6 +157,7 @@ export interface IReduxProps {
 
 export interface actualProjectModel {
     map?: any,
+    length?: any,
     projects?: {
         _id: any,
 

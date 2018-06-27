@@ -2,7 +2,7 @@ import {
   PUT_USER_FOLDERS,
   GET_FOLDER_CONTENTS,
   PUT_FOLDER_CONTENTS
-} from './UserFolders/actions';
+} from './ProjectStacks/actions';
 import { PUT_AUTH } from './hoc/auth/actions';
 import { PUT_USER } from './Login/actions';
 import { PUT_USER_UPDATES } from './UserUpdates/actions';

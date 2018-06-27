@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const mongoose = require('mongoose');
+/* eslint no-underscore-dangle: 0 */
 
 // const Folder = require('../../models/user-folders');
 const Project = require('../../models/project');
@@ -64,7 +65,7 @@ router.get('/folder_projects', (req, res) => {
     parentFolder: req.query.parentFolder,
     parentCategory: req.query.parentCategory
   })
-    .select('_id ownerId title parentFolder')
+    .select('_id ownerId title parentFolder parentCategory')
     .exec()
     .then((docs) => {
       res.status(200).json({
@@ -73,6 +74,7 @@ router.get('/folder_projects', (req, res) => {
           ownerId: doc.ownerId,
           title: doc.title,
           parentFolder: doc.parentFolder,
+          parentCategory: doc.parentCategory,
           request: {
             type: 'GET',
             url: `http://localhost:3000/api/projects/folder_projects/${doc._id}`
@@ -89,7 +91,7 @@ router.get('/folder_projects', (req, res) => {
 
 // POST A FOLDER to a specific owner//
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   const project = new Project({
     _id: new mongoose.Types.ObjectId(),
     ...req.body
@@ -120,7 +122,7 @@ router.post('/', (req, res, next) => {
 
 
 // FIND SPECIFIC FOLDER
-router.get('/:projectId', (req, res, next) => {
+router.get('/:projectId', (req, res) => {
   Project.findById(req.params.projectId)
     .exec()
     .then((proj) => {

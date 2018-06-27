@@ -22,7 +22,7 @@ router.get('/user_folders', (req, res, next) => {
           _id: doc._id,
           request: {
             type: 'GET',
-            url: `http://localhost:3000/folders/${doc._id}`
+            url: `http://localhost:3000/folders/user_folders/${doc._id}`
           }
         }))
       };

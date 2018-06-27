@@ -34,16 +34,34 @@ const Auth: any = (
         this.setState({ loading: false })
     }
 
-    componentWillReceiveProps(nextProps: any) {
-      this.setState({ loading: false });
-      if (!nextProps.user.payload.isAuth) {
-        if (reload) {
+    componentDidUpdate(prevProps: any) {
+      const { user } = this.props;
+      if (prevProps !== this.props) {
+        if (reload && user.payload.error) {
+          this.setState({ loading: false })
           this.props.dispatch(push('/login'))
+        } else if (reload === false) {
+          this.setState({ loading: false })
+          this.props.dispatch(push('/'))
+        } else {
+          this.setState({ loading: false })
         }
-      } else if (reload === false) {
-        this.props.dispatch(push('/dashboard'))
+        // else if (reload === true) {
+        //   this.setState({ loading: false })
+        // }
       }
     }
+
+    // componentWillReceiveProps(nextProps: any) {
+    //   this.setState({ loading: false });
+    //   if (!nextProps.user.payload.isAuth) {
+    //     if (reload) {
+    //       this.props.dispatch(push('/login'))
+    //     }
+    //   } else if (reload === false) {
+    //     this.props.dispatch(push('/dashboard'))
+    //   }
+    // }
 
     render() {
       if (this.state.loading) {

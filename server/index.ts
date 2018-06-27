@@ -101,20 +101,6 @@ app.post('/api/login', (req: any, res: any) => {
   });
 });
 
-
-// // REQUIRES OWNER ID //
-//
-// app.get('/api/user_folders', (req, res) => {
-//   Folders.find({
-//     user: req.query.ownerId,
-//     // category: req.query.category
-//   }).exec((err, docs) => {
-//     if (err) return res.status(400).send(err);
-//     res.send(docs);
-//   });
-// });
-
-
 // VERIFIES USER AUTH ON PAGE ROUTE //
 app.get('/api/auth', auth, (req: any, res: any) => {
   res.json({
@@ -167,23 +153,6 @@ app.get('/api/logout', auth, (req: any, res: any) => {
   });
 });
 
-//
-// // RETRIEVES ALL PROJECTS //
-//
-// app.get('/api/folders', (req, res) => {
-//   // localhost:3001/api/projects?skip=3&limit=2&order=asc
-//   const { skip } = parseInt(req.query);
-//   const { limit } = parseInt(req.query);
-//   const { order } = req.query;
-//
-//   // ORDER = asc || desc
-//   Categories.find().skip(skip).sort({ _id: order }).limit(limit)
-//     .exec((err, doc) => {
-//       if (err) return res.status(400).send(err);
-//       res.send(doc);
-//     });
-// });
-//
 
 
 // TAKES ALL USERS ON DATABASE //
@@ -195,15 +164,6 @@ app.get('/api/users', (req: any, res: any) => {
   });
 });
 
-
-// REQUIRES OWNER ID //
-
-// app.get('/api/user_posts', (req, res) => {
-//   Categories.find({ ownerId: req.query.user }).exec((err, docs) => {
-//     if (err) return res.status(400).send(err);
-//     res.send(docs);
-//   });
-// });
 
 
 // POST USERUPDATE //

@@ -31,44 +31,51 @@ const shortenNumber = (num: number, decimalPlaces = 0) => {
   return str + suffix;
 }
 
+const emphasizeDates = (string: any) => (
+  string.split('/').slice(0, 2).join('/')
+)
+
 
 const ProjectHeader: React.SFC<postProps> = ({ project }) => {
   const { projectData } = project;
+  console.log(projectData)
   return (
-    <div className="cell large-12 grid-x align-center">
-      <div className="large-11 projectHeader ">
-        <h1 className="cell large-12 projTitle" style={{ color: '#433aa5' }}>{projectData.title}</h1>
-        <h2 className="cell projTitle" style={{ color: '#9691c3' }}>{projectData.projectType}</h2>
-        <h5 className="grid-x align-middle">
-          <span role="img" className="cell large-2 unic" aria-label="start and end date" >
-            &#128197;
+    projectData &&
+    <div className="cell large-5 projectViewCards grid-x grid-padding-x">
+      <h1 className="" style={{ color: '#433aa5' }}>{projectData.title}</h1>
+      <p className='projViewPremise'>{projectData.premise}</p>
+      <span className="cell large-3 projectDetails">
+        <img
+          className="unic"
+          alt="quick share"
+          src="https://s3-us-west-1.amazonaws.com/anidemo/anicloud%402x.png"
+        />
+        {projectData.security}
+      </span>
+      <span className="projectDetails cell large-3">
+        <span className="unicode">
+          &#127902;
           </span>
-          <span className="cell large-5">{`Start Date: ${projectData.startDate}`}</span>
-          <span className="cell large-5">{`Wrap Date: ${projectData.wrapDate}`}</span>
-        </h5>
-        <h5 style={{ width: '100%' }} className="grid-x align-middle">
-          <span className="cell large-2 unic" role="img" aria-label="location">
-            📌
-          </span> {`${projectData.location}, USA`}
-        </h5>
-        <div className="projectDetails">
-          <h5>
-            <span className="unic" role="img" aria-label="budget">&#128176;</span>
-            <span> {shortenNumber(projectData.budget)}</span>
-          </h5>
-          <h5>
-            <span className="unic" role="img" aria-label="Castingdirector">&#127909;</span>
-            <span> {projectData.hasCD ? 'yes' : 'no'}</span>
-          </h5>
-          <h5 className="grid-x align-middle">
-            <img
-              className="unic"
-              alt="quick share"
-              src="https://s3-us-west-1.amazonaws.com/anidemo/anicloud%402x.png"
-            />
-          </h5>
-        </div>
-      </div>
+        {projectData.projectType}
+      </span>
+      <span role="img" className="projectDetails cell large-3" aria-label="start and end date" >
+        <span className="unicode">&#128197;{`\x20`}</span>
+        {`${emphasizeDates(projectData.startDate)} to 
+        ${emphasizeDates(projectData.wrapDate)}`}</span>
+
+      <span className='projectDetails cell large-3'>
+        <span className="unicode" role="img" aria-label="budget">&#128176;</span>
+        {shortenNumber(projectData.budget)}
+      </span>
+      <span className="projectDetails ">
+        <span className="unicode" role="img" aria-label="location">
+          📌
+          </span>
+        {`${projectData.location}, USA`}
+      </span>
+      <span>
+
+      </span>
     </div>
 
   );

@@ -1,3 +1,4 @@
+$primary-color: #565284;
 .myProjectsHeader {
   display: flex;
   flex-direction: row;
@@ -45,8 +46,8 @@
   align-items: center;
 }
 .projectTitle {
-  font-size: 120%;
-  color: #8484FF;
+  width: 50%;
+  color: $primary-color;
 }
 .projectTitle:hover {
   transition: all .2s;
@@ -68,6 +69,10 @@ align-items: center;
 .folder {
   padding: 25px 0;
 
+}
+.stack {
+  cursor: pointer;
+  z-index: 200;
 }
 .folder:first-child {
   margin: 25px 0 0 0 !important;
@@ -153,30 +158,73 @@ align-items: center;
   color: purple;
 }
 
-.folderContainer {
-  // border: solid 2px lavender;
-  // border-radius: 6px;
-  padding: 5px;
+
+#prada {
+  height: 85px;
+  width: 85px;
+
 }
-// .folderContainer {
-//   position: relative;
-// }
-// .folderContainer:before, .folderContainer:after {
-//   content: "";
-//   position: absolute;
-//   bottom: -3px;
-//   left: -3px;
-//   border-radius: 100px;
-// }
-// .folderContainer:before {
-//   top: 100px;
-//   width: 3px;
-//   background-image: -webkit-linear-gradient(transparent, #5E50FF);
-//   background-image: -webkit-gradient(linear, 0 90%, 0 0, from(#5E50FF), to(transparent));
-// }
-// .folderContainer:after {
-//   right: -3px;
-//   height: 3px;
-//   background-image: -webkit-linear-gradient(left, #5E50FF, transparent);
-//   background-image: -webkit-gradient(linear, 0 0, 90% 0, from(#5E50FF), to(transparent));
-// }
+
+.stackContainer {
+  padding: 100px 100px;
+}
+.stackHeader {
+  font-weight: bold;
+  color: #565284;
+}
+.seeMore {
+  align-self: center;
+  opacity: 0.8;
+  box-shadow: 0px 3px 5px lightgray;
+}
+.projectStacks {
+  min-height: 250px;
+  overflow-y: overlay;
+  position: relative;
+}
+.stackProjects {
+  background: url('../../images/pageicon.png') no-repeat;
+  min-height: 180px;
+  min-width: 180px;
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.stack {
+  background: url('../../images/stackicon.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 5px;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frontStack {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  background: white;
+}
+.frontStack > h6 {
+  text-align: center;
+}
+.backStack {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  z-index: -1;
+  position: absolute;
+  transform: rotate(3deg);
+  background: lavender;
+  box-shadow: 0px 3px 5px lightgray;
+}
+#userAvatar {
+  max-width: 100%;
+}
+.headLink { 
+  cursor: pointer;
+}

@@ -1,28 +1,20 @@
-.projectHeader {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: left;
-  background: #FFFFFF;
-  padding: .5em 1.8em;
-  margin: 0;
-  border-radius: 25px;
-  text-align: left;
-  transform: scale(0.8);
-  color: black;
-}
 .unic {
-  font-size: 27px;
-  height: 1.47em;
+height: 35px;
+width: auto;
+}
+.projectViewCards{
+  box-shadow: 0px 1px 6px 1.2px lightgray;
+  border-radius: 15px;
+  padding: 1.5em;
 }
 .projectDetails {
+  color:gray;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
   align-items: center;
 }
-.projTitle {
-  padding: 0 !important;
-  margin: 0;
+.unicode {
+  font-size: 28px;
+}
+.projViewPremise {
+  color: #555
 }

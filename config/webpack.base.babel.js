@@ -68,6 +68,8 @@ module.exports = (options) => ({
           {
             loader: 'image-webpack-loader',
             options: {
+              // name: '[name].[ext]',
+              // outputPath: 'app/images/',
               query: {
                 gifsicle: {
                   interlaced: true
@@ -90,10 +92,6 @@ module.exports = (options) => ({
       {
         test: /\.html$/,
         use: 'html-loader'
-      },
-      {
-        test: /\.json$/,
-        use: 'json-loader'
       },
       {
         test: /\.(mp4|webm)$/,

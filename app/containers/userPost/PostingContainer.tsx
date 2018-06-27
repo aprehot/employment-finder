@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { getFolders } from '../UserFolders/actions'
+import { getFolders } from '../ProjectStacks/actions'
 import { ProjectDates, ProjectMains, ProjectTypes, ProjectRoles, ProjectTeams, ProjectOverview } from './projectPostExport'
 import { IReduxProps } from './projectInterface';
 
