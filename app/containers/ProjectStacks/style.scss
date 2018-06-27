@@ -1,50 +1,25 @@
 $primary-color: #565284;
-.myProjectsHeader {
-  display: flex;
-  flex-direction: row;
-  margin: 0 0 10px 0;
-  padding: 0 10px 10px 10px;
+
+
+
+.projectViewNav {
+  display: grid;
+  grid-template-columns: auto auto auto 9fr;
+  grid-gap: 25px;
+  padding: 3em;
 }
-.myProjectsHeader > h2 {
-  color: #8484FF;
-  display: flex;
-  align-items: center;
-}
-.myProjectsHeader > img {
-  max-height: 60px;
-  margin: 0 0 10px 10px;
-}
-.projectTypes > div{
+.projectViewBtn {
+  min-height: 25px;
+  min-width: 50px;
+  box-shadow: 0px 3px 5px lightgray;
+  border-radius: 50%;
+  padding: 15px;
   outline: none;
 }
-.projectType {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: 65px;
-  min-height: 55px;
-  z-index: 100 !important;
-  transition: all .25s;
-  cursor: pointer;
-  color: white;
+.projectFilterBtn {
+  background: url('../../images/filtericon.png') center center no-repeat;
 }
-.projectFolder {
-  max-height: 40px;
-  max-width: 40px;
-}
-.projectFolderTitle {
-  height: 100%;
-  color: #8484FF;
-  height: fit-content;
-  margin: 0;
-}
-.projectFolderTitle:hover {
-  opacity: 0.75;
-  transition: all .2s;
-}
-.projectCategories {
-  align-items: center;
-}
+
 .projectTitle {
   width: 50%;
   color: $primary-color;
@@ -52,121 +27,8 @@ $primary-color: #565284;
 .projectTitle:hover {
   transition: all .2s;
 }
-.dropDown {
-margin: 18px 0 0 15px;
-animation-name: stretch;
-animation-duration: .7s;
-align-items: center;
-}
-.folderContainer {
-  border: linear-gradient(115deg, #5E50FF, lavender 180%) 1px;
-}
-.folderImg {
-  max-height: 35px;
-  max-width: 35px;
-  cursor: pointer;
-}
-.folder {
-  padding: 25px 0;
-
-}
-.stack {
-  cursor: pointer;
-  z-index: 200;
-}
-.folder:first-child {
-  margin: 25px 0 0 0 !important;
-}
-
-.folderDir > div {
-  align-self: flex-start;
-}
-
-.folderDir {
-  align-content: flex-start;
-  height: 100%;
-  overflow: overlay;
-}
-.folderNames {
-  display: flex;
-  margin: auto auto auto 1em;
-  font-size: 1.4em;
-}
-.folderNames span {
-  color: black;
-}
-.folderNames span:hover {
-  cursor: pointer;
-  transition: all .4s;
-  color: black;
-  color: #5E50FF;
-}
-
-.projectPage {
-  height: 92vh;
-}
-.folder {
-  outline: lavender;
-}
-.folderDir::-webkit-scrollbar-thumb {
-    background: linear-gradient(115deg, #5E50FF, lavender 180%);
-    border-radius: 105px;
-}
-
-.folderDir::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(115deg, #5E50FF, lavender 180%);
-}
-
-.folderDir::-webkit-scrollbar {
-    width: .7rem;
-    height: 1rem;
-}
-
-.folderDir::-webkit-scrollbar-corner {
-    background-color: transparent;
-}
-
-.folderDir::-webkit-scrollbar-thumb:window-inactive {
-    background: linear-gradient(115deg, #5E50FF, lavender 180%);
-}
-
-*::selection {
-  background: lavender
-}
-
-@-moz-document url-prefix() {
-  .folderDir {
-    overflow-y:auto !important;
-  }
-  .folderContainer {
-    overflow: none !important;
-  }
-}
-.contentContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 20px 0 0 20px;
-}
-.folderProjects {
-  // color: rgb(132, 132, 255);
-  color: #4f4f4f;
-  cursor: pointer;
-}
-
-.folderProjects:hover {
-  color: purple;
-}
-
-
-#prada {
-  height: 85px;
-  width: 85px;
-
-}
-
 .stackContainer {
-  padding: 100px 100px;
+  padding: 0 100px;
 }
 .stackHeader {
   font-weight: bold;
@@ -179,8 +41,9 @@ align-items: center;
 }
 .projectStacks {
   min-height: 250px;
-  overflow-y: overlay;
+  overflow-y: none;
   position: relative;
+  user-select: none !important;
 }
 .stackProjects {
   background: url('../../images/pageicon.png') no-repeat;

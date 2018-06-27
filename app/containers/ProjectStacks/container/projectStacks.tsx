@@ -29,6 +29,10 @@ export default class ProjectStacks extends React.Component<IReduxProps, any> {
   render() {
     return (
       <article className="ANiStacks ">
+        <div className="cell projectViewNav">
+          <button className="projectViewBtn shrink projectFilterBtn button tertiary" ></button>
+          <input type='text' className='projectViewSearch' placeholder="Search" />
+        </div>
         <ProjectStack {...this.props} />
       </article>
 

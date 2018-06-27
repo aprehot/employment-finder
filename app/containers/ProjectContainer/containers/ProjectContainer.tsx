@@ -27,8 +27,6 @@ export default class ProjectPage extends Component<IReduxProps> {
     }
   }
 
-
-
   render() {
     const { projectData } = this.props.project
     return (

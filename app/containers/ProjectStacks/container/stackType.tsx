@@ -5,13 +5,13 @@ import { getContents } from '../actions';
 import { IReduxProps, actualProjectModel } from '../../userPost/projectInterface';
 import { getProjectId } from '../../ProjectContainer/actions';
 import { Link } from 'react-router-dom';
-import WithDrag, { Gucci } from './dragBox';
+import DraggableStack from '../component/draggableStack';
 
 
 const mapStateToProps = ({ user }: IReduxProps) => ({ user })
 
 @(connect(mapStateToProps, null) as any)
-export default class StackType extends React.PureComponent<any> {
+export default class StackType extends React.Component<any> {
     state: any = {
         limit: 5,
         showMore: true,
@@ -65,29 +65,25 @@ export default class StackType extends React.PureComponent<any> {
                             </Link>
                         ))}
                     </div>
-
                 }
             </React.Fragment>
         )
     }
 
+
+    fetchFolderContents = (id: any, category: any) => {
+        console.log(id, category)
+        this.props.dispatch(getContents(id, category))
+    }
+
+
+    handleActiveState = (id: any) => (
+        this.setState({ activeStack: id })
+    )
+
+
+
     render() {
-
-
-        const { hasCapture, circleLeft, circleTop, tranStyle } = this.state;
-
-        let circleStyle = {
-            // width: CIRCLE_SIZE,
-            // height: CIRCLE_SIZE,
-            // borderRadius: CIRCLE_SIZE / 2,
-            position: "absolute",
-            left: circleLeft,
-            cursor: "grab",
-            top: circleTop,
-            transition: tranStyle,
-            backgroundColor: hasCapture ? "blue" : "green"
-        };
-
 
         const { stackTypes, category }: any = this.props;
         const { folderContents }: any = this.props.user;
@@ -97,22 +93,14 @@ export default class StackType extends React.PureComponent<any> {
                     .filter((stackType: any) => stackType.category === category)
                     .slice(0, this.state.limit)
                     .map((stack: any, i: number) => (
-                        <div
+                        <DraggableStack
+                            stack={stack}
                             key={stack._id}
-                            className="stack cell large-2"
-                            id={stack.folderName}
-                            onClick={(event) => {
-                                const { id }: any = event.target
-                                this.props.dispatch(getContents(id, category));
-                                this.setState({ activeStack: id })
-                            }}
-                        >
-                            <h6 style={{
-                                pointerEvents: 'none'
-                            }}>
-                                {stack.folderName}
-                            </h6>
-                        </div>
+                            ref='stack'
+                            category={category}
+                            handleActiveState={this.handleActiveState}
+                            fetchFolderContents={this.fetchFolderContents}
+                        />
                     ))}
 
                 {this.renderButton()}

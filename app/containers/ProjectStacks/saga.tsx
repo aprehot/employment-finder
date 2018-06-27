@@ -10,7 +10,6 @@ function* fetchFolderContents() {
   try {
     const userId = yield select(userIdSelector);
     const contentRequest = yield select(folderContentsSelector);
-    console.log(contentRequest)
     const contentsUri = fetch(`/api/projects/folder_projects?ownerId=${userId}&parentFolder=${contentRequest[0]}&parentCategory=${contentRequest[1]}`);
     const contentRes = yield call(fetchData, contentsUri);
     yield put(putContents(contentRes));
