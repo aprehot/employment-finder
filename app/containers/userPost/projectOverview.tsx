@@ -28,7 +28,6 @@ const ProjectOverview: React.SFC<IOverviewProps> = (props) => {
         roles: roles,
         teams: teams
     }
-    console.log(project)
     return (
         <div>
             <h1><b>Project Title:</b> {title}</h1>

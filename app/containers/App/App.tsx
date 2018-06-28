@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from '../../components/Home';
@@ -10,19 +9,13 @@ import ProjectPage from '../../containers/ProjectContainer/Loadable';
 import ProjectStacks from '../ProjectStacks/Loadable';
 import PostingContainer from '../../containers/userPost/PostingContainer';
 import WithDrag from '../ProjectStacks/container/dragBox'
-import {Gucci} from '../ProjectStacks/container/dragBox'
+import { Gucci } from '../ProjectStacks/container/dragBox'
 
 import './style.scss';
 import Auth from '../hoc/auth/auth';
 
 const App: React.SFC = () => (
   <div className="app-wrapper">
-    <Helmet
-      titleTemplate="Discover ANi"
-      defaultTitle="Discover ANi"
-    >
-      <meta name="Discover ANi" content="The Efficiency Network For Entertainment" />
-    </Helmet>
     <Header />
     <main id="ANiMain">
       <Switch>

@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-
-import { getProject } from '../actions';
-import AniColumn from '../../hoc/aniColumn';
-import AniGrid from '../../hoc/aniGrid';
-import QuickShare from '../../../components/quickShare/quickShare';
 import ProjectHeader from '../../../components/projectHeader/projectHeader';
-import ProjectTeam from '../../../components/projectTeam/projectTeam';
 import { IReduxProps } from '../../userPost/projectInterface';
 import UserUpdates from '../../UserUpdates';
 import Roles from '../../../components/projectRoles/projectRoles';
@@ -31,19 +25,22 @@ export default class ProjectPage extends Component<IReduxProps> {
     const { projectData } = this.props.project
     return (
       projectData ?
-        <div className="grid-x projectPageContainer">
-          <div className="cell projectViewNav">
-            <button
-              onClick={() => this.props.dispatch(push('/dashboard'))}
-              className="projectViewBtn shrink projectBackBtn button tertiary" ></button>
-            <button className="projectViewBtn shrink projectFilterBtn button tertiary" ></button>
-            <input type='text' className='projectViewSearch' placeholder="Search" />
+        <div className="grid-y projectPageContainer grid-frame">
+          <div className='cell grid-x' style={{}}>
+            <div className="cell projectViewNav">
+              <button
+                onClick={() => this.props.dispatch(push('/dashboard'))}
+                className="projectViewBtn shrink projectBackBtn button tertiary" ></button>
+              <button className="projectViewBtn shrink projectFilterBtn button tertiary" ></button>
+              <input type='text' className='projectViewSearch' placeholder="Search" />
+            </div>
+            <div className='projViewCardHolder'>
+              <ProjectHeader />
+              <UserUpdates />
+              <Roles />
+            </div>
           </div>
-
-          <ProjectHeader />
-          <UserUpdates />
-          <Roles />
-        </div>
+        </div >
         :
         null
     );

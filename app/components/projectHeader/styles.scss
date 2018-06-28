@@ -6,6 +6,9 @@ width: auto;
   box-shadow: 0px 1px 6px 1.2px lightgray;
   border-radius: 15px;
   padding: 1.5em;
+  background: white;
+  margin-bottom: 25px;
+  transform: scale(.9)
 }
 .projectDetails {
   color:gray;
@@ -17,4 +20,11 @@ width: auto;
 }
 .projViewPremise {
   color: #555
+}
+.projectCardTitle {
+  color: #565284;
+  font-weight: 700;
+}
+.projRoleContainer {
+  box-shadow: 0px 1px 6px 1.2px lightgrey
 }

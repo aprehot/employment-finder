@@ -40,7 +40,6 @@ export default class PostingContainer extends React.Component<any, IState> {
     render() {
         const { postPage } = this.state
         const { userFolders }: any = this.props.user
-        console.log(this.state.project)
         return (
             <div className="grid-container">
 

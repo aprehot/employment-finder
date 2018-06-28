@@ -38,11 +38,10 @@ const emphasizeDates = (string: any) => (
 
 const ProjectHeader: React.SFC<postProps> = ({ project }) => {
   const { projectData } = project;
-  console.log(projectData)
   return (
     projectData &&
-    <div className="cell large-5 projectViewCards grid-x grid-padding-x">
-      <h1 className="" style={{ color: '#433aa5' }}>{projectData.title}</h1>
+    <div className="cell large-5 medium-12 projectViewCards grid-x grid-padding-x">
+      <h1 className="projectCardTitle" >{projectData.title}</h1>
       <p className='projViewPremise'>{projectData.premise}</p>
       <span className="cell large-3 projectDetails">
         <img
@@ -72,9 +71,6 @@ const ProjectHeader: React.SFC<postProps> = ({ project }) => {
           📌
           </span>
         {`${projectData.location}, USA`}
-      </span>
-      <span>
-
       </span>
     </div>
 

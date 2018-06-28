@@ -10,6 +10,7 @@ class DraggableStack extends React.PureComponent<any> {
         originalX: 0,
         originalY: 0,
         tranStyle: "",
+        stackInFront: 20
     };
 
     // componentDidMount() {
@@ -59,7 +60,8 @@ class DraggableStack extends React.PureComponent<any> {
         this.setState({
             stackLeft: this.state.originalX,
             stackTop: this.state.originalY,
-            tranStyle: "all 1s"
+            tranStyle: "all 1s",
+            stackInFront: 20
         });
     };
     onGotCapture = (event: any) => {
@@ -67,7 +69,7 @@ class DraggableStack extends React.PureComponent<any> {
         const { id } = event.target;
         handleActiveState(id)
         fetchFolderContents(id, category)
-        this.setState({ hasCapture: true });
+        this.setState({ hasCapture: true, stackInFront: 500 });
     }
 
     onLostCapture = () => this.setState({ hasCapture: false });
@@ -86,7 +88,7 @@ class DraggableStack extends React.PureComponent<any> {
 
 
     render() {
-        const { hasCapture, stackLeft, stackTop, tranStyle } = this.state;
+        const { hasCapture, stackLeft, stackTop, tranStyle, stackInFront } = this.state;
 
         const { stack } = this.props
         return (
@@ -97,8 +99,8 @@ class DraggableStack extends React.PureComponent<any> {
                     top: stackTop,
                     transition: tranStyle,
                     cursor: 'pointer',
+                    zIndex: stackInFront
                 }}
-                onClick={() => console.log('click')}
                 touch-action="none"
                 id={stack.folderName}
                 onPointerUp={this.onUp}

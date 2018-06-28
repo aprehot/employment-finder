@@ -6,7 +6,8 @@ $primary-color: #565284;
   display: grid;
   grid-template-columns: auto auto auto 9fr;
   grid-gap: 25px;
-  padding: 3em;
+  // align-content: center
+  // padding: 3em;
 }
 .projectViewBtn {
   min-height: 25px;
@@ -33,6 +34,7 @@ $primary-color: #565284;
 .stackHeader {
   font-weight: bold;
   color: #565284;
+  user-select: none;
 }
 .seeMore {
   align-self: center;
@@ -41,7 +43,6 @@ $primary-color: #565284;
 }
 .projectStacks {
   min-height: 250px;
-  overflow-y: none;
   position: relative;
   user-select: none !important;
 }
