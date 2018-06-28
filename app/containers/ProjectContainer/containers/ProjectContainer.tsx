@@ -8,10 +8,10 @@ import AniColumn from '../../hoc/aniColumn';
 import AniGrid from '../../hoc/aniGrid';
 import QuickShare from '../../../components/quickShare/quickShare';
 import ProjectHeader from '../../../components/projectHeader/projectHeader';
-import ProjectStory from '../../../components/projectStory/projectStory';
 import ProjectTeam from '../../../components/projectTeam/projectTeam';
 import { IReduxProps } from '../../userPost/projectInterface';
 import UserUpdates from '../../UserUpdates';
+import Roles from '../../../components/projectRoles/projectRoles';
 import '../styles.scss'
 
 const mapStateToProps = ({ project, router }: IReduxProps) => ({ project, router })
@@ -39,8 +39,10 @@ export default class ProjectPage extends Component<IReduxProps> {
             <button className="projectViewBtn shrink projectFilterBtn button tertiary" ></button>
             <input type='text' className='projectViewSearch' placeholder="Search" />
           </div>
+
           <ProjectHeader />
           <UserUpdates />
+          <Roles />
         </div>
         :
         null

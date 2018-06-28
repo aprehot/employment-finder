@@ -9,7 +9,7 @@ interface IProps {
 
 const AniGrid: React.SFC<IProps> = ({ Left, Middle, Right }) => (
   <article className="grid-x myVault">
-    <div className="cell grid-x large-4 ">
+    <div className="cell grid-x large-4 align-middle">
       <div className="cell large-9 vaultColumn">
         {Left ? <Left /> : null}
       </div>

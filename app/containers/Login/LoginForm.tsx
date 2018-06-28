@@ -59,7 +59,9 @@ export default class LoginForm extends React.PureComponent<IReduxProps, IState> 
   render() {
     const { user } = this.props;
     return (
-      <div className="grid-container grid-padding-y grid-y grid-frame" >
+      <div
+        style={{ boxShadow: '0px 3px 5px lightgray' }}
+        className="grid-container align-center grid-padding-y grid-y grid-frame" >
         <div className="large-4 grid-x cell align-center">
           <form className="grid-x large-10 log-in-form" onSubmit={this.submitForm} >
             <h2 className="text-center">Log in</h2>
@@ -78,12 +80,12 @@ export default class LoginForm extends React.PureComponent<IReduxProps, IState> 
             <p className="large-12 cell">
               <input
                 type="submit"
-                className="button shrink primary"
+                className="button shrink secondary"
                 value="Log in"
               />
             </p>
             <div className="text-center">
-              <a href="#">Forgot your password?</a>
+              <a style={{ color: '#565284' }} href="#">Forgot your password?</a>
               <div className="error">
                 {
                   user.payload ?
@@ -94,7 +96,7 @@ export default class LoginForm extends React.PureComponent<IReduxProps, IState> 
             </div>
           </form>
         </div>
-      </div>
+      </div >
     );
   }
 }

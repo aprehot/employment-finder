@@ -55,10 +55,6 @@ class DraggableStack extends React.PureComponent<any> {
     };
 
     onUp = (event: any) => {
-        const { handleActiveState, fetchFolderContents, category } = this.props;
-        const { id } = event.target;
-        handleActiveState(id)
-        fetchFolderContents(id, category)
         this.isDragging = false;
         this.setState({
             stackLeft: this.state.originalX,
@@ -66,7 +62,14 @@ class DraggableStack extends React.PureComponent<any> {
             tranStyle: "all 1s"
         });
     };
-    onGotCapture = () => this.setState({ hasCapture: true });
+    onGotCapture = (event: any) => {
+        const { handleActiveState, fetchFolderContents, category } = this.props;
+        const { id } = event.target;
+        handleActiveState(id)
+        fetchFolderContents(id, category)
+        this.setState({ hasCapture: true });
+    }
+
     onLostCapture = () => this.setState({ hasCapture: false });
 
     extractPositionDelta = (event: any) => {
