@@ -6,19 +6,28 @@ import TextInput from './textInput';
 import { IValues } from './projectInterface';
 import { ITeam } from './projectInterface';
 import ReviewTeam from './decoupled/reviewTeam';
+import RadioPriviledge from './decoupled/radioPriviledge';
 
 interface IState {
     teamPressed: boolean,
-    privErr: boolean
+    privErr: boolean,
+    currentChecked: string
 }
 
 
 export default class ProjectTeams extends React.PureComponent<IValues> {
     state: IState = {
         teamPressed: false,
-        privErr: false
+        privErr: false,
+        currentChecked: ''
     }
+
+    setChecked = (target: string) => {
+        this.setState({ currentChecked: target })
+    }
+
     render() {
+        const { currentChecked } = this.state
         return (
             <div className="grid-x align-center">
                 <h3 className="text-center cell">Who is the Team?</h3>
@@ -69,8 +78,6 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
 
 
                                                     if (index === lastIndex || values.teams.length === 1) {
-                                                        console.log(errors)
-                                                        console.log(values.teams[index])
                                                         const validate = (name: string) => {
                                                             const error: any = errors.teams && errors.teams[index] && errors.teams[index][name]
                                                             const touch: any = touched.teams && touched.teams[index] && touched.teams[index][name]
@@ -108,16 +115,25 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                                                         render={({ field, form }: any) => (
                                                                             <fieldset >
                                                                                 <legend>Choose The Priviledge</legend>
-                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'admin'} id="admin" required /><label htmlFor="admin">Admin</label>
-                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'collab'} id="collab" /><label htmlFor="collab">Collab</label>
-                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'viewer'} id="viewer" /><label htmlFor="viewer">Viewer</label>
-                                                                                <input type="radio" onChange={e => form.setFieldValue(`teams.${index}.priviledge`, e.target.value)} value={'downloader'} id="downloader" /><label htmlFor="downloader">Downloader</label>
-                                                                            </fieldset>
-                                                                        )}
-                                                                    />
-                                                                    {this.state.privErr && errors.teams && errors.teams[index] && errors.teams[index].priviledge && <div className="errorTxt">Priviledge Type is Required</div>}
-                                                                    {/* TODO: dont need this many checks */}
+                                                                                {['admin', 'collab', 'viewer', 'downloader'].map((radioType) =>
+                                                                                    <RadioPriviledge
+                                                                                        currentChecked={currentChecked}
+                                                                                        ind={index}
+                                                                                        form={form}
+                                                                                        setChecked={this.setChecked}
+                                                                                        radioType={radioType}
+                                                                                    />
+                                                                                )}
 
+                                                                            </fieldset>
+                                                                        )
+                                                                        }
+                                                                    />
+                                                                    {
+                                                                        this.state.privErr && errors.teams &&
+                                                                        errors.teams[index] && errors.teams[index].priviledge &&
+                                                                        <div className="errorTxt">Priviledge Type is Required</div>
+                                                                    }
                                                                 </div>
 
                                                                 <div className="roleEvents grid-x cell">
@@ -159,13 +175,12 @@ export default class ProjectTeams extends React.PureComponent<IValues> {
                                         <ul className="grid-x">
                                             {this.state.teamPressed === false &&
                                                 values.teams.map((team: ITeam, i: number) => (
-
                                                     <ReviewTeam team={team} key={`${team.name}${i}`} index={i} arrayHelpers={arrayHelpers} />
-
                                                 ))}
                                         </ul>
                                     </React.Fragment>
-                                )}
+                                )
+                                }
                             />
                         </div>
                     )

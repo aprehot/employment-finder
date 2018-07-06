@@ -11,21 +11,6 @@ const ReviewTeam = ({ team, arrayHelpers, index }: any) => {
             <h5>Email: {team.email}</h5>
             <div className="secondary button-group fieldset">
                 <legend className="cell">Priviledges</legend>
-                {/* {['Admin', 'Collaborator'
-                ].map((bool: string, indx: number) => (
-                    <React.Fragment key={`${bool}${indx}`}>
-                        <span> {bool}?: {team[bool] ? 'yes' : 'no'} </span>
-                        <span
-                            key={`${bool}${indx}`}
-                            className={`${team[bool] ? 'successBox' : 'alertBox'} button`}
-                        >
-                            <p className="boolLabel help-text" >
-                                {bool === 'Admin' ? 'Access to the private page' : 'Access to edit shared page'}
-                            </p>
-                        </span>
-                    </React.Fragment>
-                )
-                )} */}
             </div>
         </li>
     );

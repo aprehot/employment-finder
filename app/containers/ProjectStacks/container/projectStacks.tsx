@@ -20,10 +20,9 @@ const mapStateToProps = ({ project, user }: IReduxProps) => ({ project, user })
 export default class ProjectStacks extends React.Component<IReduxProps, any> {
 
   async componentDidMount() {
-    if (!this.props.user.userFolders) {
+    if (this.props.user.userFolders !== []) {
       const req = await this.props.dispatch(getFolders())
     }
-
   }
 
   render() {

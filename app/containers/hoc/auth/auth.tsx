@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 import { authenticateUser } from './actions';
 import LoadingIndicator from '../../../components/LoadingIndicator';
 import { IReduxProps } from '../../userPost/projectInterface';
+import { getFolders } from '../../ProjectStacks/actions';
 
 
 enum Priviledges { 'Representative', 'Casting Director', 'Producer', 'Executive', 'Actor', 'Writer', 'Director' }
@@ -40,9 +41,12 @@ const Auth: any = (
         if (reload && user.payload.error) {
           this.setState({ loading: false })
           this.props.dispatch(push('/login'))
-        } else if (reload === false) {
+        } else if (!reload && !user.payload.error) {
           this.setState({ loading: false })
           this.props.dispatch(push('/'))
+          // if (this.props.user.userFolders !== []) {
+          //   this.props.dispatch(getFolders())
+          // }
         } else {
           this.setState({ loading: false })
         }

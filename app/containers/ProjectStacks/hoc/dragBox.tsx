@@ -1,17 +1,6 @@
 import React from "react";
 import '../style.scss';
 
-// const stack_SIZE = 85;
-
-export class Gucci extends React.Component {
-  render() {
-    return (
-      <div id="prada" {...this.props}>
-        Hello World
-            </div>
-    )
-  }
-}
 
 const WithDrag: any = (Component: any) => {
   class DragBox extends React.Component<any> {

@@ -22,7 +22,7 @@ const SideNav: React.SFC = () => {
         <Link to='/' className="headLink homeico" />
         <Link to='/dashboard' className="headLink vaultico" />
         <Link to='/' className="headLink gearico" />
-        <Link to='/' className="headLink searchico" />
+        <Link to='/add' className="headLink searchico" />
       </nav>
     </header>
   );
