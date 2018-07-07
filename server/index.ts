@@ -38,7 +38,7 @@ const upload = multer({
 });
 
 mongoose.connect(config.DATABASE);
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -77,7 +77,6 @@ app.use((req: any, res: any, next: any) => {
 // LOGIN //
 
 app.post('/api/login', (req: any, res: any) => {
-  console.log(req.body.email);
   User.findOne({ email: req.body.email }, (err: any, user: any) => {
     if (!user) return res.json({ isAuth: false, message: 'Auth failed, email not found' });
 
@@ -168,7 +167,6 @@ app.get('/api/users', (req: any, res: any) => {
 
 // POST USERUPDATE //
 app.post('/api/user_updates', upload.single('image'), (req: any, res: any) => {
-  console.log(req.file);
   const updates = new Updates({
     _id: new mongoose.Types.ObjectId(),
     text: req.body.text,
@@ -178,7 +176,6 @@ app.post('/api/user_updates', upload.single('image'), (req: any, res: any) => {
   updates
     .save()
     .then((result: any) => {
-      console.log(result);
       res.status(201).json({
         message: 'Created feed update successfully',
         createdProduct: {

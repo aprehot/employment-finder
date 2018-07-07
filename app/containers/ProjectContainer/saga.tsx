@@ -16,10 +16,6 @@ function* fetchProject() {
   }
 }
 
-// function* initiateFetch() {
-//   yield takeLatest(GET_PROJECT, fetchProject);
-// }
-
 export default function* userProjectsSaga() {
   yield takeLatest(GET_PROJECT_ID, fetchProject);
 }

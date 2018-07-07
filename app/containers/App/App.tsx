@@ -8,7 +8,6 @@ import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import ProjectPage from '../../containers/ProjectContainer/Loadable';
 import ProjectStacks from '../ProjectStacks/Loadable';
 import PostingContainer from '../../containers/userPost/PostingContainer';
-import WithDrag from '../ProjectStacks/hoc/dragBox'
 
 import './style.scss';
 import Auth from '../hoc/auth/auth';

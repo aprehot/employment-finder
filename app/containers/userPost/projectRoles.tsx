@@ -42,10 +42,7 @@ export default class ProjectRoles extends React.PureComponent<IValues> {
                 <Formik
                     validationSchema={schema}
                     initialValues={{ roles: [] }}
-                    onSubmit={(values) => {
-                        console.log(values)
-                        this.props.handleForm({ roles: values.roles }, 4)
-                    }
+                    onSubmit={(values) => this.props.handleForm({ roles: values.roles }, 4)
                     }
                     render={({ values, errors, touched }) => {
                         return (
@@ -191,7 +188,7 @@ export default class ProjectRoles extends React.PureComponent<IValues> {
                                                                 </div>
                                                             )
                                                         }
-                                                        return console.log('wow')
+                                                        return console.log('')
                                                     })
                                                 }
                                                 {values.roles.length > 0 &&

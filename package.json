@@ -11,7 +11,6 @@
     "node": ">=5"
   },
   "author": "Aidan Prehatny, Dilan Swain",
-  "license": "MIT",
   "scripts": {
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
@@ -54,6 +53,7 @@
     "concurrently": "^3.6.0",
     "cookie-parser": "^1.4.3",
     "cross-env": "5.1.4",
+    "delay": "^3.0.0",
     "diff-so-fancy": "^1.2.0",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
@@ -81,6 +81,7 @@
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
+    "react-spring": "^5.4.0",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.4",
     "redux-immutable": "4.0.0",

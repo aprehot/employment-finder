@@ -1,16 +1,12 @@
 import {
     put,
     call,
-    // select, 
     takeLatest
 } from 'redux-saga/effects';
 
-// import fetchData from '../../utils/fetch';
 import {
     USER_LOGIN,
-    // USER_AUTH,
     putUser,
-    // putAuth 
 } from './actions';
 import { postLogin } from '../../utils/post';
 
@@ -36,7 +32,6 @@ function* fetchCreds(action: any) {
         const contentRes = yield call(postLogin, action.payload);
         yield put(putUser(contentRes));
     } catch (e) {
-        // history.push('/')
         console.log(e);
     }
 }

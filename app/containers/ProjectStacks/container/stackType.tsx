@@ -5,9 +5,10 @@ import { getContents } from '../actions';
 import { IReduxProps, actualProjectModel } from '../../userPost/projectInterface';
 import { getProjectId } from '../../ProjectContainer/actions';
 import { Link } from 'react-router-dom';
-import DraggableStack from '../component/draggableStack';
+import DraggableStack from './draggableStack';
 
-
+// this component contains the logic for which stack is currently displaying its projects
+// this component contains the smart component called draggable stack which controls the draggability logic for a stack 
 const mapStateToProps = ({ user }: IReduxProps) => ({ user })
 
 @(connect(mapStateToProps, null) as any)
@@ -48,7 +49,7 @@ export default class StackType extends React.Component<any> {
         return (
             <React.Fragment>
                 {folderContents &&
-                    folderContents.projects.length > 0 && //switch this line and one below 
+                    folderContents.projects.length > 0 &&
                     this.state.activeStack === folderClicked &&
                     folderContents.projects[0].parentCategory === category &&
                     <div className="grid-x cell">
@@ -70,21 +71,13 @@ export default class StackType extends React.Component<any> {
         )
     }
 
-
-    fetchFolderContents = (id: any, category: any) => {
-        console.log(id, category)
+    fetchFolderContents = (id: any, category: any) =>
         this.props.dispatch(getContents(id, category))
-    }
 
-
-    handleActiveState = (id: any) => (
+    handleActiveState = (id: any) =>
         this.setState({ activeStack: id })
-    )
-
-
 
     render() {
-
         const { stackTypes, category }: any = this.props;
         const { folderContents }: any = this.props.user;
         return (
