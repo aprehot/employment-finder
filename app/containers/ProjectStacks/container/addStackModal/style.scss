@@ -3,9 +3,9 @@
     overflow: hidden;
     padding: 40px;
     padding-top: 60px;
-    font-size: 15px;
     cursor: pointer;
     z-index: 150;
+    align-items: center;
   }
   
   .sidebar:hover {
@@ -14,8 +14,15 @@
   
   .closeBtn {
     will-change: transform;
-    min-height: 50px; 
+    min-height: 50px !important; 
     background: url('../../../../images/backicon.png') center center no-repeat;
+  }
+  
+  #createStackBtn {
+    color : white;
+    font-size: 25px;
+    transform: rotate3d(0, 1, 0, 180deg);
+    user-select: none;
   }
   
   .toggle {
