@@ -7,7 +7,6 @@ import './style.scss'
 const keyframes: any = Keyframes
 const Sidebar = keyframes.Spring({
     open: {
-        // await call({
         to: {
             x: -50,
             y: 50,
@@ -17,18 +16,12 @@ const Sidebar = keyframes.Spring({
             scale: 1,
             borderRadius: 30,
             backgroundColor: 'white',
-            background: 'rgb(86, 82, 132)'
-            // 'linear-gradient(45deg, rgba(141, 131, 255, 1) rgba(255,0,0,1))'
-            // background: `linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%),
-            //             linear-gradient(127deg, rgba(202, 197, 255, 1), rgba(0, 255, 0, 0) 70.71%),
-            //             linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%)`
+            background: 'rgba(86, 82, 132, .8)'
         },
-        config: config.default
-        // })
+        config: config.slow
     },
     // close is how the btn starts off and how animations from open will transition to when close btn is clicked
     close: {
-        // await call({
         to: {
             zIndex: 0,
             x: 0,
@@ -39,20 +32,15 @@ const Sidebar = keyframes.Spring({
             rotate: '180deg',
             borderRadius: 15,
             backgroundColor: '#565284',
-            background: 'white'
-            //  'linear-gradient(45deg, rgba(0,0,0,0) rgba(0,0,0,0))'
-            // background: `linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70.71%),
-            //             linear-gradient(127deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70.71%),
-            //             linear-gradient(217deg, rgba(255, 108, 128, 0), rgba(0, 0, 0, 0) 70.71%)`
+            background: 'rgba(0, 0, 0, 0)'
         },
         config: config.slow
-        // })
     }
 })
 
 // Creates a keyframed trail for the ANi content within the modal
 const Content = keyframes.Trail({
-    open: { delay: 100, to: { x: 0, opacity: 1 } },
+    open: { delay: 300, to: { x: 0, opacity: 1 } },
     close: { to: { x: -100, opacity: 0 } }
 })
 
@@ -64,10 +52,14 @@ const items = [
         <input type="text" placeholder="Stack title" />
         <div className='grid-x grid-padding-x' >
             <input type="text" placeholder="Search Project" className='cell large-9' />
-            <button className="cell large-2 button secondary" children="Add" style={{ background: 'rgba(106, 157, 255, 1)' }} />
+            <button
+                onClick={(e) => e.preventDefault()}
+                className="cell large-2 button secondary" children="Add" style={{ background: 'rgba(106, 157, 255, 1)' }} />
         </div>
         <textarea />
-        <button className="shrink button" children="Create" style={{ background: 'rgba(106, 157, 255, 1)' }} />
+        <button
+            onClick={(e) => e.preventDefault()}
+            className="shrink button" children="Create" style={{ background: 'rgba(106, 157, 255, 1)' }} />
     </Fragment>
 ]
 
@@ -76,7 +68,6 @@ class AddStackModal extends React.Component {
     state = { open: false, zInd: 175 }
     toggle = () => this.setState((state: any) => ({ open: !state.open }))
     render() {
-        console.log(this.state.open)
         const state = this.state.open ? 'open' : 'close'
         return (
             <Fragment>
@@ -85,8 +76,8 @@ class AddStackModal extends React.Component {
                         <a.div
                             id='absoluteModal'
                             style={{
-                                zIndex: this.state.open ? this.state.zInd : zIndex,
                                 background,
+                                zIndex: this.state.open ? this.state.zInd : zIndex,
                             }}
                         >
                             <a.div
@@ -117,7 +108,7 @@ class AddStackModal extends React.Component {
                                         {items.map((item, i) => ({ x, ...props }: { x: any }) => (
                                             <a.div
                                                 style={{
-                                                    transform: x.interpolate((x: number) => `translate3d(${x}%,0,0)`),
+                                                    transform: x.interpolate((x: number) => `translate(${x}%,0)`),
                                                     ...props
                                                 }}>
                                                 <button
