@@ -6,47 +6,47 @@ import './style.scss'
 
 const keyframes: any = Keyframes
 const Sidebar = keyframes.Spring({
-    open: async (call: any) => {
-        await call({
-            to: {
-                x: -50,
-                y: 50,
-                height: '600px',
-                width: '50vw',
-                rotate: '0deg',
-                scale: 1,
-                borderRadius: 30,
-                backgroundColor: 'white',
-                background: 'rgb(86, 82, 132)'
-                // 'linear-gradient(45deg, rgba(141, 131, 255, 1) rgba(255,0,0,1))'
-                // background: `linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%),
-                //             linear-gradient(127deg, rgba(202, 197, 255, 1), rgba(0, 255, 0, 0) 70.71%),
-                //             linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%)`
-            },
-            config: config.default
-        })
+    open: {
+        // await call({
+        to: {
+            x: -50,
+            y: 50,
+            height: '600px',
+            width: '50vw',
+            rotate: '0deg',
+            scale: 1,
+            borderRadius: 30,
+            backgroundColor: 'white',
+            background: 'rgb(86, 82, 132)'
+            // 'linear-gradient(45deg, rgba(141, 131, 255, 1) rgba(255,0,0,1))'
+            // background: `linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%),
+            //             linear-gradient(127deg, rgba(202, 197, 255, 1), rgba(0, 255, 0, 0) 70.71%),
+            //             linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%)`
+        },
+        config: config.default
+        // })
     },
     // close is how the btn starts off and how animations from open will transition to when close btn is clicked
-    close: async (call: any) => {
-        await call({
-            to: {
-                zIndex: 0,
-                x: 0,
-                y: 0,
-                height: '10px',
-                width: '15vw',
-                scale: .5,
-                rotate: '180deg',
-                borderRadius: 15,
-                backgroundColor: '#565284',
-                background: 'white'
-                //  'linear-gradient(45deg, rgba(0,0,0,0) rgba(0,0,0,0))'
-                // background: `linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70.71%),
-                //             linear-gradient(127deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70.71%),
-                //             linear-gradient(217deg, rgba(255, 108, 128, 0), rgba(0, 0, 0, 0) 70.71%)`
-            },
-            config: config.slow
-        })
+    close: {
+        // await call({
+        to: {
+            zIndex: 0,
+            x: 0,
+            y: 0,
+            height: '10px',
+            width: '15vw',
+            scale: .5,
+            rotate: '180deg',
+            borderRadius: 15,
+            backgroundColor: '#565284',
+            background: 'white'
+            //  'linear-gradient(45deg, rgba(0,0,0,0) rgba(0,0,0,0))'
+            // background: `linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70.71%),
+            //             linear-gradient(127deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70.71%),
+            //             linear-gradient(217deg, rgba(255, 108, 128, 0), rgba(0, 0, 0, 0) 70.71%)`
+        },
+        config: config.slow
+        // })
     }
 })
 
