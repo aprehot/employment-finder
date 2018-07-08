@@ -1,0 +1,40 @@
+.sidebar {
+    position: relative;
+    overflow: hidden;
+    padding: 40px;
+    padding-top: 60px;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 150;
+  }
+  
+  .sidebar:hover {
+    will-change: transform;
+  }
+  
+  .closeBtn {
+    will-change: transform;
+    min-height: 50px; 
+    background: url('../../../../images/backicon.png') center center no-repeat;
+  }
+  
+  .toggle {
+    position: absolute;
+    margin: 40px;
+    color: #dfdfdf;
+    z-index: 100;
+    font-size: 2em;
+    cursor: pointer;
+  }
+  
+  .middle {
+    height: 100%;
+  }
+
+  #absoluteModal {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }

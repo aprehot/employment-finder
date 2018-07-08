@@ -10,7 +10,7 @@ class DraggableStack extends React.PureComponent<any> {
         originalX: 0,
         originalY: 0,
         tranStyle: "",
-        stackInFront: 20
+        stackInFront: 150
     };
     // may need getBounding... to capture position  of dropzone box for when cursor enters zone and stack being moved reacts accordingly
 
@@ -61,7 +61,7 @@ class DraggableStack extends React.PureComponent<any> {
             stackLeft: this.state.originalX,
             stackTop: this.state.originalY,
             tranStyle: "all 1s",
-            stackInFront: 20
+            stackInFront: 150
         });
     };
     onGotCapture = (event: any) => {
@@ -69,7 +69,7 @@ class DraggableStack extends React.PureComponent<any> {
         const { id } = event.target;
         handleActiveState(id)
         fetchFolderContents(id, category)
-        this.setState({ hasCapture: true, stackInFront: 500 });
+        this.setState({ hasCapture: true, stackInFront: 165 });
     }
 
     onLostCapture = () => this.setState({ hasCapture: false });

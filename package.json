@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@types/bcrypt": "^2.0.0",
+    "@types/delay": "^2.0.1",
     "@types/fontfaceobserver": "^0.0.6",
     "@types/mongoose": "^5.0.17",
     "@types/node": "^10.3.4",

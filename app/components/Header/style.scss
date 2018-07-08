@@ -1,7 +1,9 @@
 $primary-color: #565284;
 .ANiStacks {
-  // min-height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+  overflow-y: overlay;
 }
 .headerANi {
   z-index: 50;
