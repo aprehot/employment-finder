@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
-import { postProps } from '../../containers/userPost/projectInterface';
+import { postProps } from '../../../userPost/projectInterface';
 
 const shortenNumber = (num: number, decimalPlaces = 0) => {
   var str,

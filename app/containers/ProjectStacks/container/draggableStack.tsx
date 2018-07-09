@@ -88,7 +88,7 @@ class DraggableStack extends React.PureComponent<any> {
 
 
     render() {
-        const { hasCapture, stackLeft, stackTop, tranStyle, stackInFront } = this.state;
+        const { stackLeft, stackTop, tranStyle, stackInFront } = this.state;
 
         const { stack } = this.props
         return (

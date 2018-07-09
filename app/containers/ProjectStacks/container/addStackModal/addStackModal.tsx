@@ -66,7 +66,7 @@ const items = [
 
 class AddStackModal extends React.Component {
     state = { open: false, zInd: 175 }
-    toggle = () => this.setState((state: any) => ({ open: !state.open }))
+    toggle = () => this.setState((state: any) => ({ open: !this.state.open }))
     render() {
         const state = this.state.open ? 'open' : 'close'
         return (

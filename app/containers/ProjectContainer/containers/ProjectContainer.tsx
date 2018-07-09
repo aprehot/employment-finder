@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import ProjectHeader from '../../../components/projectHeader/projectHeader';
+import ProjectHeader from '../components/projectHeader/projectHeader';
 import { IReduxProps } from '../../userPost/projectInterface';
 import UserUpdates from '../../UserUpdates';
-import Roles from '../../../components/projectRoles/projectRoles';
+import Roles from '../components//projectRoles/projectRoles';
 import '../styles.scss'
 
 const mapStateToProps = ({ project, router }: IReduxProps) => ({ project, router })
