@@ -40,10 +40,9 @@
 ## Features
 
 - _React.js_ - **React 16**✨, React Router 5
-- _Redux.js_ - Redux saga, Redux immutable and Reselect
+- _Redux.js_ - Redux saga, Redux
 - _Babel_ - ES6, ESNext, Airbnb and React/Recommended config
 - _Webpack_ - **Webpack 4**✨, Hot Reloading, Code Splitting, Optimized Prod Build and more
-- _Test_ - Jest with Enzyme
 - _Lint_ - ESlint
 - _Styles_ - SCSS Styling
 
@@ -94,5 +93,4 @@ These are the things I stripped out from [react-boilerplate](https://github.com/
 
 
 ## License
-
-MIT license, Copyright (c) 2018 Dinesh Pandiyan.
+Copyright © 20018 Dilan Swain. All rights reserved.
