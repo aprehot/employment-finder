@@ -40,7 +40,7 @@ const ProjectHeader: React.SFC<postProps> = ({ project }) => {
   const { projectData } = project;
   return (
     projectData &&
-    <div className="cell large-5 medium-12 projectViewCards grid-x grid-padding-x">
+    <div className="cell large-6 medium-12 projectViewCards grid-x grid-padding-x">
       <h1 className="projectCardTitle" >{projectData.title}</h1>
       <p className='projViewPremise'>{projectData.premise}</p>
       <span className="cell large-3 projectDetails">

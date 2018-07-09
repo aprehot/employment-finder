@@ -35,9 +35,11 @@ export default class ProjectPage extends Component<IReduxProps> {
               <input type='text' className='projectViewSearch' placeholder="Search" />
             </div>
             <div className='projViewCardHolder'>
-              <ProjectHeader />
-              <UserUpdates />
-              <Roles />
+              <div className='grid-x'>
+                <ProjectHeader />
+                <UserUpdates />
+                <Roles />
+              </div>
             </div>
           </div>
         </div >

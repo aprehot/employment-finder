@@ -36,7 +36,7 @@ export default class UserUpdates extends React.PureComponent<IReduxProps> {
   render() {
     const { userUpdates }: IReduxProps['user'] = this.props.user;
     return (
-      <div className="grid-x projectViewCards ">
+      <div className="grid-x projectViewCards cell large-6">
         <h4 className="cell projectViewUpdateTitle">Updates</h4>
         <div className="cell">
           {this.ShowUpdates(userUpdates)}
