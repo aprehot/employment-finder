@@ -70,14 +70,6 @@ const projectSchema = new Schema({
     email: { type: String, required: true },
     priviledge: { type: String, required: true, eunm: ['admin', 'collab', 'viewer', 'downloader'] }
   }],
-  //   {
-  //   producer: { type: [String], required: true },
-  //   executive: { type: [String] },
-  //   director: { type: [String] },
-  //   writer: { type: [String] },
-  //   castingDirector: { type: [String] },
-  //   talent: { type: [String] }
-  // }],
   activeCasting: {
     type: Boolean
   },
