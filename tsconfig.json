@@ -61,7 +61,7 @@
     "build",
     // "config",
     // "server",
-    "app/tests",
+    //"app/tests",
     "jest.config.js"
   ]
 }
