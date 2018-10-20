@@ -110,47 +110,6 @@ router.get('/:folderId', (req, res) => {
     });
 });
 
-
-// UPDATE FOLDERS //
-/* eslint no-restricted-syntax: 0 */
-
-// router.patch('/:folderId', (req, res, next) => {
-//   const id = req.params.folderId;
-//   const updateOps = {};
-//   for (const ops of req.body) {
-//     updateOps[ops.propName] = ops.value;
-//   }
-//   Folders.update({ _id: id }, { $set: updateOps })
-//     .exec()
-//     .then((result) => {
-//       console.log(result);
-//       res.status(200).json(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
-
-
-// FETCH ALL FOLDERS //
-
-// router.get('/', (req, res) => {
-//   // localhost:3001/api/projects?skip=3&limit=2&order=asc
-//   const { skip } = parseInt(req.query);
-//   const { limit } = parseInt(req.query);
-//   const { order } = req.query;
-//
-//   // ORDER = asc || desc
-//   Folders.find().skip(skip).sort({ _id: order }).limit(limit)
-//     .exec((err, doc) => {
-//       if (err) return res.status(400).send(err);
-//       res.send(doc);
-//     });
-// });
-
 // DELETE FOLDER //
 
 router.delete('/:folderId', (req, res, next) => {
