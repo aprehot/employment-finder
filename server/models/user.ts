@@ -26,10 +26,6 @@ const userSchema = mongoose.Schema({
     type: String,
     maxlength: 100
   },
-  accountType: {
-    type: String,
-    enum: ['Representative', 'Casting Director', 'Producer', 'Executive', 'Actor', 'Writer', 'Director']
-  },
   busPhone: {
     type: Number,
     required: true,
