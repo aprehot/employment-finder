@@ -53,7 +53,7 @@ const projectSchema = new Schema({
     type: Boolean
   },
   teams: [{
-    job: { type: String, required: true, enum: ['producer', 'executive', 'director', 'writer', 'castingDirector', 'talent'] },
+    job: { type: String, required: true, enum: ['embdedded', 'frontend', 'devops', 'network', 'systems', 'projectManager'] },
     name: { type: String, required: true },
     email: { type: String, required: true },
     priviledge: { type: String, required: true, eunm: ['admin', 'collab', 'viewer', 'downloader'] }
