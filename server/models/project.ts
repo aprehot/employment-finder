@@ -27,7 +27,7 @@ const projectSchema = new Schema({
     type: String,
     required: true
   },
-  studio: {
+  projectName: {
     type: String,
     required: true
   },
@@ -52,40 +52,16 @@ const projectSchema = new Schema({
   hasCD: {
     type: Boolean
   },
-  roles: [{
-    roleType: { type: String, required: true, enum: ['Lead', 'Strong', 'Supporting', 'Small', 'Cameo'] },
-    name: { type: String, required: true },
-    gender: { type: String, required: true },
-    ages: [Number],
-    specifics: [String],
-    description: { type: String, required: true },
-    isSAG: { type: Boolean },
-    isOpen: { type: Boolean, required: true },
-    isLocal: { type: Boolean },
-    isOnOffer: { type: Boolean }
-  }],
   teams: [{
     job: { type: String, required: true, enum: ['producer', 'executive', 'director', 'writer', 'castingDirector', 'talent'] },
     name: { type: String, required: true },
     email: { type: String, required: true },
     priviledge: { type: String, required: true, eunm: ['admin', 'collab', 'viewer', 'downloader'] }
   }],
-  activeCasting: {
-    type: Boolean
-  },
-  activeDirector: {
-    type: Boolean
-  },
-  activeProducer: {
-    type: Boolean
-  },
   activeFinancing: {
     type: Boolean
   },
   inDev: {
-    type: Boolean
-  },
-  hasAvailRoles: {
     type: Boolean
   },
   inProduction: {
